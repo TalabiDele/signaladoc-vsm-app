@@ -1,0 +1,24 @@
+@import "assets/styles/variables";
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+* {
+  box-sizing: border-box;
+  /* outline: 1px dashed #f00; */
+}
+
+@font-face {
+  font-family: "VisbyCF";
+  src: local("VisbyCF"),
+    url("./fonts/VisbyCF/VisbyCF-Regular.otf") format("truetype");
+  font-weight: bold;
+}
+
+body {
+  font-family: "VisbyCF";
+  margin: 5em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

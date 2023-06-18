@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "./static/css/main.4f2bf123.css",
+    "main.js": "./static/js/main.c0a9b6ac.js",
+    "static/media/landing-image.png": "./static/media/landing-image.ec85e47cbe40262b11c6.png",
+    "static/media/stress-result.png": "./static/media/stress-result.e4f9e7dd05aefd389d40.png",
+    "static/media/heart-result.png": "./static/media/heart-result.d0bbfec136d0ed6bfdd9.png",
+    "static/media/bp-result.png": "./static/media/bp-result.d4bcc6ab2f92b909121d.png",
+    "static/media/oxygen-result.png": "./static/media/oxygen-result.327c8b6fa5660852ab38.png",
+    "static/media/resp-rate-result.png": "./static/media/resp-rate-result.3f8162aaeb5419b85faa.png",
+    "static/media/doc-img.png": "./static/media/doc-img.21420da6084cdb49b91c.png",
+    "static/media/faq.png": "./static/media/faq.1259096822707578e45b.png",
+    "static/media/VisbyCF-RegularOblique.otf": "./static/media/VisbyCF-RegularOblique.a1e24258607044fa6190.otf",
+    "static/media/VisbyCF-Heavy.otf": "./static/media/VisbyCF-Heavy.634b8ee768c0a4ab8d11.otf",
+    "static/media/VisbyCF-Bold.otf": "./static/media/VisbyCF-Bold.d1de16d5181b688be122.otf",
+    "static/media/VisbyCF-Light.otf": "./static/media/VisbyCF-Light.3d58d707b8ee079adee1.otf",
+    "static/media/VisbyCF-Medium.otf": "./static/media/VisbyCF-Medium.2a57f5ff18c021f50c8b.otf",
+    "static/media/VisbyCF-Regular.otf": "./static/media/VisbyCF-Regular.2835f7afe4dfec232b66.otf",
+    "static/media/vsm-logo.png": "./static/media/vsm-logo.6fd778bad5af1fc37f6e.png",
+    "static/media/vid.png": "./static/media/vid.18bf5fa77fceb299fc4a.png",
+    "static/media/forgot.png": "./static/media/forgot.9fb73ad8b85a961b16b3.png",
+    "static/media/heart-home.png": "./static/media/heart-home.76f8bd6315665bb38d4b.png",
+    "static/media/vsm-white.png": "./static/media/vsm-white.cfa151986d433d9a66f7.png",
+    "static/media/landing-bg.png": "./static/media/landing-bg.c40aaa42d2ae6969e3cd.png",
+    "static/media/whiteBg.png": "./static/media/whiteBg.900dc7afc8484b281dfb.png",
+    "static/media/warning.svg": "./static/media/warning.ad0fa4e173cdaf3c79a805c2176ff765.svg",
+    "static/media/error-icon.svg": "./static/media/error-icon.0935d0662b574a009e33.svg",
+    "static/media/warning-icon.svg": "./static/media/warning-icon.f7a42bc58ef7de2d7481.svg",
+    "index.html": "./index.html",
+    "main.4f2bf123.css.map": "./static/css/main.4f2bf123.css.map",
+    "main.c0a9b6ac.js.map": "./static/js/main.c0a9b6ac.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4f2bf123.css",
+    "static/js/main.c0a9b6ac.js"
+  ]
+}

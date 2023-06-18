@@ -1,0 +1,39 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@font-face {
+  font-family: "Regular";
+  src: local("VisbyCF"),
+    url("./fonts/VisbyCF/VisbyCF-Regular.otf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Bold";
+  src: local("VisbyCF"),
+    url("./fonts/VisbyCF/VisbyCF-Bold.otf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Medium";
+  src: local("VisbyCF"),
+    url("./fonts/VisbyCF/VisbyCF-Medium.otf") format("truetype");
+  font-weight: bold;
+}
+
+body {
+  font-family: "Regular", "Medium", "Bold";
+  margin: 5em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-face {
+  font-family: "Regular";
+
+  h1,
+  h2,
+  h3 {
+    font-family: "Bold";
+  }
+}

@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "VisbyCF";
+  src: local("VisbyCF"),
+    url("./fonts/VisbyCF/VisbyCF-Regular.otf") format("truetype");
+  font-weight: bold;
+}
+
+body {
+  font-family: "VisbyCF";
+  margin: 5em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

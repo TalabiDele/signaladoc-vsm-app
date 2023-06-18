@@ -1,0 +1,154 @@
+@import "assets/styles/variables";
+
+.info-container {
+  margin-bottom: 1rem;
+
+  .info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .data {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      @media not all and (min-width: 768px) {
+        flex-wrap: nowrap;
+        width: 95vw;
+        margin: 0rem auto 1rem auto;
+      }
+
+      .itemR {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        flex-grow: 1;
+        margin: 0.75rem;
+        font-weight: $info-item-font-weight;
+        // color: $info-item-color;
+        color: #000;
+        width: 100px;
+
+        @media not all and (min-width: 768px) {
+          height: 80px;
+        }
+
+        .item-img {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 3rem; // todo check
+          // height: 100%;
+          margin: auto;
+
+          @media not all and (min-width: 768px) {
+            width: 2rem;
+            top: 14px;
+            left: 16px;
+          }
+        }
+
+        .name {
+          font-size: $font-size-nano;
+        }
+
+        .value {
+          position: relative;
+          min-height: 5rem;
+
+          .ring-calculating {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 5rem;
+            height: 5rem;
+            margin: auto;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            @media not all and (min-width: 768px) {
+              width: 4rem;
+              height: 4rem;
+            }
+
+            &:before {
+              content: "";
+              position: absolute;
+              top: -13px;
+              left: -14px;
+              width: 5rem;
+              height: 5rem;
+              margin: auto;
+              animation: animateC 2s linear infinite;
+              background: linear-gradient(#fff, #fff) padding-box,
+                linear-gradient(to bottom, #0f66d2, #0f66d2, #fff) border-box;
+              border-radius: 50%;
+              border: 5px solid transparent;
+
+              @media not all and (min-width: 768px) {
+                width: 4rem;
+                height: 4rem;
+                top: 0px;
+                left: 0px;
+              }
+            }
+          }
+
+          .ring-calculated {
+            position: absolute;
+            // top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 7rem;
+            height: 4rem;
+            background: transparent;
+
+            @media not all and (min-width: 768px) {
+              // width: 4rem;
+              // height: 4rem;
+              // top: -10px;
+              // left: -11px;
+            }
+          }
+
+          span {
+            display: block;
+            position: absolute;
+            top: calc(50% - 2px);
+            left: 50%;
+            width: 50%;
+            height: 4px;
+            background: transparent;
+            transform-origin: left;
+            animation: animate 2s linear infinite;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes animateC {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(405deg);
+  }
+}

@@ -1,0 +1,57 @@
+import React, { useState, useEffect, useContext } from "react";
+import image from "../assets/images/heart-home.png";
+import { Link } from "react-router-dom";
+import History from "./History";
+import AuthContext from "./context/AuthContext";
+import { API_URL } from "./config";
+import Cookies from "universal-cookie";
+import ReactApexChart from "react-apexcharts";
+import Chart from "./Chart";
+import HomeHistory from "./HomeHistory";
+import { RiErrorWarningLine } from "react-icons/ri";
+import "./General.scss";
+
+const Dash = () => {
+	const { user, medData, profData } = useContext(AuthContext);
+
+	console.log(user);
+
+	return (
+		<div className=" pt-[8rem] w-[70%] mx-auto max-md:w-[90%] pb-[5rem] max-lg:w-[90%] max-xl:w-[90%]">
+			<div className=" max-md:flex items-center mb-[2rem] hidden">
+				<div className=" regular bg-[#AEC5F1] rounded-md py-[0.5rem] px-[1rem] max-md:px-[0.5rem] max-md:py-[0.1rem] mr-[1rem] max-md:text-3xl ">
+					{user?.first_name.charAt(0)}
+				</div>
+				<p className=" max-md:text-lg regular">Hi {user.first_name}, Welcome</p>
+			</div>
+			{!user?.updated_profile && (
+				<Link
+					to="/account/edit"
+					className="fixed bg-light_blue py-[0.5rem] px-[1rem] rounded-sm top-[1rem] z-[6] flex items-center max-md:relative max-md:mb-[3rem] max-md:text-center max-md:justify-center max-md:w-[80%]"
+				>
+					<p className=" text-md mr-[1rem]">
+						Profile setup: Just a few more details
+					</p>
+					<RiErrorWarningLine className=" text-4xl text-primary" />
+				</Link>
+			)}
+			<div className=" mb-[2rem]">
+				<img src={image} alt="" className=" mb-[1rem]" />
+				<p className=" mb-[1rem]">Track your vital signs today</p>
+				<Link
+					to={`/capture/?weight=${medData?.weight}&height=${medData?.height}&age=${profData?.age}`}
+				>
+					<button className=" bg-primary py-[0.5rem] px-[5rem] text-white rounded-sm">
+						Take a reading
+					</button>
+				</Link>
+			</div>
+
+			{medData && <Chart />}
+
+			<HomeHistory />
+		</div>
+	);
+};
+
+export default Dash;
