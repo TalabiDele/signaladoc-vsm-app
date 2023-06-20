@@ -52,7 +52,9 @@ export function Capture() {
 
 			history.push("/home");
 
-			window.location.reload();
+			setTimeout(() => {
+				window.location.reload();
+			}, 7000);
 		}
 	}, []);
 
@@ -138,16 +140,16 @@ export function Capture() {
 	});
 
 	useEffect(() => {
-		if (!canCapture) {
-			stopHandler();
-			if (!rppgInstance || !ready) {
-				return;
-			}
-			console.log("useEffect - rppg - initialized");
-			// @ts-ignore
-			const { width, height } = rppgInstance.rppgCamera;
-			setSize({ width, height });
+		// if (!canCapture) {
+		// stopHandler();
+		if (!rppgInstance || !ready) {
+			return;
 		}
+		console.log("useEffect - rppg - initialized");
+		// @ts-ignore
+		const { width, height } = rppgInstance.rppgCamera;
+		setSize({ width, height });
+		// }
 	}, [ready, rppgInstance]);
 
 	useEffect(() => {
