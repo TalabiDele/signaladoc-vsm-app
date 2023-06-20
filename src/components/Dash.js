@@ -12,9 +12,9 @@ import { RiErrorWarningLine } from "react-icons/ri";
 import "./General.scss";
 
 const Dash = () => {
-	const { user, medData, profData } = useContext(AuthContext);
+	const { user, medData, profData, chartData } = useContext(AuthContext);
 
-	console.log(user);
+	console.log(chartData);
 
 	return (
 		<div className=" pt-[8rem] w-[70%] mx-auto max-md:w-[90%] pb-[5rem] max-lg:w-[90%] max-xl:w-[90%]">
@@ -47,7 +47,7 @@ const Dash = () => {
 				</Link>
 			</div>
 
-			{medData && <Chart />}
+			{chartData?.has_data && <Chart />}
 
 			<HomeHistory />
 		</div>

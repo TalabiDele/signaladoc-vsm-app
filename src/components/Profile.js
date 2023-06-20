@@ -16,26 +16,10 @@ const Profile = () => {
 	const [newPass, setNewPass] = useState("");
 	const [photo, setPhoto] = useState();
 
-	const { user, profData, medData, logout } = useContext(AuthContext);
+	const { user, profData, medData, logout, checkUserLoggedIn } =
+		useContext(AuthContext);
 
 	const cookies = new Cookies();
-
-	useEffect(() => {
-		// const handleProfile = async () => {
-		//   const res = await fetch(`${API_URL}/user/profile`, {
-		//     method: "GET",
-		//     headers: {
-		//       "Content-Type": "application/json",
-		//       Authorization: `Bearer ${cookies.get("vsm_authorization")}`,
-		//     },
-		//   });
-		//   const data = await res.json();
-		//   console.log(data);
-		//   setProfData(data.profile);
-		//   setMedData(data.medical_info);
-		// };
-		// handleProfile();
-	}, []);
 
 	const handleChange = (e) => {
 		setPhoto(e.target.files[0]);
@@ -49,32 +33,35 @@ const Profile = () => {
 		const toastLoading = toast.loading("Loading...");
 		let formData = new FormData();
 
+		console.log(e);
+
 		formData.append("photo", e);
 
-		console.log(formData);
+		const res = await fetch(`${API_URL}/user/profile/photo`, {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${cookies.get("vsm_authorization")}`,
+			},
+			body: formData,
+		});
 
-		// const res = await fetch(`${API_URL}/user/profile/photo`, {
-		//   method: "POST",
-		//   headers: {
-		//     "Content-Type": "application/json",
-		//     Authorization: `Bearer ${cookies.get("vsm_authorization")}`,
-		//   },
-		//   body: JSON.stringify({
-		//     formData,
-		//   }),
-		// });
+		const data = await res.json();
 
-		// const data = await res.json();
+		console.log(data);
 
-		// console.log(data);
-
-		// if (res.ok) {
-		//   toast.success("Upload successful!", {
-		//     duration: 6000,
-		//   });
-		// }
+		if (res.ok) {
+			toast.success(data.message, {
+				duration: 6000,
+			});
+		} else {
+			toast.error(data.photo[0], {
+				duration: 6000,
+			});
+		}
 
 		toast.dismiss(toastLoading);
+
+		checkUserLoggedIn();
 	};
 
 	const handlePasswordUpdate = async (e) => {
@@ -125,9 +112,17 @@ const Profile = () => {
 			</h1>
 			<div className=" flex items-center justify-between border-b border-b-bluee pb-[1rem] max-md:justify-start max-md:border-b-0 max-md:mt-[3rem] max-md:flex-col max-md:items-start">
 				<div className="">
-					<div className=" font-bold bg-[#AEC5F1] rounded-md h-[3rem] w-[3rem] flex items-center justify-center mb-[0.1rem]">
-						{user?.first_name.charAt(0)}
-					</div>
+					{user.photo === "default.jpg" ? (
+						<div className=" bold bg-[#AEC5F1] rounded-md py-[0.5rem] px-[1rem] max-md:px-[0.5rem] h-[3rem] w-[3rem] flex justify-center items-center max-md:py-[0.1rem] mr-[1rem] ">
+							{user.first_name.charAt(0)}
+						</div>
+					) : (
+						<img
+							src={user.photo_url}
+							alt=""
+							className=" w-[4rem] h-[4rem] rounded-full"
+						/>
+					)}
 					<input
 						type="file"
 						name="photo"
@@ -200,14 +195,13 @@ const Profile = () => {
 					<p className=" text-text_gray font-light mb-[0.5rem]">Address</p>
 					<p className=" font-bold">{profData?.address && profData?.address}</p>
 				</div>
+				<div className=" max-md:hidden"></div>
 			</div>
 
 			<div className="py-[1rem] border-b border-b-bluee flex justify-between max-md:border-b-0 max-md:flex-col">
 				<div className=" max-md:border-b max-md:border-b-bluee max-md:w-full max-md:mb-[1rem]">
-					<p className=" text-text_gray font-light mb-[0.5rem]">
-						Height in inches
-					</p>
-					<p className=" font-bold">{medData?.height && medData?.height}in</p>
+					<p className=" text-text_gray font-light mb-[0.5rem]">Height in cm</p>
+					<p className=" font-bold">{medData?.height && medData?.height}cm</p>
 				</div>
 				<div className=" max-md:border-b max-md:border-b-bluee max-md:w-full max-md:mb-[1rem]">
 					<p className=" text-text_gray font-light mb-[0.5rem]">Weight in kg</p>
@@ -295,13 +289,15 @@ const Profile = () => {
 				Logout
 			</div>
 
-			<Link
-				to="/account/delete-account"
-				className=" text-danger flex items-center max-md:mt-[2rem] cursor-pointer"
-			>
-				<p className=" mr-[1rem]">Delete Account</p>
-				<BsPersonFillX className=" text-2xl " />
-			</Link>
+			<div className=" flex justify-end max-md:justify-start">
+				<Link
+					to="/account/delete-account"
+					className=" text-danger flex items-center max-md:mt-[2rem] cursor-pointer"
+				>
+					<p className=" mr-[1rem]">Delete Account</p>
+					<BsPersonFillX className=" text-2xl " />
+				</Link>
+			</div>
 		</div>
 	);
 };

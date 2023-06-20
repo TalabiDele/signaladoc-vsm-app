@@ -8,382 +8,397 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
 const ProfileEdit = () => {
-  const { user, profData, medData } = useContext(AuthContext);
+	const { user, profData, medData, checkUserLoggedIn } =
+		useContext(AuthContext);
 
-  console.log(user);
-  console.log(profData);
-  console.log(medData);
+	console.log(user);
+	console.log(profData);
+	console.log(medData);
 
-  const [first, setFirst] = useState(user?.first_name);
-  const [last, setLast] = useState(user?.surname);
-  const [gender, setGender] = useState(profData?.gender);
-  const [dob, setDob] = useState(profData?.dob);
-  const [height, setHeight] = useState(medData?.height);
-  const [weight, setWeight] = useState(medData?.weight);
-  const [blood, setBlood] = useState(medData?.blood_group_id);
-  const [country, setCountry] = useState(user?.country);
-  const [address, setAddress] = useState(profData?.address);
-  const [isInches, setIsInches] = useState(false);
-  const [isCm, setIsCm] = useState(true);
-  const [isKg, setIsKg] = useState(true);
-  const [isLbs, setIsLbs] = useState(false);
-  const [bloodGroup, setBloodGroup] = useState();
-  const [photo, setPhoto] = useState();
+	const [first, setFirst] = useState(user?.first_name);
+	const [last, setLast] = useState(user?.surname);
+	const [gender, setGender] = useState(profData?.gender);
+	const [dob, setDob] = useState(profData?.dob);
+	const [height, setHeight] = useState(medData?.height);
+	const [weight, setWeight] = useState(medData?.weight);
+	const [blood, setBlood] = useState(medData?.blood_group_id);
+	const [country, setCountry] = useState(user?.country);
+	const [address, setAddress] = useState(profData?.address);
+	const [isInches, setIsInches] = useState(false);
+	const [isCm, setIsCm] = useState(true);
+	const [isKg, setIsKg] = useState(true);
+	const [isLbs, setIsLbs] = useState(false);
+	const [bloodGroup, setBloodGroup] = useState();
+	const [photo, setPhoto] = useState();
 
-  const cookies = new Cookies();
+	const cookies = new Cookies();
 
-  const history = useHistory();
+	const history = useHistory();
 
-  useEffect(() => {
-    const handleBlood = async () => {
-      const res = await fetch(`${API_URL}/common/blood-groups`);
+	useEffect(() => {
+		const handleBlood = async () => {
+			const res = await fetch(`${API_URL}/common/blood-groups`);
 
-      const data = await res.json();
-      console.log(data);
+			const data = await res.json();
+			console.log(data);
 
-      setBloodGroup(data.data);
-    };
+			setBloodGroup(data.data);
+		};
 
-    handleBlood();
-  }, []);
+		handleBlood();
+	}, []);
 
-  const options = useMemo(() => countryList().getData(), []);
+	const options = useMemo(() => countryList().getData(), []);
 
-  const handleChange = (e) => {
-    setPhoto(e.target.files[0]);
+	const handleChange = (e) => {
+		setPhoto(e.target.files[0]);
 
-    console.log(e.target.files[0]);
-  };
+		console.log(e.target.files[0]);
 
-  const handleUpload = async (e) => {
-    const toastLoading = toast.loading("Loading...");
-    let formData = new FormData();
+		handleUpload(e.target.files[0]);
+	};
 
-    console.log(e);
+	const handleUpload = async (e) => {
+		const toastLoading = toast.loading("Loading...");
+		let formData = new FormData();
 
-    formData.append("photo", e);
+		console.log(e);
 
-    const res = await fetch(`${API_URL}/user/profile/photo`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${cookies.get("vsm_authorization")}`,
-      },
-      body: formData,
-    });
+		formData.append("photo", e);
 
-    const data = await res.json();
+		const res = await fetch(`${API_URL}/user/profile/photo`, {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${cookies.get("vsm_authorization")}`,
+			},
+			body: formData,
+		});
 
-    console.log(data);
+		const data = await res.json();
 
-    if (res.ok) {
-      toast.success("Upload successful!", {
-        duration: 6000,
-      });
-    }
+		console.log(data);
 
-    toast.dismiss(toastLoading);
-  };
+		if (res.ok) {
+			toast.success(data.message, {
+				duration: 6000,
+			});
+		} else {
+			toast.error(data.photo[0], {
+				duration: 6000,
+			});
+		}
 
-  const handleInches = () => {
-    setIsInches(true);
-    setIsCm(false);
+		toast.dismiss(toastLoading);
 
-    console.log(isInches);
-  };
+		checkUserLoggedIn();
+	};
 
-  const handleCm = () => {
-    setIsCm(true);
-    setIsInches(false);
+	const handleInches = () => {
+		setIsInches(true);
+		setIsCm(false);
 
-    console.log(isCm);
-  };
+		console.log(isInches);
+	};
 
-  const handleHeight = (e) => {
-    if (isCm) {
-      setHeight(e.target.value);
-    } else if (isInches) {
-      setHeight(e.target.value * 2.54);
-    }
-  };
+	const handleCm = () => {
+		setIsCm(true);
+		setIsInches(false);
 
-  const handleKg = () => {
-    setIsKg(true);
-    setIsLbs(false);
-  };
+		console.log(isCm);
+	};
 
-  const handleLbs = () => {
-    setIsLbs(true);
-    setIsKg(false);
-  };
+	const handleHeight = (e) => {
+		if (isCm) {
+			setHeight(e.target.value);
+		} else if (isInches) {
+			setHeight(e.target.value * 2.54);
+		}
+	};
 
-  const handleWeight = (e) => {
-    if (isKg) {
-      setWeight(e.target.value);
-    } else if (isLbs) {
-      setWeight(e.target.value / 2.205);
-    }
-  };
+	const handleKg = () => {
+		setIsKg(true);
+		setIsLbs(false);
+	};
 
-  const handleUpdate = async (e) => {
-    e.preventDefault();
+	const handleLbs = () => {
+		setIsLbs(true);
+		setIsKg(false);
+	};
 
-    handleUpload(photo);
+	const handleWeight = (e) => {
+		if (isKg) {
+			setWeight(e.target.value);
+		} else if (isLbs) {
+			setWeight(e.target.value / 2.205);
+		}
+	};
 
-    // const toastLoading = toast.loading("Loading...");
+	const handleUpdate = async (e) => {
+		e.preventDefault();
 
-    // console.log(country);
+		const toastLoading = toast.loading("Loading...");
 
-    // const res = await fetch(`${API_URL}/user/profile/update`, {
-    //   method: "PUT",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization: `Bearer ${cookies.get("vsm_authorization")}`,
-    //   },
-    //   body: JSON.stringify({
-    //     first_name: first,
-    //     surname: last,
-    //     dob,
-    //     gender,
-    //     address,
-    //     country,
-    //     blood_group_id: blood,
-    //     weight,
-    //     height,
-    //   }),
-    // });
+		console.log(country);
 
-    // const data = await res.json();
+		const res = await fetch(`${API_URL}/user/profile/update`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${cookies.get("vsm_authorization")}`,
+			},
+			body: JSON.stringify({
+				first_name: first,
+				surname: last,
+				dob,
+				gender,
+				address,
+				country,
+				blood_group_id: blood,
+				weight,
+				height,
+			}),
+		});
 
-    // toast.success("Profile updated!", {
-    //   duration: 6000,
-    // });
+		const data = await res.json();
 
-    // console.log(data);
+		toast.success("Profile updated!", {
+			duration: 6000,
+		});
 
-    // toast.dismiss(toastLoading);
+		console.log(data);
 
-    // history.push("/account");
-  };
+		toast.dismiss(toastLoading);
 
-  return (
-    <div className=" w-[70%] mx-auto pt-[2rem] pb-[7rem] max-md:w-[90%] max-md:pb-[5rem] max-2xl:ml-[20rem] max-md:mx-auto max-lg:ml-[15rem]">
-      <h1 className=" text-3xl relative z-[5] max-md:top-[3rem] max-md:mb-[2rem]">
-        Edit Profile
-      </h1>
-      <div className=" mt-[4rem]">
-        <div className=" mb-[3rem]">
-          <div className=" font-bold bg-[#AEC5F1] rounded-md h-[3rem] w-[3rem] flex items-center justify-center mb-[0.1rem]">
-            {user?.first_name.charAt(0)}
-          </div>
-          <input
-            type="file"
-            name="photo"
-            id="photo"
-            className=" hidden"
-            onChange={(e) => handleChange(e)}
-          />
-          <label htmlFor="photo" className=" text-primary cursor-pointer">
-            Change profile photo
-          </label>
-        </div>
+		history.push("/account");
+	};
 
-        <form
-          action=""
-          className=" w-[50%] max-md:w-full"
-          onSubmit={handleUpdate}
-        >
-          <label
-            htmlFor="firstName"
-            className=" text-sm text-text_gray mb-[0.5rem]"
-          >
-            First Name
-          </label>
-          <input
-            type="text"
-            name="firstName"
-            id="firstName"
-            value={first}
-            className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
-            onChange={(e) => setFirst(e.target.value)}
-          />
+	return (
+		<div className=" w-[70%] mx-auto pt-[2rem] pb-[7rem] max-md:w-[90%] max-md:pb-[5rem] max-2xl:ml-[20rem] max-md:mx-auto max-lg:ml-[15rem]">
+			<h1 className=" text-3xl relative z-[5] max-md:top-[3rem] max-md:mb-[2rem]">
+				Edit Profile
+			</h1>
+			<div className=" mt-[4rem]">
+				<div className=" mb-[3rem]">
+					{user.photo === "default.jpg" ? (
+						<div className=" bold bg-[#AEC5F1] rounded-md h-[3rem] w-[3rem] py-[0.5rem] px-[1rem] max-md:px-[0.5rem] max-md:py-[0.1rem] mr-[1rem] ">
+							{user.first_name.charAt(0)}
+						</div>
+					) : (
+						<img
+							src={user.photo_url}
+							alt=""
+							className=" w-[3rem] h-[3rem] rounded-full mb-[0.5rem]"
+						/>
+					)}
+					<input
+						type="file"
+						name="photo"
+						id="photo"
+						className=" hidden"
+						onChange={(e) => handleChange(e)}
+					/>
+					<label htmlFor="photo" className=" text-primary cursor-pointer">
+						Change profile photo
+					</label>
+				</div>
 
-          <label
-            htmlFor="lastName"
-            className=" text-sm text-text_gray mb-[0.5rem]"
-          >
-            Last Name
-          </label>
-          <input
-            type="text"
-            name="lastName"
-            id="lastName"
-            value={last}
-            className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
-            onChange={(e) => setLast(e.target.value)}
-          />
+				<form
+					action=""
+					className=" w-[50%] max-md:w-full"
+					onSubmit={handleUpdate}
+				>
+					<label
+						htmlFor="firstName"
+						className=" text-sm text-text_gray mb-[0.5rem]"
+					>
+						First Name
+					</label>
+					<input
+						type="text"
+						name="firstName"
+						id="firstName"
+						value={first}
+						className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
+						onChange={(e) => setFirst(e.target.value)}
+					/>
 
-          <label
-            htmlFor="gender"
-            className=" text-sm text-text_gray mb-[0.5rem]"
-          >
-            Gender
-          </label>
-          <select
-            name="gender"
-            id="gender"
-            className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
-            onChange={(e) => setGender(e.target.value)}
-            value={gender}
-          >
-            <option value={0}>Female</option>
-            <option value={1}>Male</option>
-          </select>
+					<label
+						htmlFor="lastName"
+						className=" text-sm text-text_gray mb-[0.5rem]"
+					>
+						Last Name
+					</label>
+					<input
+						type="text"
+						name="lastName"
+						id="lastName"
+						value={last}
+						className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
+						onChange={(e) => setLast(e.target.value)}
+					/>
 
-          <label htmlFor="dob" className=" text-sm text-text_gray mb-[0.5rem]">
-            Date of Birth
-          </label>
-          <input
-            type="date"
-            name="dob"
-            id="dob"
-            value={dob}
-            className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
-            onChange={(e) => setDob(e.target.value)}
-          />
+					<label
+						htmlFor="gender"
+						className=" text-sm text-text_gray mb-[0.5rem]"
+					>
+						Gender
+					</label>
+					<select
+						name="gender"
+						id="gender"
+						className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
+						onChange={(e) => setGender(e.target.value)}
+						value={gender}
+					>
+						<option value={0}>Female</option>
+						<option value={1}>Male</option>
+					</select>
 
-          <div className="flex justify-between mb-[0.5rem]">
-            <label htmlFor="height" className=" text-sm text-text_gray">
-              Height in centimeters
-            </label>
-            <div className="flex">
-              <div
-                className={` ${
-                  isInches ? "bg-primary" : "bg-input_border"
-                } text-white cursor-pointer rounded-sm py-[0.1rem] px-[0.5rem] mr-[1rem]`}
-                onClick={() => handleInches()}
-              >
-                in
-              </div>
-              <div
-                className={` ${
-                  isCm ? "bg-primary" : "bg-input_border"
-                }  text-white cursor-pointer rounded-sm py-[0.1rem] px-[0.5rem]`}
-                onClick={() => handleCm()}
-              >
-                cm
-              </div>
-            </div>
-          </div>
-          <input
-            type="number"
-            name="height"
-            id="height"
-            value={height}
-            className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
-            onChange={(e) => handleHeight(e)}
-          />
+					<label htmlFor="dob" className=" text-sm text-text_gray mb-[0.5rem]">
+						Date of Birth
+					</label>
+					<input
+						type="date"
+						name="dob"
+						id="dob"
+						value={dob}
+						className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
+						onChange={(e) => setDob(e.target.value)}
+					/>
 
-          <div className="flex justify-between mb-[0.5rem]">
-            <label htmlFor="height" className=" text-sm text-text_gray">
-              Weight in kg
-            </label>
-            <div className="flex">
-              <div
-                className={` ${
-                  isKg ? "bg-primary" : "bg-input_border"
-                } text-white cursor-pointer rounded-sm py-[0.1rem] px-[0.5rem] mr-[1rem]`}
-                onClick={() => handleKg()}
-              >
-                kg
-              </div>
-              <div
-                className={` ${
-                  isLbs ? "bg-primary" : "bg-input_border"
-                }  text-white cursor-pointer rounded-sm py-[0.1rem] px-[0.5rem]`}
-                onClick={() => handleLbs()}
-              >
-                lbs
-              </div>
-            </div>
-          </div>
-          <input
-            type="number"
-            name="height"
-            id="height"
-            value={weight}
-            className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
-            onChange={(e) => handleWeight(e)}
-          />
+					<div className="flex justify-between mb-[0.5rem]">
+						<label htmlFor="height" className=" text-sm text-text_gray">
+							Height in centimeters
+						</label>
+						<div className="flex">
+							<div
+								className={` ${
+									isInches ? "bg-primary" : "bg-input_border"
+								} text-white cursor-pointer rounded-sm py-[0.1rem] px-[0.5rem] mr-[1rem]`}
+								onClick={() => handleInches()}
+							>
+								in
+							</div>
+							<div
+								className={` ${
+									isCm ? "bg-primary" : "bg-input_border"
+								}  text-white cursor-pointer rounded-sm py-[0.1rem] px-[0.5rem]`}
+								onClick={() => handleCm()}
+							>
+								cm
+							</div>
+						</div>
+					</div>
+					<input
+						type="number"
+						name="height"
+						id="height"
+						value={height}
+						className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
+						onChange={(e) => handleHeight(e)}
+					/>
 
-          <label
-            htmlFor="blood"
-            className=" text-sm text-text_gray mb-[0.5rem]"
-          >
-            Blood group
-          </label>
-          <select
-            name="blood"
-            id="blood"
-            className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
-            onChange={(e) => setBlood(e.target.value)}
-            value={blood}
-          >
-            {bloodGroup &&
-              bloodGroup?.map((e) => (
-                <option value={e.id} key={e.id}>
-                  {e.group}
-                </option>
-              ))}
-          </select>
+					<div className="flex justify-between mb-[0.5rem]">
+						<label htmlFor="height" className=" text-sm text-text_gray">
+							Weight in kg
+						</label>
+						<div className="flex">
+							<div
+								className={` ${
+									isKg ? "bg-primary" : "bg-input_border"
+								} text-white cursor-pointer rounded-sm py-[0.1rem] px-[0.5rem] mr-[1rem]`}
+								onClick={() => handleKg()}
+							>
+								kg
+							</div>
+							<div
+								className={` ${
+									isLbs ? "bg-primary" : "bg-input_border"
+								}  text-white cursor-pointer rounded-sm py-[0.1rem] px-[0.5rem]`}
+								onClick={() => handleLbs()}
+							>
+								lbs
+							</div>
+						</div>
+					</div>
+					<input
+						type="number"
+						name="height"
+						id="height"
+						value={weight}
+						className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
+						onChange={(e) => handleWeight(e)}
+					/>
 
-          <label
-            htmlFor="country"
-            className=" text-sm text-text_gray mb-[0.5rem]"
-          >
-            Country
-          </label>
-          {/* <Select
+					<label
+						htmlFor="blood"
+						className=" text-sm text-text_gray mb-[0.5rem]"
+					>
+						Blood group
+					</label>
+					<select
+						name="blood"
+						id="blood"
+						className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
+						onChange={(e) => setBlood(e.target.value)}
+						value={blood}
+					>
+						{bloodGroup &&
+							bloodGroup?.map((e) => (
+								<option value={e.id} key={e.id}>
+									{e.group}
+								</option>
+							))}
+					</select>
+
+					<label
+						htmlFor="country"
+						className=" text-sm text-text_gray mb-[0.5rem]"
+					>
+						Country
+					</label>
+					{/* <Select
           options={options}
           value={blood}
           onChange={(e) => setBlood(e.target.value)}
           className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
         /> */}
-          <select
-            name="country"
-            id="country"
-            onChange={(e) => setCountry(e.target.value)}
-            className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
-            value={country}
-          >
-            {options.map((e) => (
-              <option key={e.value} value={e.value}>
-                {e.label}
-              </option>
-            ))}
-          </select>
+					<select
+						name="country"
+						id="country"
+						onChange={(e) => setCountry(e.target.value)}
+						className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
+						value={country}
+					>
+						{options.map((e) => (
+							<option key={e.value} value={e.value}>
+								{e.label}
+							</option>
+						))}
+					</select>
 
-          <label
-            htmlFor="address"
-            className=" text-sm text-text_gray mb-[0.5rem]"
-          >
-            Address
-          </label>
-          <input
-            type="text"
-            name="address"
-            id="address"
-            value={address}
-            className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
-            onChange={(e) => setAddress(e.target.value)}
-          />
+					<label
+						htmlFor="address"
+						className=" text-sm text-text_gray mb-[0.5rem]"
+					>
+						Address
+					</label>
+					<input
+						type="text"
+						name="address"
+						id="address"
+						value={address}
+						className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
+						onChange={(e) => setAddress(e.target.value)}
+					/>
 
-          <button className="bg-primary text-white rounded-md py-[0.5rem] px-[5rem]">
-            Update profile
-          </button>
-        </form>
-      </div>
-    </div>
-  );
+					<button className="bg-primary text-white rounded-md py-[0.5rem] px-[5rem]">
+						Update profile
+					</button>
+				</form>
+			</div>
+		</div>
+	);
 };
 
 export default ProfileEdit;

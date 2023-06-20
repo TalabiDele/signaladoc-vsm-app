@@ -66,7 +66,7 @@ const RemoveAccount = () => {
 	};
 
 	return (
-		<div className=" w-[80%] mx-auto relative max-md:w-[90%] max-2xl:ml-[15rem]">
+		<div className=" w-[70%] mx-auto relative max-md:w-[90%] max-2xl:ml-[15rem] max-md:mx-auto ">
 			{modal && (
 				<div className=" modal  fixed h-[100vh] w-[100vw] left-0 top-0 grid items-center z-[5]">
 					<div className=" rounded-md bg-white py-[1rem] px-[1rem] w-[30rem] mx-auto max-md:w-[90%]">
@@ -89,8 +89,8 @@ const RemoveAccount = () => {
 			<p className=" text-danger absolute z-[3] top-[2rem] text-xl">
 				Delete Account?
 			</p>
-			<div className=" w-[40rem] pt-[10rem] max-md:w-full">
-				<p className=" text-lg w-[40%]">
+			<div className=" w-[30rem] grid pt-[10rem] max-md:w-full">
+				<p className=" text-lg max-md:text-center">
 					Going ahead with this will delete your account details from all
 					SignalsADoc platforms.
 				</p>
@@ -102,7 +102,7 @@ const RemoveAccount = () => {
 				<input
 					type="email"
 					value={email}
-					className=" text-lg px-[1rem] py-[0.5rem] w-[40rem] border border-input_border rounded-lg mt-[0.5rem] bg-input_bg mb-[2rem]"
+					className=" text-lg px-[1rem] py-[0.5rem] border border-input_border rounded-lg mt-[0.5rem] bg-input_bg mb-[2rem]"
 					name="email"
 					id="email"
 					onChange={(e) => setEmail(e.target.value)}

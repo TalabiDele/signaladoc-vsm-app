@@ -7,10 +7,10 @@ import { TeamsFxContext } from "./Context";
 import { TeamsTheme } from "@fluentui/react-teams/lib/cjs/themes";
 import { Provider } from "@fluentui/react-teams";
 import {
-  Capture,
-  NotSupported,
-  BadConditions,
-  Results,
+	Capture,
+	NotSupported,
+	BadConditions,
+	Results,
 } from "tabs/CaptureTab/Views";
 import "./App.scss";
 import Home from "pages/Home";
@@ -41,101 +41,101 @@ import SubHistory from "pages/SubHistory";
  * of the app.
  */
 export default function App() {
-  const { loading, theme, themeString, teamsfx } = useTeamsFx();
+	const { loading, theme, themeString, teamsfx } = useTeamsFx();
 
-  const hist = createBrowserHistory();
+	const hist = createBrowserHistory();
 
-  const { user } = useContext(AuthContext);
+	const { user } = useContext(AuthContext);
 
-  const pathname = window.location.pathname;
+	const pathname = window.location.pathname;
 
-  return (
-    <div className="font-face">
-      {/* <TeamsFxContext.Provider value={{ theme, themeString, teamsfx }}> */}
-      {/* <Provider themeName={TeamsTheme.Default} lang="en-US"> */}
-      <Toaster position="top-center" reverseOrder={false} />
-      {user && pathname !== "/" ? <UserNav /> : <></>}
-      {/* {pathname === "/plans" ||
+	return (
+		<div className="font-face">
+			{/* <TeamsFxContext.Provider value={{ theme, themeString, teamsfx }}> */}
+			{/* <Provider themeName={TeamsTheme.Default} lang="en-US"> */}
+			<Toaster position="top-center" reverseOrder={false} />
+			{user && pathname !== "/" ? <UserNav /> : <></>}
+			{/* {pathname === "/plans" ||
         pathname === "/plans/explore" ||
         pathname === "/plans/history" ||
         (pathname === "/plans/discounts" && <PlansNav />)} */}
-      {loading ? (
-        <Loader style={{ margin: 100 }} />
-      ) : (
-        <>
-          {user && (
-            <>
-              <Route
-                path={`/capture`}
-                render={({ match: { url } }) => (
-                  <>
-                    <Route exact path={`${url}/`} component={Capture} />
-                    <Route
-                      exact
-                      path={`${url}/not-supported`}
-                      component={NotSupported}
-                    />
-                    <Route
-                      exact
-                      path={`${url}/bad-conditions`}
-                      component={BadConditions}
-                    />
-                    <Route exact path={`${url}/results`} component={Results} />
-                    <Route
-                      exact
-                      path={`${url}/results/doctor`}
-                      component={ChatDoc}
-                    />
-                  </>
-                )}
-              />
-              <Route exact path={`/history`} component={HistoryPage} />
+			{loading ? (
+				<Loader style={{ margin: 100 }} />
+			) : (
+				<>
+					{user && (
+						<>
+							<Route
+								path={`/capture`}
+								render={({ match: { url } }) => (
+									<>
+										<Route exact path={`${url}/`} component={Capture} />
+										<Route
+											exact
+											path={`${url}/not-supported`}
+											component={NotSupported}
+										/>
+										<Route
+											exact
+											path={`${url}/bad-conditions`}
+											component={BadConditions}
+										/>
+										<Route exact path={`${url}/results`} component={Results} />
+										<Route
+											exact
+											path={`${url}/results/doctor`}
+											component={ChatDoc}
+										/>
+									</>
+								)}
+							/>
+							<Route exact path={`/history`} component={HistoryPage} />
 
-              <Route path="/home" component={Dashboard} />
-              <Route
-                path={`/plans`}
-                render={({ match: { url } }) => (
-                  <>
-                    <PlansNav />
-                    <Route exact path={`${url}/`} component={Plans} />
-                    <Route exact path={`${url}/explore`} component={Explore} />
-                    <Route
-                      exact
-                      path={`${url}/discounts`}
-                      component={Discounts}
-                    />
-                    <Route
-                      exact
-                      path={`${url}/history`}
-                      component={SubHistory}
-                    />
-                  </>
-                )}
-              />
+							<Route path="/home" component={Dashboard} />
+							<Route
+								path={`/plans`}
+								render={({ match: { url } }) => (
+									<>
+										{/* <PlansNav /> */}
+										<Route exact path={`${url}/`} component={Plans} />
+										<Route exact path={`${url}/explore`} component={Explore} />
+										<Route
+											exact
+											path={`${url}/discounts`}
+											component={Discounts}
+										/>
+										<Route
+											exact
+											path={`${url}/history`}
+											component={SubHistory}
+										/>
+									</>
+								)}
+							/>
 
-              <Route
-                path="/account"
-                render={({ match: { url } }) => (
-                  <>
-                    <Route exact path={`${url}/`} component={Account} />
-                    <Route path={`${url}/edit`} component={Edit} />
-                    <Route path={`${url}/delete-account`} component={Delete} />
-                  </>
-                )}
-              />
-            </>
-          )}
-        </>
-      )}
+							<Route
+								path="/account"
+								render={({ match: { url } }) => (
+									<>
+										<Route exact path={`${url}/`} component={Account} />
+										<Route path={`${url}/edit`} component={Edit} />
+										<Route path={`${url}/delete-account`} component={Delete} />
+									</>
+								)}
+							/>
+						</>
+					)}
+				</>
+			)}
 
-      <Route exact path={`/`} component={Home} />
-      <>
-        <Route exact path={`/login`} component={Login} />
-        <Route exact path={`/register`} component={Register} />
-        <Route exact path={`/forgot-password`} component={ForgotPassword} />
-      </>
-      {/* </Provider> */}
-      {/* </TeamsFxContext.Provider> */}
-    </div>
-  );
+			<Route exact path={`/`} component={Home} />
+			<>
+				<Route exact path={`/login`} component={Login} />
+				<Route exact path={`/register`} component={Register} />
+				<Route exact path={`/forgot-password`} component={ForgotPassword} />
+			</>
+			{/* </Provider> */}
+			{/* </TeamsFxContext.Provider> */}
+		</div>
+	);
 }
