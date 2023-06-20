@@ -45,15 +45,15 @@ export function Capture() {
 			history.push("/login");
 		}
 
-		// if (!canCapture) {
-		// 	toast.error("Please subscribe to take a reading!", {
-		// 		duration: 6000,
-		// 	});
+		if (!canCapture) {
+			toast.error("Please subscribe to take a reading!", {
+				duration: 6000,
+			});
 
-		// 	history.push("/home");
+			history.push("/home");
 
-		// 	window.location.reload();
-		// }
+			window.location.reload();
+		}
 	}, []);
 
 	const [size, setSize] = useState<{ width: number; height: number }>({
@@ -138,7 +138,7 @@ export function Capture() {
 	});
 
 	useEffect(() => {
-		if (canCapture) {
+		if (!canCapture) {
 			stopHandler();
 			if (!rppgInstance || !ready) {
 				return;
@@ -151,9 +151,9 @@ export function Capture() {
 	}, [ready, rppgInstance]);
 
 	useEffect(() => {
-		if (canCapture) {
-			processingFaceMesh.current = processing;
-		}
+		// if (canCapture) {
+		processingFaceMesh.current = processing;
+		// }
 	}, [processing]);
 
 	const startHandler = () => {

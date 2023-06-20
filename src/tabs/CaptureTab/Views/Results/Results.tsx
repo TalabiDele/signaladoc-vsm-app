@@ -199,12 +199,14 @@ export const Results = () => {
 					<div className="title">
 						<div
 							className={` ${
-								resultReading?.blood_pressure_indicator === "warning" &&
+								resultReading?.vitals.blood_pressure_indicator === "warning" &&
 								"warning"
 							} ${
-								resultReading?.blood_pressure_indicator === "high" && "danger"
+								resultReading?.vitals.blood_pressure_indicator === "danger" &&
+								"danger"
 							} ${
-								resultReading?.blood_pressure_indicator === "ok" && "normal"
+								resultReading?.vitals.blood_pressure_indicator === "ok" &&
+								"normal"
 							} icon max-md:w-[2rem]`}
 						>
 							<img
@@ -219,13 +221,13 @@ export const Results = () => {
 						<div className="name">Blood Pressure</div>
 						<div
 							className={` ${
-								resultReading?.blood_pressure_indicator === "warning" &&
+								resultReading?.vitals.blood_pressure_indicator === "warning" &&
 								"warn-text"
 							} ${
-								resultReading?.blood_pressure_indicator === "high" &&
+								resultReading?.vitals.blood_pressure_indicator === "danger" &&
 								"high-text"
 							} ${
-								resultReading?.blood_pressure_indicator === "ok" &&
+								resultReading?.vitals.blood_pressure_indicator === "ok" &&
 								"normal-text"
 							} value regular`}
 						>
@@ -251,12 +253,14 @@ export const Results = () => {
 					<div className="title">
 						<div
 							className={` ${
-								resultReading?.beats_per_minute_indicator === "warning" &&
-								"warning"
+								resultReading?.vitals.beats_per_minute_indicator ===
+									"warning" && "warning"
 							} ${
-								resultReading?.beats_per_minute_indicator === "high" && "danger"
+								resultReading?.vitals.beats_per_minute_indicator === "danger" &&
+								"danger"
 							} ${
-								resultReading?.beats_per_minute_indicator === "ok" && "normal"
+								resultReading?.vitals.beats_per_minute_indicator === "ok" &&
+								"normal"
 							} icon`}
 						>
 							<img src={heartResult} alt="icon-result" className=" w-[2rem]" />
@@ -267,13 +271,13 @@ export const Results = () => {
 						<div className="name">Heart Rate</div>
 						<div
 							className={` ${
-								resultReading?.beats_per_minute_indicator === "warning" &&
-								"warn-text"
+								resultReading?.vitals.beats_per_minute_indicator ===
+									"warning" && "warn-text"
 							} ${
-								resultReading?.beats_per_minute_indicator === "high" &&
+								resultReading?.vitals.beats_per_minute_indicator === "danger" &&
 								"high-text"
 							} ${
-								resultReading?.beats_per_minute_indicator === "ok" &&
+								resultReading?.vitals.beats_per_minute_indicator === "ok" &&
 								"normal-text"
 							} value regular`}
 						>
@@ -300,12 +304,14 @@ export const Results = () => {
 					<div className="title">
 						<div
 							className={` ${
-								resultReading?.stress_status_indicator === "warning" &&
+								resultReading?.vitals.stress_status_indicator === "warning" &&
 								"warning"
 							} ${
-								resultReading?.stress_status_indicator === "high" && "danger"
+								resultReading?.vitals.stress_status_indicator === "danger" &&
+								"danger"
 							} ${
-								resultReading?.stress_status_indicator === "ok" && "normal"
+								resultReading?.vitals.stress_status_indicator === "ok" &&
+								"normal"
 							} icon`}
 						>
 							<img src={stressResult} alt="icon-result" className=" w-[2rem]" />
@@ -316,12 +322,14 @@ export const Results = () => {
 						<div className="name">Stress Level</div>
 						<div
 							className={` ${
-								resultReading?.stress_status_indicator === "warning" &&
+								resultReading?.vitals.stress_status_indicator === "warning" &&
 								"warn-text"
 							} ${
-								resultReading?.stress_status_indicator === "high" && "high-text"
+								resultReading?.vitals.stress_status_indicator === "danger" &&
+								"high-text"
 							} ${
-								resultReading?.stress_status_indicator === "ok" && "normal-text"
+								resultReading?.vitals.stress_status_indicator === "ok" &&
+								"normal-text"
 							} value regular`}
 						>
 							{resultReading?.vitals.stress_status_display}
@@ -347,9 +355,12 @@ export const Results = () => {
 					<div className="title">
 						<div
 							className={` ${
-								resultReading?.oxygen_indicator === "warning" && "warning"
-							} ${resultReading?.oxygen_indicator === "high" && "danger"} ${
-								resultReading?.oxygen_indicator === "ok" && "normal"
+								resultReading?.vitals.oxygen_indicator === "warning" &&
+								"warning"
+							} ${
+								resultReading?.vitals.oxygen_indicator === "danger" && "danger"
+							} ${
+								resultReading?.vitals.oxygen_indicator === "ok" && "normal"
 							} icon`}
 						>
 							<img src={oxygenResult} alt="icon-result" className=" w-[2rem]" />
@@ -360,9 +371,13 @@ export const Results = () => {
 						<div className="name">Oxygen Saturation</div>
 						<div
 							className={` ${
-								resultReading?.oxygen_indicator === "warning" && "warn-text"
-							} ${resultReading?.oxygen_indicator === "high" && "high-text"} ${
-								resultReading?.oxygen_indicator === "ok" && "normal-text"
+								resultReading?.vitals.oxygen_indicator === "warning" &&
+								"warn-text"
+							} ${
+								resultReading?.vitals.oxygen_indicator === "danger" &&
+								"high-text"
+							} ${
+								resultReading?.vitals.oxygen_indicator === "ok" && "normal-text"
 							} value regular`}
 						>
 							{resultReading?.vitals.oxygen_display}
@@ -387,12 +402,14 @@ export const Results = () => {
 					<div className="title">
 						<div
 							className={` ${
-								resultReading?.respiration_rate_indicator === "warning" &&
-								"warning"
+								resultReading?.vitals.respiration_rate_indicator ===
+									"warning" && "warning"
 							} ${
-								resultReading?.respiration_rate_indicator === "high" && "danger"
+								resultReading?.vitals.respiration_rate_indicator === "danger" &&
+								"danger"
 							} ${
-								resultReading?.respiration_rate_indicator === "ok" && "normal"
+								resultReading?.vitals.respiration_rate_indicator === "ok" &&
+								"normal"
 							} icon`}
 						>
 							<img
@@ -407,13 +424,13 @@ export const Results = () => {
 						<div className="name">Respiratory Rate</div>
 						<div
 							className={` ${
-								resultReading?.respiration_rate_indicator === "warning" &&
-								"warn-text"
+								resultReading?.vitals.respiration_rate_indicator ===
+									"warning" && "warn-text"
 							} ${
-								resultReading?.respiration_rate_indicator === "high" &&
+								resultReading?.vitals.respiration_rate_indicator === "danger" &&
 								"high-text"
 							} ${
-								resultReading?.respiration_rate_indicator === "ok" &&
+								resultReading?.vitals.respiration_rate_indicator === "ok" &&
 								"normal-text"
 							} value regular`}
 						>

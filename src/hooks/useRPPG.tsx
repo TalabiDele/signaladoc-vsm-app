@@ -213,10 +213,7 @@ function useRPPG({
 
 			setReady(true);
 		}
-
-		if (canCapture) {
-			initRPPG();
-		}
+		initRPPG();
 
 		return () => {
 			isMounted = false;

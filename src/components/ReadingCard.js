@@ -38,7 +38,7 @@ const ReadingCard = ({ icon, value, name, description, status }) => {
 					<div className="title">
 						<div
 							className={` ${status === "warning" && "warning"} ${
-								status === "high" && "danger"
+								status === "danger" && "danger"
 							} ${status === "ok" && "normal"} icon`}
 						>
 							<img src={icon} alt="icon-result" className=" w-[2rem]" />
@@ -49,7 +49,7 @@ const ReadingCard = ({ icon, value, name, description, status }) => {
 						<div className="name">{name}</div>
 						<div
 							className={` ${status === "warning" && "warn-text"} ${
-								status === "high" && "high-text"
+								status === "danger" && "high-text"
 							} ${status === "ok" && "normal-text"} value regular`}
 						>
 							{value}

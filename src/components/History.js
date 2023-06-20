@@ -89,7 +89,7 @@ const History = () => {
 								<div
 									className={` ${
 										e.blood_pressure_indicator === "warning" && "warning"
-									} ${e.blood_pressure_indicator === "high" && "danger"} ${
+									} ${e.blood_pressure_indicator === "danger" && "danger"} ${
 										e.blood_pressure_indicator === "ok" && "normal"
 									} icon`}
 								>
@@ -102,7 +102,7 @@ const History = () => {
 								<div
 									className={` ${
 										e.blood_pressure_indicator === "warning" && "warn-text"
-									} ${e.blood_pressure_indicator === "high" && "high-text"} ${
+									} ${e.blood_pressure_indicator === "danger" && "high-text"} ${
 										e.blood_pressure_indicator === "ok" && "normal-text"
 									} value regular`}
 								>
@@ -129,7 +129,7 @@ const History = () => {
 								<div
 									className={` ${
 										e.beats_per_minute_indicator === "warning" && "warning"
-									} ${e.beats_per_minute_indicator === "high" && "danger"} ${
+									} ${e.beats_per_minute_indicator === "danger" && "danger"} ${
 										e.beats_per_minute_indicator === "ok" && "normal"
 									} icon`}
 								>
@@ -146,7 +146,9 @@ const History = () => {
 								<div
 									className={` ${
 										e.beats_per_minute_indicator === "warning" && "warn-text"
-									} ${e.beats_per_minute_indicator === "high" && "high-text"} ${
+									} ${
+										e.beats_per_minute_indicator === "danger" && "high-text"
+									} ${
 										e.beats_per_minute_indicator === "ok" && "normal-text"
 									} value regular`}
 								>
@@ -174,7 +176,7 @@ const History = () => {
 								<div
 									className={` ${
 										e.stress_status_indicator === "warning" && "warning"
-									} ${e.stress_status_indicator === "high" && "danger"} ${
+									} ${e.stress_status_indicator === "danger" && "danger"} ${
 										e.stress_status_indicator === "ok" && "normal"
 									} icon`}
 								>
@@ -191,7 +193,7 @@ const History = () => {
 								<div
 									className={` ${
 										e.stress_status_indicator === "warning" && "warn-text"
-									} ${e.stress_status_indicator === "high" && "high-text"} ${
+									} ${e.stress_status_indicator === "danger" && "high-text"} ${
 										e.stress_status_indicator === "ok" && "normal-text"
 									} value regular`}
 								>
@@ -219,7 +221,7 @@ const History = () => {
 								<div
 									className={` ${
 										e.oxygen_indicator === "warning" && "warning"
-									} ${e.oxygen_indicator === "high" && "danger"} ${
+									} ${e.oxygen_indicator === "danger" && "danger"} ${
 										e.oxygen_indicator === "ok" && "normal"
 									} icon`}
 								>
@@ -236,7 +238,7 @@ const History = () => {
 								<div
 									className={` ${
 										e.oxygen_indicator === "warning" && "warn-text"
-									} ${e.oxygen_indicator === "high" && "high-text"} ${
+									} ${e.oxygen_indicator === "danger" && "high-text"} ${
 										e.oxygen_indicator === "ok" && "normal-text"
 									} value regular`}
 								>
@@ -263,7 +265,7 @@ const History = () => {
 								<div
 									className={` ${
 										e.respiration_rate_indicator === "warning" && "warning"
-									} ${e.respiration_rate_indicator === "high" && "danger"} ${
+									} ${e.respiration_rate_indicator === "danger" && "danger"} ${
 										e.respiration_rate_indicator === "ok" && "normal"
 									} icon`}
 								>
@@ -280,7 +282,9 @@ const History = () => {
 								<div
 									className={` ${
 										e.respiration_rate_indicator === "warning" && "warn-text"
-									} ${e.respiration_rate_indicator === "high" && "high-text"} ${
+									} ${
+										e.respiration_rate_indicator === "danger" && "high-text"
+									} ${
 										e.respiration_rate_indicator === "ok" && "normal-text"
 									} value regular`}
 								>
