@@ -48,6 +48,10 @@ export function Capture() {
 		if (!user?.updated_profile) {
 			history.push("/account/edit");
 		}
+
+		if (!user) {
+			history.push("/login");
+		}
 	}, []);
 
 	const [size, setSize] = useState<{ width: number; height: number }>({

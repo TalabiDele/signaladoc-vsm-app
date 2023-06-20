@@ -8,6 +8,7 @@ import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { HiOutlineLogout } from "react-icons/hi";
 import { BsPersonFillX } from "react-icons/bs";
+import { useHistory } from "react-router-dom";
 
 const Profile = () => {
 	const [isNew, setIsNew] = useState(false);
@@ -19,7 +20,15 @@ const Profile = () => {
 	const { user, profData, medData, logout, checkUserLoggedIn } =
 		useContext(AuthContext);
 
+	const history = useHistory();
+
 	const cookies = new Cookies();
+
+	useEffect(() => {
+		if (!user) {
+			history.push("/login");
+		}
+	}, []);
 
 	const handleChange = (e) => {
 		setPhoto(e.target.files[0]);
