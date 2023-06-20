@@ -16,6 +16,7 @@ import respRateResult from "assets/images/resp-hist.png";
 import oxygenResult from "assets/images/oxygen-hist.png";
 import stressResult from "assets/images/stress-hist.png";
 import bpResult from "assets/images/bp-hist.png";
+import "components/General.scss";
 
 export interface ResultData {
 	rppgData: RPPGData;
@@ -87,7 +88,7 @@ export const Results = () => {
 	};
 
 	const handleModal = (name: string, description: string) => {
-		setModal(!modal);
+		setModal(true);
 
 		setName(name);
 		setNote(description);
@@ -155,7 +156,7 @@ export const Results = () => {
             <div className="item" key={item.key}>
               <div className="title">
                 <div className="icon">
-                  <img src={item.iconResult} alt="icon-result" className=" w-[3rem]" />
+                  <img src={item.iconResult} alt="icon-result" className=" w-[2rem]" />
                 </div>
               </div>
 
@@ -196,18 +197,38 @@ export const Results = () => {
 			<div className="results grid grid-cols-2 max-md:grid-cols-1">
 				<div className="item">
 					<div className="title">
-						<div className={` icon max-md:w-[2rem]`}>
+						<div
+							className={` ${
+								resultReading?.blood_pressure_indicator === "warning" &&
+								"warning"
+							} ${
+								resultReading?.blood_pressure_indicator === "high" && "danger"
+							} ${
+								resultReading?.blood_pressure_indicator === "ok" && "normal"
+							} icon max-md:w-[2rem]`}
+						>
 							<img
 								src={bpResult}
 								alt="icon-result"
-								className=" w-[3rem] max-md:w-[2rem]"
+								className=" w-[2rem] max-md:w-[2rem]"
 							/>
 						</div>
 					</div>
 
 					<div className=" text-center">
 						<div className="name">Blood Pressure</div>
-						<div className="value">
+						<div
+							className={` ${
+								resultReading?.blood_pressure_indicator === "warning" &&
+								"warn-text"
+							} ${
+								resultReading?.blood_pressure_indicator === "high" &&
+								"high-text"
+							} ${
+								resultReading?.blood_pressure_indicator === "ok" &&
+								"normal-text"
+							} value regular`}
+						>
 							{resultReading?.vitals.blood_pressure_display}
 							{/* <span className="sign">{item.sign}</span> */}
 						</div>
@@ -228,14 +249,34 @@ export const Results = () => {
 				</div>
 				<div className="item">
 					<div className="title">
-						<div className="icon">
-							<img src={heartResult} alt="icon-result" className=" w-[3rem]" />
+						<div
+							className={` ${
+								resultReading?.beats_per_minute_indicator === "warning" &&
+								"warning"
+							} ${
+								resultReading?.beats_per_minute_indicator === "high" && "danger"
+							} ${
+								resultReading?.beats_per_minute_indicator === "ok" && "normal"
+							} icon`}
+						>
+							<img src={heartResult} alt="icon-result" className=" w-[2rem]" />
 						</div>
 					</div>
 
 					<div className=" text-center">
 						<div className="name">Heart Rate</div>
-						<div className="value">
+						<div
+							className={` ${
+								resultReading?.beats_per_minute_indicator === "warning" &&
+								"warn-text"
+							} ${
+								resultReading?.beats_per_minute_indicator === "high" &&
+								"high-text"
+							} ${
+								resultReading?.beats_per_minute_indicator === "ok" &&
+								"normal-text"
+							} value regular`}
+						>
 							{resultReading?.vitals.beats_per_minute_display}
 							{/* <span className="sign">{item.sign}</span> */}
 						</div>
@@ -257,14 +298,32 @@ export const Results = () => {
 
 				<div className="item">
 					<div className="title">
-						<div className="icon">
-							<img src={stressResult} alt="icon-result" className=" w-[3rem]" />
+						<div
+							className={` ${
+								resultReading?.stress_status_indicator === "warning" &&
+								"warning"
+							} ${
+								resultReading?.stress_status_indicator === "high" && "danger"
+							} ${
+								resultReading?.stress_status_indicator === "ok" && "normal"
+							} icon`}
+						>
+							<img src={stressResult} alt="icon-result" className=" w-[2rem]" />
 						</div>
 					</div>
 
 					<div className=" text-center">
 						<div className="name">Stress Level</div>
-						<div className="value">
+						<div
+							className={` ${
+								resultReading?.stress_status_indicator === "warning" &&
+								"warn-text"
+							} ${
+								resultReading?.stress_status_indicator === "high" && "high-text"
+							} ${
+								resultReading?.stress_status_indicator === "ok" && "normal-text"
+							} value regular`}
+						>
 							{resultReading?.vitals.stress_status_display}
 							{/* <span className="sign">{item.sign}</span> */}
 						</div>
@@ -286,14 +345,26 @@ export const Results = () => {
 
 				<div className="item">
 					<div className="title">
-						<div className="icon">
-							<img src={oxygenResult} alt="icon-result" className=" w-[3rem]" />
+						<div
+							className={` ${
+								resultReading?.oxygen_indicator === "warning" && "warning"
+							} ${resultReading?.oxygen_indicator === "high" && "danger"} ${
+								resultReading?.oxygen_indicator === "ok" && "normal"
+							} icon`}
+						>
+							<img src={oxygenResult} alt="icon-result" className=" w-[2rem]" />
 						</div>
 					</div>
 
 					<div className=" text-center">
 						<div className="name">Oxygen Saturation</div>
-						<div className="value">
+						<div
+							className={` ${
+								resultReading?.oxygen_indicator === "warning" && "warn-text"
+							} ${resultReading?.oxygen_indicator === "high" && "high-text"} ${
+								resultReading?.oxygen_indicator === "ok" && "normal-text"
+							} value regular`}
+						>
 							{resultReading?.vitals.oxygen_display}
 							{/* <span className="sign">{item.sign}</span> */}
 						</div>
@@ -314,18 +385,38 @@ export const Results = () => {
 				</div>
 				<div className="item">
 					<div className="title">
-						<div className="icon">
+						<div
+							className={` ${
+								resultReading?.respiration_rate_indicator === "warning" &&
+								"warning"
+							} ${
+								resultReading?.respiration_rate_indicator === "high" && "danger"
+							} ${
+								resultReading?.respiration_rate_indicator === "ok" && "normal"
+							} icon`}
+						>
 							<img
 								src={respRateResult}
 								alt="icon-result"
-								className=" w-[3rem]"
+								className=" w-[2rem]"
 							/>
 						</div>
 					</div>
 
 					<div className=" text-center">
 						<div className="name">Respiratory Rate</div>
-						<div className="value">
+						<div
+							className={` ${
+								resultReading?.respiration_rate_indicator === "warning" &&
+								"warn-text"
+							} ${
+								resultReading?.respiration_rate_indicator === "high" &&
+								"high-text"
+							} ${
+								resultReading?.respiration_rate_indicator === "ok" &&
+								"normal-text"
+							} value regular`}
+						>
 							{resultReading?.vitals.respiration_rate_display}
 							{/* <span className="sign">{item.sign}</span> */}
 						</div>

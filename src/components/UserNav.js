@@ -16,8 +16,6 @@ const UserNav = () => {
 	const pathname = window.location.pathname;
 
 	const { user, logout, medData, profData } = useContext(AuthContext);
-	console.log(medData);
-	console.log(profData);
 
 	return (
 		<div className=" text-white fixed z-[3] flex w-[100vw] h-[10vh] max-md:h-[5vh]">

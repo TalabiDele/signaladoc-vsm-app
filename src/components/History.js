@@ -9,6 +9,7 @@ import respRateResult from "assets/images/resp-hist.png";
 import oxygenResult from "assets/images/oxygen-hist.png";
 import stressResult from "assets/images/stress-hist.png";
 import bpResult from "assets/images/bp-hist.png";
+import "./General.scss";
 
 const History = () => {
 	const cookies = new Cookies();
@@ -85,14 +86,26 @@ const History = () => {
 					<div className=" grid grid-cols-2 max-md:grid-cols-1">
 						<div className="item">
 							<div className="title">
-								<div className="icon">
-									<img src={bpResult} alt="icon-result" className=" w-[3rem]" />
+								<div
+									className={` ${
+										e.blood_pressure_indicator === "warning" && "warning"
+									} ${e.blood_pressure_indicator === "high" && "danger"} ${
+										e.blood_pressure_indicator === "ok" && "normal"
+									} icon`}
+								>
+									<img src={bpResult} alt="icon-result" className=" w-[2rem]" />
 								</div>
 							</div>
 
 							<div className=" text-center">
 								<div className="name">Blood Pressure</div>
-								<div className="value">
+								<div
+									className={` ${
+										e.blood_pressure_indicator === "warning" && "warn-text"
+									} ${e.blood_pressure_indicator === "high" && "high-text"} ${
+										e.blood_pressure_indicator === "ok" && "normal-text"
+									} value regular`}
+								>
 									{e.blood_pressure_display}
 									{/* <span className="sign">{item.sign}</span> */}
 								</div>
@@ -113,18 +126,30 @@ const History = () => {
 						</div>
 						<div className="item">
 							<div className="title">
-								<div className="icon">
+								<div
+									className={` ${
+										e.beats_per_minute_indicator === "warning" && "warning"
+									} ${e.beats_per_minute_indicator === "high" && "danger"} ${
+										e.beats_per_minute_indicator === "ok" && "normal"
+									} icon`}
+								>
 									<img
 										src={heartResult}
 										alt="icon-result"
-										className=" w-[3rem]"
+										className=" w-[2rem]"
 									/>
 								</div>
 							</div>
 
 							<div className=" text-center">
 								<div className="name">Heart Rate</div>
-								<div className="value">
+								<div
+									className={` ${
+										e.beats_per_minute_indicator === "warning" && "warn-text"
+									} ${e.beats_per_minute_indicator === "high" && "high-text"} ${
+										e.beats_per_minute_indicator === "ok" && "normal-text"
+									} value regular`}
+								>
 									{e.beats_per_minute_display}
 									{/* <span className="sign">{item.sign}</span> */}
 								</div>
@@ -146,18 +171,30 @@ const History = () => {
 
 						<div className="item">
 							<div className="title">
-								<div className="icon">
+								<div
+									className={` ${
+										e.stress_status_indicator === "warning" && "warning"
+									} ${e.stress_status_indicator === "high" && "danger"} ${
+										e.stress_status_indicator === "ok" && "normal"
+									} icon`}
+								>
 									<img
 										src={stressResult}
 										alt="icon-result"
-										className=" w-[3rem]"
+										className=" w-[2rem]"
 									/>
 								</div>
 							</div>
 
 							<div className=" text-center">
 								<div className="name">Stress Level</div>
-								<div className="value">
+								<div
+									className={` ${
+										e.stress_status_indicator === "warning" && "warn-text"
+									} ${e.stress_status_indicator === "high" && "high-text"} ${
+										e.stress_status_indicator === "ok" && "normal-text"
+									} value regular`}
+								>
 									{e.stress_status_display}
 									{/* <span className="sign">{item.sign}</span> */}
 								</div>
@@ -179,18 +216,30 @@ const History = () => {
 
 						<div className="item">
 							<div className="title">
-								<div className="icon">
+								<div
+									className={` ${
+										e.oxygen_indicator === "warning" && "warning"
+									} ${e.oxygen_indicator === "high" && "danger"} ${
+										e.oxygen_indicator === "ok" && "normal"
+									} icon`}
+								>
 									<img
 										src={oxygenResult}
 										alt="icon-result"
-										className=" w-[3rem]"
+										className=" w-[2rem]"
 									/>
 								</div>
 							</div>
 
 							<div className=" text-center">
 								<div className="name">Oxygen Saturation</div>
-								<div className="value">
+								<div
+									className={` ${
+										e.oxygen_indicator === "warning" && "warn-text"
+									} ${e.oxygen_indicator === "high" && "high-text"} ${
+										e.oxygen_indicator === "ok" && "normal-text"
+									} value regular`}
+								>
 									{e.oxygen_display}
 									{/* <span className="sign">{item.sign}</span> */}
 								</div>
@@ -211,18 +260,30 @@ const History = () => {
 						</div>
 						<div className="item">
 							<div className="title">
-								<div className="icon">
+								<div
+									className={` ${
+										e.respiration_rate_indicator === "warning" && "warning"
+									} ${e.respiration_rate_indicator === "high" && "danger"} ${
+										e.respiration_rate_indicator === "ok" && "normal"
+									} icon`}
+								>
 									<img
 										src={respRateResult}
 										alt="icon-result"
-										className=" w-[3rem]"
+										className=" w-[2rem]"
 									/>
 								</div>
 							</div>
 
 							<div className=" text-center">
 								<div className="name">Respiratory Rate</div>
-								<div className="value">
+								<div
+									className={` ${
+										e.respiration_rate_indicator === "warning" && "warn-text"
+									} ${e.respiration_rate_indicator === "high" && "high-text"} ${
+										e.respiration_rate_indicator === "ok" && "normal-text"
+									} value regular`}
+								>
 									{e.respiration_rate_display}
 									{/* <span className="sign">{item.sign}</span> */}
 								</div>

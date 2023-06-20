@@ -1,95 +1,158 @@
 @import "assets/styles/variables";
 
 .results-contain {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 98vh;
-  color: #000;
-  font-size: $font-size-medium;
-  // text-align: center;
-  width: 100%;
-  padding: 3rem 0rem 10rem 0rem;
-  margin: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 98vh;
+	color: #000;
+	font-size: $font-size-medium;
+	// text-align: center;
+	width: 100%;
+	padding: 3rem 0rem 10rem 0rem;
+	margin: auto;
 
-  @media not all and (min-width: 768px) {
-    padding-bottom: 50rem;
-  }
+	@media not all and (min-width: 768px) {
+		padding-bottom: 50rem;
+	}
 }
 .modal {
-  background: #000000b4;
+	background: rgba(0, 0, 0, 0.3);
 
-  .modal-card {
-    border-left: 0.5rem solid #0f66d2;
-  }
+	.modal-card {
+		border-left: 0.5rem solid #0f66d2;
+	}
 }
 
 .msg-block {
-  background: #219653;
-  border-radius: 5px;
-  color: white;
-  width: 100%;
-  padding: 1rem;
-  margin-bottom: 3rem;
+	background: #219653;
+	border-radius: 5px;
+	color: white;
+	width: 100%;
+	padding: 1rem;
+	margin-bottom: 3rem;
 
-  .title {
-    font-weight: 700;
-    font-size: 18px;
-  }
-  .description {
-    font-weight: 400;
-    font-size: 14px;
-  }
+	.title {
+		font-weight: 700;
+		font-size: 18px;
+	}
+	.description {
+		font-weight: 400;
+		font-size: 14px;
+	}
 }
 
 .item {
-  width: 80%;
-  margin: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  flex-grow: 1;
-  margin-bottom: 1rem;
-  font-weight: $results-item-font-weight;
-  font-size: $results-item-font-size;
-  // color: $results-item-color;
-  color: #000;
-  border-bottom: 1px solid rgba($white, 0.4);
-  background: #fff;
-  box-shadow: 0px 0px 5px 1px #ccc;
-  border-radius: 5px;
-  padding: 1rem;
+	width: 80%;
+	margin: auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	flex-grow: 1;
+	margin-bottom: 1rem;
+	font-weight: $results-item-font-weight;
+	font-size: $results-item-font-size;
+	// color: $results-item-color;
+	color: #000;
+	border-bottom: 1px solid rgba($white, 0.4);
+	background: #fff;
+	box-shadow: 0px 0px 5px 1px #ccc;
+	border-radius: 5px;
+	padding: 1rem;
 
-  .text-center {
-    text-align: center;
-  }
+	.warn-text {
+		color: #fc9249;
+	}
 
-  .title {
-    // display: flex;
-    // flex-direction: row;
-    // justify-content: flex-start;
-    // align-items: center;
-    // min-width: 12.5rem;
+	.normal-text {
+		color: #0f66d2;
+	}
 
-    .icon {
-      // font-size: $font-size-nano;
-      background: linear-gradient(178.71deg, #0f66d2 32.54%, #0c3279 196.7%);
-      box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.12);
-      border-radius: 50%;
-      padding: 0.5rem;
+	.high-text {
+		color: #8c1313;
+	}
 
-      @media not all and (min-width: 768px) {
-        width: 4rem;
-      }
-    }
-  }
+	.text-center {
+		text-align: center;
+	}
 
-  .value {
-    // text-align: right;
+	.title {
+		// display: flex;
+		// flex-direction: row;
+		// justify-content: flex-start;
+		// align-items: center;
+		// min-width: 12.5rem;
 
-    .sign {
-      margin-left: 0.25rem;
-    }
-  }
+		.normal {
+			background: linear-gradient(178.71deg, #0f66d2 32.54%, #0c3279 196.7%);
+			box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.12);
+			border-radius: 50%;
+			padding: 1rem;
+
+			img {
+				width: 2rem;
+			}
+
+			@media not all and (min-width: 768px) {
+				width: 4rem;
+			}
+		}
+
+		.danger {
+			font-size: $font-size-nano;
+			background: linear-gradient(180deg, #ff2e00 0%, #8c1313 100%);
+			box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.12);
+			border-radius: 50%;
+			padding: 1rem;
+
+			img {
+				width: 2rem;
+			}
+
+			@media not all and (min-width: 768px) {
+				width: 4rem;
+			}
+		}
+
+		.warning {
+			font-size: $font-size-nano;
+			background: linear-gradient(36.24deg, #c26424 13.46%, #fc9249 59%);
+			box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.12);
+			border-radius: 50%;
+			padding: 1rem;
+
+			img {
+				width: 2rem;
+			}
+
+			@media not all and (min-width: 768px) {
+				width: 4rem;
+			}
+		}
+
+		.icon {
+			box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.12);
+			border-radius: 50%;
+			padding: 1rem;
+
+			img {
+				width: 2rem;
+			}
+
+			@media not all and (min-width: 768px) {
+				width: 4rem;
+			}
+		}
+	}
+
+	.value {
+		// text-align: right;
+		font-weight: bold;
+		font-size: 1.5rem;
+
+		.sign {
+			margin-left: 0.25rem;
+		}
+	}
 }

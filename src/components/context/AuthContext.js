@@ -105,7 +105,7 @@ export const AuthProvider = ({ children }) => {
 
 			console.log(data);
 
-			setCanCapture(data.can_capture);
+			setCanCapture(data?.can_capture);
 
 			// setProfData(data.profile);
 			// setMedData(data.user_info);
@@ -784,6 +784,8 @@ export const AuthProvider = ({ children }) => {
 				vitals,
 				setVitals,
 				logout,
+				canCapture,
+				setCanCapture,
 			}}
 		>
 			{children}

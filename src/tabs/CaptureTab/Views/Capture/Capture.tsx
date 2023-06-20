@@ -23,16 +23,7 @@ import {
 import "./Capture.scss";
 import Cookies from "universal-cookie";
 import AuthContext from "components/context/AuthContext";
-
-// interface Data {
-//   systolic: number;
-//   diastolic: number;
-//   bpm: number;
-//   rr: number;
-//   oxygen: number;
-//   stressStatus: number;
-//   bloodPressureStatus: number;
-// }
+import { toast } from "react-hot-toast";
 
 export function Capture() {
 	const videoElement = useRef<HTMLVideoElement>(null);
@@ -42,7 +33,8 @@ export function Capture() {
 
 	const cookies = new Cookies();
 
-	const { resultReading, setResultReading, user } = useContext(AuthContext);
+	const { resultReading, setResultReading, user, canCapture } =
+		useContext(AuthContext);
 
 	useEffect(() => {
 		if (!user?.updated_profile) {
@@ -52,6 +44,16 @@ export function Capture() {
 		if (!user) {
 			history.push("/login");
 		}
+
+		// if (!canCapture) {
+		// 	toast.error("Please subscribe to take a reading!", {
+		// 		duration: 6000,
+		// 	});
+
+		// 	history.push("/home");
+
+		// 	window.location.reload();
+		// }
 	}, []);
 
 	const [size, setSize] = useState<{ width: number; height: number }>({
@@ -136,17 +138,22 @@ export function Capture() {
 	});
 
 	useEffect(() => {
-		if (!rppgInstance || !ready) {
-			return;
+		if (canCapture) {
+			stopHandler();
+			if (!rppgInstance || !ready) {
+				return;
+			}
+			console.log("useEffect - rppg - initialized");
+			// @ts-ignore
+			const { width, height } = rppgInstance.rppgCamera;
+			setSize({ width, height });
 		}
-		console.log("useEffect - rppg - initialized");
-		// @ts-ignore
-		const { width, height } = rppgInstance.rppgCamera;
-		setSize({ width, height });
 	}, [ready, rppgInstance]);
 
 	useEffect(() => {
-		processingFaceMesh.current = processing;
+		if (canCapture) {
+			processingFaceMesh.current = processing;
+		}
 	}, [processing]);
 
 	const startHandler = () => {
@@ -157,8 +164,8 @@ export function Capture() {
 		clearAllNotifications();
 		stop();
 
-		// closeCamera();
-		// cameraInstance?.stop();
+		closeCamera();
+		cameraInstance?.stop();
 	};
 
 	const startButtonHandler = () => {

@@ -78,7 +78,29 @@ function useRPPG({
 	const search = useLocation().search;
 	const searchParams = new URLSearchParams(search);
 
+	const [canCapture, setCanCapture] = useState<boolean>(false);
+
+	const cookies = new Cookies();
+
 	useEffect(() => {
+		const handleInit = async () => {
+			const res = await fetch(`${API_URL}/vital-sign/init`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${cookies.get("vsm_authorization")}`,
+				},
+			});
+
+			const data = await res.json();
+
+			console.log(data);
+
+			setCanCapture(data?.can_capture);
+		};
+
+		handleInit();
+
 		let isMounted = true;
 		async function initRPPG() {
 			if (!videoElement.current) {
@@ -192,7 +214,9 @@ function useRPPG({
 			setReady(true);
 		}
 
-		initRPPG();
+		if (canCapture) {
+			initRPPG();
+		}
 
 		return () => {
 			isMounted = false;
