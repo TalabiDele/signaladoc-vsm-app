@@ -45,17 +45,17 @@ export function Capture() {
 			history.push("/login");
 		}
 
-		if (!canCapture) {
-			toast.error("Please subscribe to take a reading!", {
-				duration: 6000,
-			});
+		// if (!canCapture) {
+		// 	toast.error("Please subscribe to take a reading!", {
+		// 		duration: 6000,
+		// 	});
 
-			history.push("/home");
+		// 	history.push("/home");
 
-			setTimeout(() => {
-				window.location.reload();
-			}, 7000);
-		}
+		// 	setTimeout(() => {
+		// 		window.location.reload();
+		// 	}, 7000);
+		// }
 	}, []);
 
 	const [size, setSize] = useState<{ width: number; height: number }>({

@@ -34,8 +34,8 @@ const Forgot = () => {
 		<div>
 			<div className=" bg-white w-[50vw] max-lg:w-[100vw] h-[100vh]">
 				<Toaster position="top-center" reverseOrder={false} />
-				<div className=" w-[80%] mx-auto mt-[3rem] mb-[2rem]">
-					<img src={logo} alt="" className=" w-[12rem]" />
+				<div className=" w-[80%] mx-auto mt-[1rem] mb-[2rem]">
+					<img src={logo} alt="" className=" w-[9rem]" />
 				</div>
 				{isReset && <ResetCode />}
 				{isChange && <PasswordChange />}
@@ -44,13 +44,13 @@ const Forgot = () => {
 					<h1 className=" font-bold text-2xl mb-[0.5rem] text-text_gray">
 						Forgot Password
 					</h1>
-					<p className=" mb-[1rem] text-text_gray">
+					<p className=" mb-[2rem] text-text_gray text-lg">
 						Enter your email or phone number to reset your password
 					</p>
 
 					<form action=" grid w-[90%]" onSubmit={handleForgot}>
 						<div className=" mb-[1rem]">
-							<label htmlFor="email" className=" text-text_gray mb-[0.5rem]">
+							<label htmlFor="email" className=" text-text_gray text-md">
 								Email address
 							</label>
 							<input
@@ -59,7 +59,7 @@ const Forgot = () => {
 								id="email"
 								value={username}
 								onChange={(e) => setUsername(e.target.value)}
-								className=" text-lg px-[1rem] py-[0.5rem] w-full border border-input_border rounded-lg mt-[1rem]"
+								className=" text-lg px-[1rem] py-[0.5rem] w-full border border-input_border rounded-lg mt-[0.5rem]"
 								placeholder="johndoe@email.com"
 							/>
 						</div>

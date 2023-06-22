@@ -34,7 +34,7 @@ export const Results = () => {
 	const [note, setNote] = useState<string>("");
 	const [isDone, setIsDone] = useState<boolean>(false);
 
-	const { setResultReading, resultReading } = useContext(AuthContext);
+	const { setResultReading, resultReading, user } = useContext(AuthContext);
 
 	console.log(resultReading);
 
@@ -100,10 +100,17 @@ export const Results = () => {
 
 	return (
 		<div className="results-container">
+			<div className=" flex items-start w-full">
+				<h1 className=" text-left mb-[2rem]">
+					Hi {user?.first_name}, your results
+				</h1>
+			</div>
 			<div className="msg-block">
-				<div className="flex">
+				<div className="flex max-md:flex-col">
 					<p className=" mr-[3rem]">Vital Signs</p>
-					<p className=" ml-[3rem]">{resultReading?.vitals.date_time}</p>
+					<p className=" ml-[3rem] max-md:ml-[0rem]">
+						{resultReading?.vitals.date_time}
+					</p>
 				</div>
 			</div>
 
@@ -156,7 +163,7 @@ export const Results = () => {
             <div className="item" key={item.key}>
               <div className="title">
                 <div className="icon">
-                  <img src={item.iconResult} alt="icon-result" className=" w-[2rem]" />
+                  <img src={item.iconResult} alt="icon-result" className=" " />
                 </div>
               </div>
 
@@ -212,7 +219,7 @@ export const Results = () => {
 							<img
 								src={bpResult}
 								alt="icon-result"
-								className=" w-[2rem] max-md:w-[2rem]"
+								className="  max-md:w-[2rem]"
 							/>
 						</div>
 					</div>
@@ -263,7 +270,7 @@ export const Results = () => {
 								"normal"
 							} icon`}
 						>
-							<img src={heartResult} alt="icon-result" className=" w-[2rem]" />
+							<img src={heartResult} alt="icon-result" className=" " />
 						</div>
 					</div>
 
@@ -314,7 +321,7 @@ export const Results = () => {
 								"normal"
 							} icon`}
 						>
-							<img src={stressResult} alt="icon-result" className=" w-[2rem]" />
+							<img src={stressResult} alt="icon-result" className=" " />
 						</div>
 					</div>
 
@@ -363,7 +370,7 @@ export const Results = () => {
 								resultReading?.vitals.oxygen_indicator === "ok" && "normal"
 							} icon`}
 						>
-							<img src={oxygenResult} alt="icon-result" className=" w-[2rem]" />
+							<img src={oxygenResult} alt="icon-result" className=" " />
 						</div>
 					</div>
 
@@ -412,11 +419,7 @@ export const Results = () => {
 								"normal"
 							} icon`}
 						>
-							<img
-								src={respRateResult}
-								alt="icon-result"
-								className=" w-[2rem]"
-							/>
+							<img src={respRateResult} alt="icon-result" className=" " />
 						</div>
 					</div>
 

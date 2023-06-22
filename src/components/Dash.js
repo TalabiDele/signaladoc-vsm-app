@@ -12,12 +12,15 @@ import { RiErrorWarningLine } from "react-icons/ri";
 import "./General.scss";
 
 const Dash = () => {
-	const { user, medData, profData, chartData } = useContext(AuthContext);
+	const { user, medData, profData, chartData, checkUserLoggedIn } =
+		useContext(AuthContext);
 
-	console.log(chartData);
+	useEffect(() => {
+		checkUserLoggedIn();
+	}, []);
 
 	return (
-		<div className=" pt-[8rem] w-[70%] mx-auto max-md:w-[90%] pb-[5rem] max-lg:w-[90%] max-xl:w-[90%]">
+		<div className=" pt-[8rem] w-[70%] mx-auto max-md:w-[90%] pb-[5rem] max-lg:w-[90%] max-xl:w-[90%] max-md:pt-[4rem]">
 			<div className=" max-md:flex items-center mb-[2rem] hidden">
 				<div className=" regular bg-[#AEC5F1] rounded-md py-[0.5rem] px-[1rem] max-md:px-[0.5rem] max-md:py-[0.1rem] mr-[1rem] max-md:text-3xl ">
 					{user?.first_name.charAt(0)}

@@ -301,15 +301,17 @@ export const AuthProvider = ({ children }) => {
 			setStepTwo(true);
 			setToken(data.access_token);
 
-			const decoded = jwt(data.access_token);
+			// const decoded = jwt(data.access_token);
 
-			cookies.set("vsm_authorization", data.access_token, {
-				expires: new Date(decoded.exp * 1000),
-			});
+			// console.log(data.access_token);
 
-			checkUserLoggedIn();
+			// cookies.set("vsm_authorization", data.access_token, {
+			// 	expires: new Date(decoded.exp * 1000),
+			// });
 
-			history.push("/home");
+			// checkUserLoggedIn();
+
+			history.push("/login");
 
 			setTimeout(() => {
 				setApproved(false);

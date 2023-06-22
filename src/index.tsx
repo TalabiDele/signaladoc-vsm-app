@@ -11,17 +11,23 @@ import { AuthProvider } from "components/context/AuthContext";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
-  </BrowserRouter>,
-  document.getElementById("root")
+	<BrowserRouter>
+		<AuthProvider>
+			<App />
+		</AuthProvider>
+	</BrowserRouter>,
+	document.getElementById("root")
 );
 
 /* 
 Tasks
-  - Delete account feature 
-  - Uplaod image feature
-  - Plans feature
+  - Keep me logged in modal
+  - Password reset modal
+  - Update profile modal
+  - Profile updated modal
+  - Password updated modal
+  - Add react share
+  - Add disclaimer modal to doctor flow
+  - Increase size of graph in dashboard
+  - History pagination
 */

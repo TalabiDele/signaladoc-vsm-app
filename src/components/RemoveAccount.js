@@ -112,7 +112,7 @@ const RemoveAccount = () => {
 					<div className="" onClick={() => handleDelete()}>
 						<Buttons
 							text={"Delete account"}
-							px={"px-[3rem] max-md:w-full mr-[1rem]"}
+							px={"px-[3rem] max-md:px-[1rem] max-md:w-full mr-[1rem]"}
 							border={"border-primary border-2"}
 							bg={"bg-primary"}
 							color={"text-white"}

@@ -178,16 +178,16 @@ const ProfileEdit = () => {
 				Edit Profile
 			</h1>
 			<div className=" mt-[4rem]">
-				<div className=" mb-[3rem]">
+				<div className=" mb-[3rem] flex items-center medium">
 					{user.photo === "default.jpg" ? (
-						<div className=" bold bg-[#AEC5F1] rounded-md h-[3rem] w-[3rem] py-[0.5rem] px-[1rem] max-md:px-[0.5rem] max-md:py-[0.1rem] mr-[1rem] ">
+						<div className=" bold bg-[#AEC5F1] rounded-md h-[3rem] w-[3rem] py-[0.5rem] px-[1rem] max-md:px-[0.5rem] max-md:py-[0.1rem] mr-[1rem] flex items-center justify-center text-2xl">
 							{user.first_name.charAt(0)}
 						</div>
 					) : (
 						<img
 							src={user.photo_url}
 							alt=""
-							className=" w-[3rem] h-[3rem] rounded-full mb-[0.5rem]"
+							className=" w-[3rem] h-[3rem] rounded-full mb-[0.5rem] mr-[1rem]"
 						/>
 					)}
 					<input

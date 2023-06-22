@@ -12,6 +12,7 @@ import "./History.scss";
 import { BsChevronRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import ReadingCard from "./ReadingCard";
+import "./General.scss";
 
 const HomeHistory = () => {
 	const [history, setHistory] = useState();
@@ -55,16 +56,18 @@ const HomeHistory = () => {
 			<div className="results-contain">
 				<div className=" flex justify-end text-primary w-full mb-[1rem] cursor-pointer">
 					<Link to="/history">
-						<div className=" flex items-center">
+						<div className=" flex items-center medium">
 							<p className=" mr-[1rem]">View reading history</p>
 							<BsChevronRight />
 						</div>
 					</Link>
 				</div>
 				<div className="msg-block">
-					<div className="flex justify-between w-[80%] max-md:w-full">
+					<div className="flex justify-between w-[80%] max-md:w-full max-md:flex-col">
 						<p className=" mr-[3rem] max-md:mr-[1rem]">Vital Signs</p>
-						<p className=" ml-[3rem]">{history?.data[0]?.date_time}</p>
+						<p className=" ml-[3rem] max-md:ml-[0rem]">
+							{history?.data[0]?.date_time}
+						</p>
 					</div>
 				</div>
 

@@ -46,9 +46,9 @@ const History = () => {
 	};
 
 	return (
-		<div className="py-[10rem] relative w-[70%] mx-auto max-md:w-[90%] max-2xl:ml-[15rem] max-md:mx-auto">
-			<h1 className="text-3xl fixed top-[1rem] z-[6] mx-auto max-md:top-[6rem] max-md:absolute max-md:z-[0]">
-				Reading History
+		<div className="py-[7rem] relative w-[70%] mx-auto max-md:w-[90%] max-2xl:ml-[15rem] max-md:mx-auto">
+			<h1 className="text-3xl fixed top-[1rem] z-[6] mx-auto max-md:top-[4rem] max-md:fixed max-md:z-[0] bg-white max-md:w-full max-md:text-xl">
+				Reading Result History
 			</h1>
 
 			{histData?.data.length === 0 && (
@@ -58,9 +58,9 @@ const History = () => {
 			{histData?.data.map((e) => (
 				<div className=" mb-[3rem]">
 					<div className="msg-block">
-						<div className="flex justify-between w-[40rem] max-md:w-[100%]">
+						<div className="flex justify-between w-[40rem] max-md:w-[100%] max-md:flex-col">
 							<p className=" mr-[3rem]">Vital Signs</p>
-							<p className=" ml-[3rem]">{e.date_time}</p>
+							<p className=" ml-[3rem] max-md:ml-[0rem]">{e.date_time}</p>
 						</div>
 					</div>
 

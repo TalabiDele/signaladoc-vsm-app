@@ -15,11 +15,13 @@ import "./General.scss";
 const UserNav = () => {
 	const pathname = window.location.pathname;
 
+	console.log(pathname);
+
 	const { user, logout, medData, profData } = useContext(AuthContext);
 
 	return (
 		<div className=" text-white fixed z-[3] flex w-[100vw] h-[10vh] max-md:h-[5vh]">
-			<div className=" bg-primary h-[100vh] w-[15rem] p-[2rem] max-md:h-[10vh] max-md:w-[100vw] max-md:fixed max-md:bottom-0 max-md:p-[1rem]">
+			<div className=" bg-primary h-[100vh] w-[15rem] p-[2rem] max-md:h-[5rem] max-md:w-[100vw] max-md:fixed max-md:bottom-0 max-md:p-[1rem]">
 				<div className=" ">
 					<Link to="/home">
 						<img
@@ -34,8 +36,8 @@ const UserNav = () => {
 								<Link
 									to={"/home"}
 									className={`${
-										pathname === "/home" && "bold"
-									} flex items-center text-white hover:text-white hover:bold transition ease-in-out duration-300 light max-md:flex-col max-md:text-sm`}
+										pathname === "/home" && "bold opacity-[1]"
+									} flex items-center text-white hover:text-white hover:bold transition ease-in-out duration-300 light max-md:flex-col max-md:text-sm opacity-[0.7]`}
 								>
 									<SlHome className=" mr-[0.5rem] max-md:mr-0 max-md:text-3xl max-md:mb-[0.5rem]" />{" "}
 									Home
@@ -45,8 +47,8 @@ const UserNav = () => {
 								<Link
 									to={"/learn"}
 									className={` ${
-										pathname === "/learn" && "bold"
-									} flex items-center text-white hover:text-white transition ease-in-out duration-300 light max-md:flex-col max-md:text-sm`}
+										pathname === "/learn" && "bold opacity-[1]"
+									} flex items-center text-white hover:text-white transition ease-in-out duration-300 light max-md:flex-col max-md:text-sm opacity-[0.7]`}
 								>
 									<BiBookReader className=" mr-[0.5rem] max-md:mr-0 max-md:text-3xl max-md:mb-[0.5rem]" />{" "}
 									Learn
@@ -56,8 +58,8 @@ const UserNav = () => {
 								<Link
 									to={`/capture/?weight=${medData?.weight}&height=${medData?.height}&age=${profData?.age}`}
 									className={`${
-										pathname === "/capture" && "bold"
-									} flex items-center text-white hover:text-white transition ease-in-out duration-300 light max-md:flex-col max-md:text-sm`}
+										pathname === "/capture/" && "bold opacity-[1]"
+									} flex items-center text-white hover:text-white transition ease-in-out duration-300 light max-md:flex-col max-md:text-sm opacity-[0.7]`}
 								>
 									<TfiTarget className=" mr-[0.5rem] max-md:mr-0 max-md:text-3xl max-md:mb-[0.5rem]" />{" "}
 									Capture
@@ -67,8 +69,8 @@ const UserNav = () => {
 								<Link
 									to={"/plans"}
 									className={`${
-										pathname === "/plans" && "bold"
-									} flex items-center text-white hover:text-white transition ease-in-out duration-300 light max-md:flex-col max-md:text-sm`}
+										pathname === "/plans" && "bold opacity-[1]"
+									} flex items-center text-white hover:text-white transition ease-in-out duration-300 light max-md:flex-col max-md:text-sm opacity-[0.7]`}
 								>
 									<RiExchangeDollarLine className=" mr-[0.5rem] max-md:mr-0 max-md:text-3xl max-md:mb-[0.5rem]" />{" "}
 									Plans
@@ -78,8 +80,8 @@ const UserNav = () => {
 								<Link
 									to={"/account"}
 									className={`${
-										pathname === "/account" && "bold"
-									} flex items-center text-white hover:text-white transition ease-in-out duration-300 light max-md:flex-col max-md:text-sm`}
+										pathname === "/account" && "bold opacity-[1]"
+									} flex items-center text-white hover:text-white transition ease-in-out duration-300 light max-md:flex-col max-md:text-sm opacity-[0.7]`}
 								>
 									<FiUser className=" mr-[0.5rem] max-md:mr-0 max-md:text-3xl max-md:mb-[0.5rem]" />{" "}
 									Account
@@ -98,7 +100,11 @@ const UserNav = () => {
 				</div>
 			</div>
 
-			<div className=" bg-white text-black w-full flex justify-end text-xl p-[2rem] max-md:p-[2rem]">
+			<div
+				className={`${
+					pathname === "/capture/" && "hidden"
+				} bg-white text-black w-full flex justify-end text-xl p-[2rem] max-md:p-[2rem]`}
+			>
 				<div className=" flex w-[30vw] justify-between items-center max-md:w-[20vw] max-lg:w-[40vw]">
 					<TbCalendarTime className=" text-3xl max-md:text-4xl light" />
 					<MdNotificationsNone className=" text-3xl max-md:text-4xl light" />

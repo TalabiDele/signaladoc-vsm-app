@@ -115,12 +115,12 @@ const Profile = () => {
 	};
 
 	return (
-		<div className=" pt-[5rem] w-[70%] mx-auto max-md:w-[90%] max-md:pb-[8rem] max-2xl:ml-[15rem] max-md:mx-auto">
-			<h1 className=" mb-[2rem] text-xl relative z-[4] max-md:mt-[3rem]">
+		<div className=" pt-[5rem] w-[70%] mx-auto max-md:w-[90%] max-md:pb-[8rem] max-2xl:ml-[15rem] max-md:mx-auto max-md:pt-[3rem]">
+			<h1 className=" mb-[2rem] text-xl relative z-[4] max-md:mt-[1rem]">
 				Account
 			</h1>
 			<div className=" flex items-center justify-between border-b border-b-bluee pb-[1rem] max-md:justify-start max-md:border-b-0 max-md:mt-[3rem] max-md:flex-col max-md:items-start">
-				<div className="">
+				<div className=" flex items-center">
 					{user.photo === "default.jpg" ? (
 						<div className=" bold bg-[#AEC5F1] rounded-md py-[0.5rem] px-[1rem] max-md:px-[0.5rem] h-[3rem] w-[3rem] flex justify-center items-center max-md:py-[0.1rem] mr-[1rem] ">
 							{user.first_name.charAt(0)}
@@ -129,7 +129,7 @@ const Profile = () => {
 						<img
 							src={user.photo_url}
 							alt=""
-							className=" w-[4rem] h-[4rem] rounded-full"
+							className=" w-[4rem] h-[4rem] rounded-full max-md:mr-[1rem]"
 						/>
 					)}
 					<input
@@ -139,7 +139,10 @@ const Profile = () => {
 						className=" hidden"
 						onChange={(e) => handleChange(e)}
 					/>
-					<label htmlFor="photo" className=" text-primary cursor-pointer">
+					<label
+						htmlFor="photo"
+						className=" text-primary cursor-pointer max-md:mr-[1rem] medium"
+					>
 						Change profile photo
 					</label>
 				</div>
@@ -152,21 +155,21 @@ const Profile = () => {
 						<p className="">Edit Profile</p>
 					</Link>
 
-					<div className=" flex justify-between items-center w-full border-x border-x-bluee px-[4rem] h-[5rem] max-md:w-[90%] max-md:flex-col max-md:items-start max-md:h-[12rem] max-md:px-[0rem] max-md:my-[1rem] max-md:border-x-0 max-md:justify-normal max-lg:px-[1rem]">
+					<div className=" flex justify-between items-center w-full border-x border-x-bluee px-[4rem] h-[5rem] max-md:w-[90%] max-md:flex-col max-md:items-start max-md:h-[12rem] max-md:px-[0rem]  max-md:border-x-0 max-md:justify-normal max-lg:px-[1rem]">
 						<div className=" max-md:border-b max-md:border-b-bluee max-md:w-full max-md:mb-[1rem]">
-							<p className=" text-text_gray font-light mb-[0.5rem]">
+							<p className=" text-text_gray font-light mb-[0.5rem] text-sm">
 								First Name
 							</p>
 							<p className=" font-bold">{user?.first_name}</p>
 						</div>
 						<div className=" max-md:border-b max-md:border-b-bluee max-md:w-full max-md:mb-[1rem]">
-							<p className=" text-text_gray font-light mb-[0.5rem]">
+							<p className=" text-text_gray font-light mb-[0.5rem] text-sm">
 								Last Name
 							</p>
 							<p className=" font-bold">{user?.surname}</p>
 						</div>
 						<div className=" max-md:border-b max-md:border-b-bluee max-md:w-full max-md:mb-[1rem]">
-							<p className=" text-text_gray font-light mb-[0.5rem]">
+							<p className=" text-text_gray font-light mb-[0.5rem] text-sm">
 								Email address
 							</p>
 							<p className=" font-bold">{user?.email}</p>
@@ -179,9 +182,9 @@ const Profile = () => {
 				</Link>
 			</div>
 
-			<div className=" py-[1rem] border-b border-b-bluee flex justify-between max-md:border-b-0 max-md:flex-col">
+			<div className=" py-[1rem] border-b border-b-bluee flex justify-between max-md:border-b-0 max-md:flex-col max-md:py-[0rem]">
 				<div className=" max-md:border-b max-md:border-b-bluee max-md:w-full max-md:mb-[1rem]">
-					<p className=" text-text_gray font-light mb-[0.5rem]">
+					<p className=" text-text_gray font-light mb-[0.5rem] text-sm">
 						Date of birth
 					</p>
 					<p className=" font-bold">
@@ -189,41 +192,53 @@ const Profile = () => {
 					</p>
 				</div>
 				<div className=" max-md:border-b max-md:border-b-bluee max-md:w-full max-md:mb-[1rem]">
-					<p className=" text-text_gray font-light mb-[0.5rem]">Gender</p>
+					<p className=" text-text_gray font-light mb-[0.5rem] text-sm">
+						Gender
+					</p>
 					<p className=" font-bold">
 						{profData?.gender_string && profData?.gender_string}
 					</p>
 				</div>
 				<div className=" max-md:border-b max-md:border-b-bluee max-md:w-full max-md:mb-[1rem]">
-					<p className=" text-text_gray font-light mb-[0.5rem]">Country</p>
+					<p className=" text-text_gray font-light mb-[0.5rem] text-sm">
+						Country
+					</p>
 					<p className=" font-bold">
 						{profData?.country_string && profData?.country_string}
 					</p>
 				</div>
 				<div className=" max-md:border-b max-md:border-b-bluee max-md:w-full max-md:mb-[1rem]">
-					<p className=" text-text_gray font-light mb-[0.5rem]">Address</p>
+					<p className=" text-text_gray font-light mb-[0.5rem] text-sm">
+						Address
+					</p>
 					<p className=" font-bold">{profData?.address && profData?.address}</p>
 				</div>
 				<div className=" max-md:hidden"></div>
 			</div>
 
-			<div className="py-[1rem] border-b border-b-bluee flex justify-between max-md:border-b-0 max-md:flex-col">
+			<div className="py-[1rem] border-b border-b-bluee flex justify-between max-md:border-b-0 max-md:flex-col max-md:py-[0rem]">
 				<div className=" max-md:border-b max-md:border-b-bluee max-md:w-full max-md:mb-[1rem]">
-					<p className=" text-text_gray font-light mb-[0.5rem]">Height in cm</p>
+					<p className=" text-text_gray font-light mb-[0.5rem] text-sm">
+						Height in cm
+					</p>
 					<p className=" font-bold">{medData?.height && medData?.height}cm</p>
 				</div>
 				<div className=" max-md:border-b max-md:border-b-bluee max-md:w-full max-md:mb-[1rem]">
-					<p className=" text-text_gray font-light mb-[0.5rem]">Weight in kg</p>
+					<p className=" text-text_gray font-light mb-[0.5rem] text-sm">
+						Weight in kg
+					</p>
 					<p className=" font-bold">{medData?.weight && medData?.weight}kg</p>
 				</div>
 				<div className=" max-md:border-b max-md:border-b-bluee max-md:w-full max-md:mb-[1rem]">
-					<p className=" text-text_gray font-light mb-[0.5rem]">Blood group</p>
+					<p className=" text-text_gray font-light mb-[0.5rem] text-sm">
+						Blood group
+					</p>
 					<p className=" font-bold">
 						{medData?.blood_group && medData?.blood_group.group}
 					</p>
 				</div>
 				<div className=" max-md:border-b-0 max-md:border-b-bluee max-md:w-full max-md:mb-[1rem]">
-					<p className=" text-text_gray font-light mb-[0.5rem]"></p>
+					<p className=" text-text_gray font-light mb-[0.5rem] text-sm"></p>
 					<p className=" font-bold"></p>
 				</div>
 			</div>
@@ -248,14 +263,14 @@ const Profile = () => {
 						name="oldPass"
 						id="oldPass"
 						value={oldPass}
-						className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[1rem] w-full text-lg"
+						className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[1rem] w-full text-lg placeholder:text-7xl"
 						onChange={(e) => setOldPass(e.target.value)}
 					/>
 					<div className=" absolute top-[0.7rem] right-[0.5rem]">
 						{isOld ? (
-							<BiHide onClick={() => setIsOld(!isOld)} />
+							<BiHide className=" text-xl" onClick={() => setIsOld(!isOld)} />
 						) : (
-							<BiShow onClick={() => setIsOld(!isOld)} />
+							<BiShow className=" text-xl" onClick={() => setIsOld(!isOld)} />
 						)}
 					</div>
 				</div>
@@ -278,9 +293,9 @@ const Profile = () => {
 					/>
 					<div className="absolute top-[0.7rem] right-[0.5rem]">
 						{isNew ? (
-							<BiHide onClick={() => setIsNew(!isNew)} />
+							<BiHide className=" text-xl" onClick={() => setIsNew(!isNew)} />
 						) : (
-							<BiShow onClick={() => setIsNew(!isNew)} />
+							<BiShow className=" text-xl" onClick={() => setIsNew(!isNew)} />
 						)}
 					</div>
 				</div>
