@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "./context/AuthContext";
 import Buttons from "./Buttons";
 import { FcGoogle } from "react-icons/fc";
-import { BsFillTelephoneFill } from "react-icons/bs";
+import { BsFillPatchCheckFill, BsFillTelephoneFill } from "react-icons/bs";
 import { FaApple, FaLaughSquint } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
 import CodeModal from "./CodeModal";
@@ -15,6 +15,7 @@ import { GOOGLE_KEY } from "./config";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import AppleLogin from "react-apple-login";
+import Modal from "./Modal";
 
 const Signup = () => {
 	const [isEmail, setIsEmail] = useState(true);
@@ -35,7 +36,11 @@ const Signup = () => {
 		type,
 		setType,
 		googleLogin,
+		isModal,
+		setIsModal,
 	} = useContext(AuthContext);
+
+	console.log(isModal);
 
 	useEffect(() => {
 		// getCountryCode();
@@ -94,6 +99,18 @@ const Signup = () => {
 
 	return (
 		<div className=" bg-white w-[50vw] max-lg:w-[100vw] h-[100vh] pb-[5rem] overflow-y-scroll">
+			{isModal && (
+				<Modal
+					icon={<BsFillPatchCheckFill className=" text-primary text-3xl" />}
+					text={type === "email" ? "Email Verified!" : "Phone Number Verified!"}
+					btn={true}
+					btnType={"text"}
+					btnText={"Ok"}
+					btnCount={1}
+					color={"text-primary medium"}
+					event={() => setIsModal(false)}
+				/>
+			)}
 			<Toaster position="top-center" reverseOrder={false} />
 			<div className=" w-[80%] mx-auto mt-[1rem] mb-[2rem]">
 				<img src={logo} alt="" className=" w-[9rem]" />

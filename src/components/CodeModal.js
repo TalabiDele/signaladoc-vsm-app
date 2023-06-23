@@ -2,9 +2,13 @@ import React, { useState, useContext } from "react";
 import AuthContext from "./context/AuthContext";
 import toast, { Toaster } from "react-hot-toast";
 import "./General.scss";
+import Modal from "./Modal";
+import { BsFillPatchCheckFill } from "react-icons/bs";
 
 const CodeModal = ({ contact }) => {
 	const [code, setCode] = useState();
+	const [isModal, setIsModal] = useState();
+
 	const {
 		emailCode,
 		setEmailCode,
@@ -20,6 +24,10 @@ const CodeModal = ({ contact }) => {
 		setIsDetails,
 		codeResend,
 		userId,
+		// isModal,
+		// setIsModal,
+		isMode,
+		setIsMode,
 	} = useContext(AuthContext);
 
 	//   const notify = () => toast(message);
@@ -38,12 +46,15 @@ const CodeModal = ({ contact }) => {
 				duration: 6000,
 			});
 		} else if (code === emailCode) {
+			setIsModal(true);
 			setApproved(true);
 			setIsEmail(false);
 			setIsDetails(true);
-			toast.success("Email verified!", {
-				duration: 6000,
-			});
+			// toast.success("Email verified!", {
+			// 	duration: 6000,
+			// });
+
+			console.log(isModal);
 		}
 	};
 

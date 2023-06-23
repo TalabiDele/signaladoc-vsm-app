@@ -54,6 +54,7 @@ export const AuthProvider = ({ children }) => {
 	const canvasElement = useRef < HTMLCanvasElement > null;
 	const [isModal, setIsModal] = useState(false);
 	const [isResetPass, setIsResetPass] = useState(false);
+	const [isMode, setIsMode] = useState(false);
 
 	const history = useHistory();
 	const cookies = new Cookies();
@@ -807,6 +808,8 @@ export const AuthProvider = ({ children }) => {
 				setIsModal,
 				isResetPass,
 				setIsResetPass,
+				isMode,
+				setIsMode,
 			}}
 		>
 			{children}
