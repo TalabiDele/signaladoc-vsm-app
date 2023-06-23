@@ -5,6 +5,8 @@ import logo from "../assets/images/vsm-logo.png";
 import ResetCode from "./ResetCode";
 import PasswordChange from "./PasswordChange";
 import { Redirect } from "react-router-dom";
+import Modal from "./Modal";
+import { BsFillPatchCheckFill } from "react-icons/bs";
 
 const Forgot = () => {
 	const [username, setUsername] = useState("");
@@ -16,7 +18,17 @@ const Forgot = () => {
 		isChange,
 		setIsChange,
 		isLogin,
+		isModal,
+		setIsModal,
+		approved,
+		isCode,
+		setIsCode,
+		isResetPass,
+		setIsResetPass,
+		setIsLogin,
 	} = useContext(AuthContext);
+
+	console.log(isModal);
 
 	const handleForgot = (e) => {
 		e.preventDefault();
@@ -30,9 +42,51 @@ const Forgot = () => {
 		}
 	};
 
+	const handleReset = () => {
+		setIsModal(false);
+		setIsLogin(true);
+	};
+
 	return (
 		<div>
 			<div className=" bg-white w-[50vw] max-lg:w-[100vw] h-[100vh]">
+				{isModal && approved && (
+					<Modal
+						text={"Password reset code has been sent to your email/phone"}
+						btn={true}
+						btnType={"text"}
+						btnText={"Ok"}
+						btnCount={1}
+						color={"text-primary medium"}
+						event={() => setIsModal(false)}
+					/>
+				)}
+				{isModal && isCode && (
+					<Modal
+						icon={<BsFillPatchCheckFill className=" text-primary text-3xl" />}
+						text={"Email Verified!"}
+						btn={true}
+						btnType={"text"}
+						btnText={"Ok"}
+						btnCount={1}
+						color={"text-primary medium"}
+						event={() => setIsModal(false)}
+					/>
+				)}
+				{isModal && isResetPass && (
+					<Modal
+						icon={<BsFillPatchCheckFill className=" text-primary text-3xl" />}
+						text={
+							"Password changed successfully! Your password has been changed successfully"
+						}
+						btn={true}
+						btnType={"text"}
+						btnText={"Ok"}
+						btnCount={1}
+						color={"text-primary medium"}
+						event={() => handleReset()}
+					/>
+				)}
 				<Toaster position="top-center" reverseOrder={false} />
 				<div className=" w-[80%] mx-auto mt-[1rem] mb-[2rem]">
 					<img src={logo} alt="" className=" w-[9rem]" />

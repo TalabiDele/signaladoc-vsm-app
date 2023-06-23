@@ -56,7 +56,7 @@ const History = () => {
 			)}
 
 			{histData?.data.map((e) => (
-				<div className=" mb-[3rem]">
+				<div className=" mb-[3rem]" key={e.id}>
 					<div className="msg-block">
 						<div className="flex justify-between w-[40rem] max-md:w-[100%] max-md:flex-col">
 							<p className=" mr-[3rem]">Vital Signs</p>

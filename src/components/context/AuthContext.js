@@ -7,6 +7,7 @@ import jwt from "jwt-decode";
 import Cookies from "universal-cookie";
 import useRPPG from "hooks/useRPPG";
 import useFaceMesh from "hooks/useFaceMesh";
+import { FaLastfmSquare } from "react-icons/fa";
 
 const AuthContext = createContext();
 
@@ -51,6 +52,8 @@ export const AuthProvider = ({ children }) => {
 	const [vitals, setVitals] = useState();
 	const videoElement = useRef < HTMLVideoElement > null;
 	const canvasElement = useRef < HTMLCanvasElement > null;
+	const [isModal, setIsModal] = useState(false);
+	const [isResetPass, setIsResetPass] = useState(false);
 
 	const history = useHistory();
 	const cookies = new Cookies();
@@ -533,17 +536,27 @@ export const AuthProvider = ({ children }) => {
 
 		if (res.ok) {
 			setApproved(true);
-			toast.success(data.message, {
-				duration: 6000,
-			});
+
+			setMessage(data.mesage);
+			setIsModal(true);
+
+			// setTimeout(() => {
+
+			// }, 5000);
+
+			// toast.success(data.message, {
+			// 	duration: 6000,
+			// });
 			setEmailCode(data.code);
 			setUserId(data.user_id);
 			setIsReset(true);
 
 			setTimeout(() => {
-				setApproved(false);
+				// setApproved(false);
 				setIsCodeReset(true);
 				setIsForgot(false);
+				// setIsModal(false);
+				// setMessage("");
 			}, 3000);
 		} else {
 			setError(true);
@@ -579,11 +592,13 @@ export const AuthProvider = ({ children }) => {
 		if (res.ok) {
 			setApproved(true);
 			setMessage("Password reset successful! You can now login");
-			toast.success("Password reset successful! You can now login", {
-				duration: 6000,
-			});
+			// toast.success("Password reset successful! You can now login", {
+			// 	duration: 6000,
+			// });
+			setIsModal(true);
+			setIsResetPass(true);
 
-			setIsLogin(true);
+			// setIsLogin(true);
 
 			setTimeout(() => {
 				setApproved(false);
@@ -788,6 +803,10 @@ export const AuthProvider = ({ children }) => {
 				logout,
 				canCapture,
 				setCanCapture,
+				isModal,
+				setIsModal,
+				isResetPass,
+				setIsResetPass,
 			}}
 		>
 			{children}

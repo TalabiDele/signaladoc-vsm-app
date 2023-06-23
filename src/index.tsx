@@ -22,12 +22,10 @@ ReactDOM.render(
 /* 
 Tasks
   - Keep me logged in modal
-  - Password reset modal
-  - Update profile modal
-  - Profile updated modal
-  - Password updated modal
   - Add react share
   - Add disclaimer modal to doctor flow
   - Increase size of graph in dashboard
   - History pagination
+  - PWA
+  - Add geolocation
 */

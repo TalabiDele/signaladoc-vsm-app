@@ -2,13 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "./context/AuthContext";
 import { API_URL } from "./config";
 import Cookies from "universal-cookie";
-import { FaUserEdit } from "react-icons/fa";
+import { FaThumbsUp, FaUserEdit } from "react-icons/fa";
 import { BiShow, BiHide } from "react-icons/bi";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { HiOutlineLogout } from "react-icons/hi";
 import { BsPersonFillX } from "react-icons/bs";
 import { useHistory } from "react-router-dom";
+import Modal from "./Modal";
 
 const Profile = () => {
 	const [isNew, setIsNew] = useState(false);
@@ -16,6 +17,7 @@ const Profile = () => {
 	const [oldPass, setOldPass] = useState("");
 	const [newPass, setNewPass] = useState("");
 	const [photo, setPhoto] = useState();
+	const [isModal, setIsModal] = useState(false);
 
 	const { user, profData, medData, logout, checkUserLoggedIn } =
 		useContext(AuthContext);
@@ -95,9 +97,10 @@ const Profile = () => {
 		console.log(data);
 
 		if (data.success) {
-			toast.success("Password changed!", {
-				duration: 6000,
-			});
+			// toast.success("Password changed!", {
+			// 	duration: 6000,
+			// });
+			setIsModal(true);
 		} else if (data.new_password) {
 			toast.error(data.new_password[0], {
 				duration: 10000,
@@ -116,6 +119,19 @@ const Profile = () => {
 
 	return (
 		<div className=" pt-[5rem] w-[70%] mx-auto max-md:w-[90%] max-md:pb-[8rem] max-2xl:ml-[15rem] max-md:mx-auto max-md:pt-[3rem]">
+			{isModal && (
+				<Modal
+					icon={<FaThumbsUp className=" text-primary text-3xl" />}
+					header={"Password Updated!"}
+					text={"Your password has been changed"}
+					btn={true}
+					btnType={"text"}
+					btnText={"Ok"}
+					btnCount={1}
+					color={"text-primary medium"}
+					event={() => setIsModal(false)}
+				/>
+			)}
 			<h1 className=" mb-[2rem] text-xl relative z-[4] max-md:mt-[1rem]">
 				Account
 			</h1>

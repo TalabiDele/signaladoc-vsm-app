@@ -6,6 +6,8 @@ import { API_URL } from "./config";
 import Cookies from "universal-cookie";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import Modal from "./Modal";
+import { FaThumbsUp } from "react-icons/fa";
 
 const ProfileEdit = () => {
 	const { user, profData, medData, checkUserLoggedIn } =
@@ -21,7 +23,8 @@ const ProfileEdit = () => {
 	const [dob, setDob] = useState(profData?.dob);
 	const [height, setHeight] = useState(medData?.height);
 	const [weight, setWeight] = useState(medData?.weight);
-	const [blood, setBlood] = useState(medData?.blood_group_id);
+	const [blood, setBlood] = useState();
+	// const [blood, setBlood] = useState(medData?.blood_group_id);
 	const [country, setCountry] = useState(user?.country);
 	const [address, setAddress] = useState(profData?.address);
 	const [isInches, setIsInches] = useState(false);
@@ -30,6 +33,7 @@ const ProfileEdit = () => {
 	const [isLbs, setIsLbs] = useState(false);
 	const [bloodGroup, setBloodGroup] = useState();
 	const [photo, setPhoto] = useState();
+	const [isModal, setIsModal] = useState(false);
 
 	const cookies = new Cookies();
 
@@ -79,9 +83,10 @@ const ProfileEdit = () => {
 		console.log(data);
 
 		if (res.ok) {
-			toast.success(data.message, {
-				duration: 6000,
-			});
+			// toast.success(data.message, {
+			// 	duration: 6000,
+			// });
+			setIsModal(true);
 		} else {
 			toast.error(data.photo[0], {
 				duration: 6000,
@@ -160,20 +165,44 @@ const ProfileEdit = () => {
 		});
 
 		const data = await res.json();
+		if (res.ok) {
+			toast.success("Profile updated!", {
+				duration: 6000,
+			});
 
-		toast.success("Profile updated!", {
-			duration: 6000,
-		});
+			// history.push("/account");
+			setIsModal(true);
+		} else {
+			toast.error("All fields are compulsory!", {
+				duration: 6000,
+			});
+		}
 
 		console.log(data);
 
 		toast.dismiss(toastLoading);
+	};
+
+	const handleModal = () => {
+		setIsModal(false);
 
 		history.push("/account");
 	};
 
 	return (
 		<div className=" w-[70%] mx-auto pt-[2rem] pb-[7rem] max-md:w-[90%] max-md:pb-[5rem] max-2xl:ml-[20rem] max-md:mx-auto max-lg:ml-[15rem]">
+			{isModal && (
+				<Modal
+					icon={<FaThumbsUp className=" text-primary text-3xl" />}
+					text={"Profile Updated!"}
+					btn={true}
+					btnType={"text"}
+					btnText={"Ok"}
+					btnCount={1}
+					color={"text-primary medium"}
+					event={() => handleModal()}
+				/>
+			)}
 			<h1 className=" text-3xl relative z-[5] max-md:top-[3rem] max-md:mb-[2rem]">
 				Edit Profile
 			</h1>

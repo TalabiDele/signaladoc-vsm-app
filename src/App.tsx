@@ -1,5 +1,5 @@
 // https://fluentsite.z22.web.core.windows.net/quick-start
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Loader } from "@fluentui/react-northstar";
 import { BrowserRouter, Redirect, Route } from "react-router-dom";
 import { useTeamsFx } from "@microsoft/teamsfx-react";
@@ -45,9 +45,42 @@ export default function App() {
 
 	const hist = createBrowserHistory();
 
-	const { user } = useContext(AuthContext);
+	const { user, logout } = useContext(AuthContext);
+
+	console.log(user);
 
 	const pathname = window.location.pathname;
+
+	useEffect(() => {
+		// window.addEventListener("beforeunload", function (e) {
+		// 	e.preventDefault();
+		// 	console.log(pathname);
+		// 	if (pathname !== "/plans") {
+		// 		logout();
+		// 	}
+		// 	if (pathname !== "/account/edit") {
+		// 		logout();
+		// 	}
+		// 	if (pathname !== "/history") {
+		// 		logout();
+		// 	}
+		// 	if (pathname !== "/capture/") {
+		// 		logout();
+		// 	}
+		// 	if (pathname !== "/capture/results") {
+		// 		logout();
+		// 	}
+		// 	if (pathname !== "/capture/results/doctor") {
+		// 		logout();
+		// 	}
+		// 	if (pathname !== "/home") {
+		// 		logout();
+		// 	}
+		// 	if (pathname !== "/account") {
+		// 		logout();
+		// 	}
+		// });
+	}, []);
 
 	return (
 		<div className="font-face">
