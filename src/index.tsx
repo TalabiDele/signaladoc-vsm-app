@@ -23,8 +23,6 @@ ReactDOM.render(
 Tasks
   - Keep me logged in modal
   - Add react share
-  - Increase size of graph in dashboard
   - History pagination
   - PWA
-  - Add geolocation
 */

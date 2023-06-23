@@ -55,37 +55,11 @@ export const AuthProvider = ({ children }) => {
 	const [isModal, setIsModal] = useState(false);
 	const [isResetPass, setIsResetPass] = useState(false);
 	const [isMode, setIsMode] = useState(false);
+	const [timeZone, setTimeZone] = useState("");
+	const [currentCntry, setCurrentCntry] = useState("");
 
 	const history = useHistory();
 	const cookies = new Cookies();
-
-	const processingFaceMesh = useRef(false);
-
-	const stopHandler = () => {
-		stop();
-
-		// closeCamera();
-		// cameraInstance?.stop();
-	};
-
-	const onCalculationEndedCb = () => {
-		stopHandler();
-		closeCamera();
-		cameraInstance?.stop();
-	};
-
-	const { stop, closeCamera } = useRPPG({
-		videoElement,
-		// onUnsupportedDeviceCb,
-		onAllDataCalculatedCb: onCalculationEndedCb,
-		onCalculationEndedCb,
-	});
-
-	const { cameraInstance } = useFaceMesh({
-		videoElement,
-		canvasElement,
-		processing: processingFaceMesh,
-	});
 
 	const pathname = window.location.pathname;
 
@@ -111,36 +85,44 @@ export const AuthProvider = ({ children }) => {
 
 			setCanCapture(data?.can_capture);
 
-			// setProfData(data.profile);
-			// setMedData(data.user_info);
+			const handlePosition = async () => {
+				const res = await fetch(`https://ipapi.co/json/`);
 
-			console.log(medData);
-		};
+				const data = await res.json();
 
-		const handleProfile = async () => {
-			const res = await fetch(`${API_URL}/user/profile`, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${cookies.get("vsm_authorization")}`,
-				},
-			});
+				console.log(data);
 
-			const data = await res.json();
+				setTimeZone(data?.timezone);
+				setCurrentCntry(data?.country_code);
+			};
 
-			console.log(data);
-
-			// setCanCapture(data.can_capture);
-
-			setProfData(data.profile);
-			setMedData(data.medical_info);
-
-			console.log(profData);
+			handlePosition();
 		};
 
 		handleProfile();
 		handleInit();
 	}, []);
+
+	const handleProfile = async () => {
+		const res = await fetch(`${API_URL}/user/profile`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${cookies.get("vsm_authorization")}`,
+			},
+		});
+
+		const data = await res.json();
+
+		console.log(data);
+
+		// setCanCapture(data.can_capture);
+
+		setProfData(data.profile);
+		setMedData(data.medical_info);
+
+		console.log(profData);
+	};
 
 	useEffect(() => {
 		const handleHome = async () => {
@@ -810,6 +792,11 @@ export const AuthProvider = ({ children }) => {
 				setIsResetPass,
 				isMode,
 				setIsMode,
+				currentCntry,
+				setCurrentCntry,
+				timeZone,
+				setTimeZone,
+				handleProfile,
 			}}
 		>
 			{children}

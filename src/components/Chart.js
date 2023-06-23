@@ -46,8 +46,6 @@ const Chart = () => {
 		scales: {
 			y: {
 				suggestedMin: 0,
-
-				// the data maximum used for determining the ticks is Math.max(dataMax, suggestedMax)
 				suggestedMax: 1,
 			},
 		},

@@ -40,10 +40,11 @@ export const Results = () => {
 	const [date, setDate] = useState<string>("");
 	const [time, setTime] = useState<string>("");
 	const [message, setMessage] = useState<string>("");
-	const [timeZone, setTimeZone] = useState<string>("");
+	// const [timeZone, setTimeZone] = useState<string>("");
 	const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
-	const { setResultReading, resultReading, user } = useContext(AuthContext);
+	const { setResultReading, resultReading, user, timeZone } =
+		useContext(AuthContext);
 
 	console.log(resultReading);
 
@@ -124,7 +125,7 @@ export const Results = () => {
 			body: JSON.stringify({
 				date,
 				time,
-				timezone: "Africa/Lagos",
+				timezone: timeZone,
 				message,
 				section: "doctor-chat",
 			}),

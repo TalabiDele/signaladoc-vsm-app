@@ -38,9 +38,10 @@ const Signup = () => {
 		googleLogin,
 		isModal,
 		setIsModal,
+		currentCntry,
 	} = useContext(AuthContext);
 
-	console.log(isModal);
+	console.log(currentCntry);
 
 	useEffect(() => {
 		// getCountryCode();
@@ -139,7 +140,7 @@ const Signup = () => {
 								id="email"
 								value={username}
 								onChange={(e) => setUsername(e.target.value)}
-								className=" text-lg px-[1rem] py-[0.5rem] w-full border border-input_border rounded-lg mt-[0.5rem]"
+								className=" text-lg px-[1rem] py-[0.5rem] w-full border border-input_border rounded-lg mt-[0.5rem] bg-light_blue"
 								placeholder="johndoe@email.com"
 							/>
 						</div>
@@ -150,10 +151,11 @@ const Signup = () => {
 							</label>
 							<div className=" flex rounded-lg mt-[0.5rem] bg-white text-lg mb-[2rem]">
 								<PhoneInput
+									defaultCountry={currentCntry}
 									placeholder="Enter phone number"
 									value={username}
 									onChange={setUsername}
-									className=" text-lg px-[1rem] py-[0.5rem] w-full border border-input_border rounded-lg"
+									className=" text-lg px-[1rem] py-[0.5rem] w-full border border-input_border rounded-lg bg-light_blue"
 								/>
 							</div>
 						</div>

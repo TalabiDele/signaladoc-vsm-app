@@ -19,7 +19,7 @@ const Profile = () => {
 	const [photo, setPhoto] = useState();
 	const [isModal, setIsModal] = useState(false);
 
-	const { user, profData, medData, logout, checkUserLoggedIn } =
+	const { user, profData, medData, logout, checkUserLoggedIn, handleProfile } =
 		useContext(AuthContext);
 
 	const history = useHistory();
@@ -27,6 +27,8 @@ const Profile = () => {
 	const cookies = new Cookies();
 
 	useEffect(() => {
+		handleProfile();
+
 		if (!user) {
 			history.push("/login");
 		}
