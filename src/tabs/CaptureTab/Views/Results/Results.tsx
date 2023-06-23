@@ -17,6 +17,9 @@ import oxygenResult from "assets/images/oxygen-hist.png";
 import stressResult from "assets/images/stress-hist.png";
 import bpResult from "assets/images/bp-hist.png";
 import "components/General.scss";
+// import ScheduleCard from "components/ScheduleCard";
+import Buttons from "components/Buttons";
+import { toast } from "react-hot-toast";
 
 export interface ResultData {
 	rppgData: RPPGData;
@@ -29,10 +32,16 @@ export const Results = () => {
 
 	const [data, setData] = useState<ResultData>();
 	const [schema, setSchema] = useState<Schema[]>();
-	const [modal, setModal] = useState<boolean>(false);
+	const [isModal, setIsModal] = useState<boolean>(false);
 	const [name, setName] = useState<string>("");
 	const [note, setNote] = useState<string>("");
 	const [isDone, setIsDone] = useState<boolean>(false);
+	const [isRemind, setIsRemind] = useState<boolean>(false);
+	const [date, setDate] = useState<string>("");
+	const [time, setTime] = useState<string>("");
+	const [message, setMessage] = useState<string>("");
+	const [timeZone, setTimeZone] = useState<string>("");
+	const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
 	const { setResultReading, resultReading, user } = useContext(AuthContext);
 
@@ -88,7 +97,7 @@ export const Results = () => {
 	};
 
 	const handleModal = (name: string, description: string) => {
-		setModal(true);
+		setIsModal(true);
 
 		setName(name);
 		setNote(description);
@@ -96,6 +105,40 @@ export const Results = () => {
 
 	const handleDone = () => {
 		setIsDone(!isDone);
+	};
+
+	const handleIsRemind = () => {
+		setIsModal(false);
+		setIsRemind(false);
+		setIsDone(false);
+	};
+
+	const handleRemind = async () => {
+		const toastLoading = toast.loading("Loading...");
+		const res = await fetch(`${API_URL}/notification/create`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${cookies.get("vsm_authorization")}`,
+			},
+			body: JSON.stringify({
+				date,
+				time,
+				timezone: "Africa/Lagos",
+				message,
+				section: "doctor-chat",
+			}),
+		});
+
+		const data = await res.json();
+
+		if (res.ok) {
+			setIsSuccess(true);
+		}
+
+		console.log(data);
+
+		toast.dismiss(toastLoading);
 	};
 
 	return (
@@ -114,14 +157,17 @@ export const Results = () => {
 				</div>
 			</div>
 
-			{modal && (
+			{isModal && (
 				<div className=" modal fixed h-[100vh] w-[100vw] left-0 top-0 grid items-center z-[5] ">
 					<div className=" modal-card bg-white p-[1rem] w-[20rem] mx-auto">
 						<h1 className=" text-xl mb-[1rem]">{name}</h1>
 						<p className=" text-sm">{note}</p>
 
 						<div className=" text-primary mt-[1rem] flex justify-between items-center text-sm">
-							<p className=" cursor-pointer" onClick={() => setModal(!modal)}>
+							<p
+								className=" cursor-pointer"
+								onClick={() => setIsModal(!isModal)}
+							>
 								Close
 							</p>
 							<a href="http://">Read More</a>
@@ -129,6 +175,77 @@ export const Results = () => {
 					</div>
 				</div>
 			)}
+
+			{isSuccess && <Modal />}
+
+			{/* {isRemind && (
+				<div className=" fixed top-0 right-0 z-[100] bg-black bg-opacity-70 w-[100vw] h-[100vh] flex items-center justify-center">
+					<div className=" rounded-md bg-white w-[30rem] p-[2rem] relative max-md:w-[80%]">
+						<h1
+							className=" absolute top-[1rem] right-[1rem] font-bold cursor-pointer text-3xl"
+							onClick={() => handleIsRemind()}
+						>
+							x
+						</h1>
+						<p className="medium text-3xl mb-[1rem]">Set Reminder</p>
+						<label
+							htmlFor="date"
+							className=" text-sm text-text_gray mb-[0.5rem]"
+						>
+							Select Date
+						</label>
+						<input
+							type="date"
+							name="date"
+							id="date"
+							value={date}
+							className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
+							onChange={(e) => setDate(e.target.value)}
+						/>
+						<label
+							htmlFor="time"
+							className=" text-sm text-text_gray mb-[0.5rem]"
+						>
+							Select Time
+						</label>
+						<input
+							type="time"
+							name="time"
+							id="time"
+							value={time}
+							className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
+							onChange={(e) => setTime(e.target.value)}
+						/>
+
+						<label
+							htmlFor="message"
+							className=" text-sm text-text_gray mb-[0.5rem]"
+						>
+							Enter a message to yourself
+						</label>
+						<textarea
+							name="message"
+							id="message"
+							cols={10}
+							rows={3}
+							value={message}
+							className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
+							onChange={(e) => setMessage(e.target.value)}
+						></textarea>
+						<div className={``}>
+							<Buttons
+								text={"Set Reminder"}
+								border={"border-1 border-primary"}
+								bg={"bg-primary"}
+								color={"text-white"}
+								px={"px-[4rem] max-md:px-[2rem]"}
+								resonsive=""
+								event={() => handleRemind()}
+							/>
+						</div>
+					</div>
+				</div>
+			)} */}
 
 			{isDone && (
 				<div className=" modal  fixed h-[100vh] w-[100vw] left-0 top-0 grid items-center z-[5]">
@@ -149,7 +266,10 @@ export const Results = () => {
 								</button>
 							</Link>
 
-							<button className=" text-primary border-2 border-primary rounded-md py-[0.5rem] px-[1rem]">
+							<button
+								className=" text-primary border-2 border-primary rounded-md py-[0.5rem] px-[1rem]"
+								onClick={() => setIsRemind(true)}
+							>
 								Remind me later
 							</button>
 						</div>

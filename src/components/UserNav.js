@@ -11,6 +11,7 @@ import { TbCalendarTime } from "react-icons/tb";
 import { MdNotificationsNone } from "react-icons/md";
 import AuthContext from "../components/context/AuthContext";
 import "./General.scss";
+import { BsFillCreditCardFill } from "react-icons/bs";
 
 const UserNav = () => {
 	const pathname = window.location.pathname;
@@ -72,7 +73,7 @@ const UserNav = () => {
 										pathname === "/plans" && "bold opacity-[1]"
 									} flex items-center text-white hover:text-white transition ease-in-out duration-300 light max-md:flex-col max-md:text-sm opacity-[0.7]`}
 								>
-									<RiExchangeDollarLine className=" mr-[0.5rem] max-md:mr-0 max-md:text-3xl max-md:mb-[0.5rem]" />{" "}
+									<BsFillCreditCardFill className=" mr-[0.5rem] max-md:mr-0 max-md:text-3xl max-md:mb-[0.5rem]" />{" "}
 									Plans
 								</Link>
 							</li>

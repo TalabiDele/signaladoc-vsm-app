@@ -2,6 +2,7 @@ canvas {
 	width: 100%;
 
 	@media not all and (min-width: 768px) {
-		height: 20rem;
+		width: 30rem;
+		height: 30rem;
 	}
 }

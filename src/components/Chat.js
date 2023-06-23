@@ -80,7 +80,7 @@ const Chat = () => {
 						<div className=" flex max-md:flex-col max-md:items-center">
 							<Buttons
 								text={"Close"}
-								px={"px-[2rem] max-md:w-full mr-[1rem]"}
+								px={"px-[2rem] max-md:w-full mr-[1rem] max-md:mr-[0rem]"}
 								border={"border-primary border-2 max-md:mb-[1rem]"}
 								bg={"none"}
 								color={"text-primary"}

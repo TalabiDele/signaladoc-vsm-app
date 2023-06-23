@@ -372,6 +372,9 @@ const ProfileEdit = () => {
 						onChange={(e) => setBlood(e.target.value)}
 						value={blood}
 					>
+						<option value="" disabled selected hidden>
+							Choose Blood Group
+						</option>
 						{bloodGroup &&
 							bloodGroup?.map((e) => (
 								<option value={e.id} key={e.id}>
