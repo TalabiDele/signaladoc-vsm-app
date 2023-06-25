@@ -108,7 +108,7 @@ const Signin = () => {
 						</div>
 
 						<Link to="/forgot-password" className=" text-sm">
-							Forgot Password
+							Forgot Password?
 						</Link>
 					</div>
 

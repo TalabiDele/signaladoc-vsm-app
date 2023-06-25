@@ -24,10 +24,16 @@ import "./Capture.scss";
 import Cookies from "universal-cookie";
 import AuthContext from "components/context/AuthContext";
 import { toast } from "react-hot-toast";
+import Modal from "components/Modal";
+import "components/General.scss";
 
 export function Capture() {
 	const videoElement = useRef<HTMLVideoElement>(null);
 	const canvasElement = useRef<HTMLCanvasElement>(null);
+	const [isReady, setIsReady] = useState<boolean>(true);
+	const [isCancel, setIsCancel] = useState<boolean>(true);
+	const [isCancelModal, setIsCancelModal] = useState<boolean>(false);
+	const [isDone, setIsDone] = useState<boolean>(false);
 
 	const history = useHistory();
 
@@ -162,17 +168,24 @@ export function Capture() {
 		start();
 	};
 
+	// const handleDone = () => {
+
+	// };
+
 	const stopHandler = () => {
+		setIsDone(true);
+		setIsCancelModal(false);
 		clearAllNotifications();
 		stop();
 
-		closeCamera();
-		cameraInstance?.stop();
+		// closeCamera();
+		// cameraInstance?.stop();
 	};
 
 	const startButtonHandler = () => {
 		if (processing) {
-			stopHandler();
+			// handleCancel();
+			setIsCancelModal(true);
 		} else {
 			startHandler();
 		}
@@ -184,6 +197,75 @@ export function Capture() {
       fps: {JSON.stringify(fps)}<br/>
       ready: {String(ready)},
       faceDetected: {String(faceDetected)}, */}
+
+			{isReady && (
+				<Modal
+					text={
+						"Ready? Please confirm you are seated and at rest before you start the assessment. We recommend that you are seated and rested 5 mins before taking a reading."
+					}
+					btn={true}
+					btnType={"primary"}
+					btnText={"Ready"}
+					btnCount={1}
+					color={"text-white bg-primary rounded-md px-[2rem] medium"}
+					event={() => setIsReady(false)}
+					icon=""
+					px=""
+					header=""
+					otherEvent=""
+					bg=""
+					btnText2=""
+					btnType2=""
+					bg2=""
+					color2=""
+					px2=""
+				/>
+			)}
+
+			{isDone && (
+				<Modal
+					text={"Please note that assessment will not be saved"}
+					btn={true}
+					btnType={"primary"}
+					btnText={"Done"}
+					btnCount={1}
+					color={"text-white bg-primary rounded-md px-[2rem] medium"}
+					event={() => setIsDone(false)}
+					icon=""
+					px=""
+					header=""
+					otherEvent=""
+					bg=""
+					btnText2=""
+					btnType2=""
+					bg2=""
+					color2=""
+					px2=""
+				/>
+			)}
+			{isCancelModal && (
+				<Modal
+					text={"Are you sure you want to cancel your vital signs reading?"}
+					btn={true}
+					btnType={"primary"}
+					btnText={"Don't Cancel"}
+					btnCount={2}
+					color={
+						"text-white bg-primary px-[1rem] rounded-md medium max-md:mb-[1rem]"
+					}
+					event={() => setIsCancelModal(false)}
+					icon=""
+					px=""
+					header=""
+					otherEvent={() => stopHandler()}
+					bg=""
+					btnText2="Cancel"
+					btnType2="text"
+					bg2=""
+					color2="text-primary medium"
+					px2=""
+				/>
+			)}
 
 			{!ready && <LoadingScreen />}
 

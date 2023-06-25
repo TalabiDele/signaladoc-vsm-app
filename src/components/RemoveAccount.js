@@ -89,7 +89,7 @@ const RemoveAccount = () => {
 			<p className=" text-danger absolute z-[3] top-[2rem] text-xl">
 				Delete Account?
 			</p>
-			<div className=" w-[30rem] grid pt-[10rem] max-md:w-full">
+			<div className=" w-[30rem] grid pt-[10rem] max-md:w-full max-md:pt-[6rem]">
 				<p className=" text-lg max-md:text-center">
 					Going ahead with this will delete your account details from all
 					SignalsADoc platforms.
@@ -112,7 +112,7 @@ const RemoveAccount = () => {
 					<div className="" onClick={() => handleDelete()}>
 						<Buttons
 							text={"Delete account"}
-							px={"px-[3rem] max-md:px-[1rem] max-md:w-full mr-[1rem]"}
+							px={"px-[3rem] max-md:px-[0.5rem] max-md:w-full mr-[1rem]"}
 							border={"border-primary border-2"}
 							bg={"bg-primary"}
 							color={"text-white"}

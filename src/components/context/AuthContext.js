@@ -276,28 +276,29 @@ export const AuthProvider = ({ children }) => {
 		console.log(data);
 
 		if (res.ok) {
-			setUser(data.user);
-
-			console.log(user);
 			setApproved(true);
 			setMessage("Account created successfully!");
 			toast.success("Account created successfully!");
 			setIsPlan(true);
-			setUser(data.user);
+			// setUser(data.user);
 			setStepTwo(true);
 			setToken(data.access_token);
 
-			// const decoded = jwt(data.access_token);
+			const decoded = jwt(data.access_token);
 
-			// console.log(data.access_token);
+			console.log(data);
 
-			// cookies.set("vsm_authorization", data.access_token, {
-			// 	expires: new Date(decoded.exp * 1000),
-			// });
+			cookies.set("vsm_authorization", data.access_token, {
+				expires: new Date(decoded.exp * 1000),
+			});
 
-			// checkUserLoggedIn();
+			setTimeout(() => {
+				setUser(data.user);
 
-			history.push("/login");
+				checkUserLoggedIn();
+
+				history.push("/home");
+			}, 3000);
 
 			setTimeout(() => {
 				setApproved(false);
@@ -327,6 +328,11 @@ export const AuthProvider = ({ children }) => {
 			} else if (data.surname) {
 				setMessage(`${data.surname[0]}`);
 				toast.error(`${data.surname[0]}`, {
+					duration: 6000,
+				});
+			} else if (data.username) {
+				setMessage(`${data.username[0]}`);
+				toast.error(`${data.username[0]}`, {
 					duration: 6000,
 				});
 			} else if (data.password) {
@@ -609,7 +615,9 @@ export const AuthProvider = ({ children }) => {
 	const resendForgotCode = async ({ userId }) => {
 		setLoading(true);
 
-		const res = await fetch(`${API_URL}/forgot-password/resend-code`, {
+		const toastLoading = toast.loading("Loading...");
+
+		const res = await fetch(`${API_URL}/user/forgot-password/resend-code`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -619,14 +627,22 @@ export const AuthProvider = ({ children }) => {
 
 		const data = await res.json();
 
+		console.log(data);
+
 		setIsCodeReset(true);
 
 		setApproved(true);
 		setMessage(data.message);
 
+		toast.success(`Code has been resent`, {
+			duration: 6000,
+		});
+
 		setTimeout(() => {
 			setApproved(false);
 		}, 4000);
+
+		toast.dismiss(toastLoading);
 	};
 
 	const codeResend = async ({ userId }) => {
@@ -684,11 +700,19 @@ export const AuthProvider = ({ children }) => {
 
 		console.log(data);
 
-		console.log(data.access_token);
-
 		if (res.ok) {
 			setToken(data.access_token);
 			toast.success("Login successful!");
+
+			const decoded = jwt(data.access_token);
+
+			cookies.set("vsm_authorization", data.access_token, {
+				expires: new Date(decoded.exp * 1000),
+			});
+
+			setUser(data.user);
+
+			checkUserLoggedIn();
 		}
 
 		console.log(token);

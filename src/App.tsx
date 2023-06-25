@@ -99,6 +99,7 @@ export default function App() {
 					{user && (
 						<>
 							<Route
+								exact
 								path={`/capture`}
 								render={({ match: { url } }) => (
 									<>

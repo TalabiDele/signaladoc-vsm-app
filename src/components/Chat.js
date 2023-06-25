@@ -99,9 +99,9 @@ const Chat = () => {
 				</div>
 			)}
 
-			<h1 className=" fixed z-[10] text-2xl">A Doctor in Your Pocket!</h1>
+			<h1 className=" fixed z-[4] text-2xl">A Doctor in Your Pocket!</h1>
 
-			<p className=" text-lg w-[30rem] mt-[2rem] max-md:w-full">
+			<p className=" text-lg w-[30rem] mt-[4rem] max-md:w-full">
 				Need to speak to a doctor about the results from your vital sign
 				assessment? Let’s connect you to certified doctors.
 			</p>

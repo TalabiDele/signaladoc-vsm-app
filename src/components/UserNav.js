@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../assets/images/vsm-white.png";
 import { Link } from "react-router-dom";
 import { SlHome } from "react-icons/sl";
@@ -12,17 +12,41 @@ import { MdNotificationsNone } from "react-icons/md";
 import AuthContext from "../components/context/AuthContext";
 import "./General.scss";
 import { BsFillCreditCardFill } from "react-icons/bs";
+import Modal from "./Modal";
+import { useHistory, useLocation } from "react-router-dom";
 
 const UserNav = () => {
 	const pathname = window.location.pathname;
+	const [isModal, setIsModal] = useState(false);
 
-	console.log(pathname);
+	const history = useHistory();
+
+	const location = useLocation();
+
+	console.log(location);
 
 	const { user, logout, medData, profData } = useContext(AuthContext);
 
+	const handleRoute = () => {
+		history.push("/account/edit");
+
+		setIsModal(false);
+	};
+
 	return (
-		<div className=" text-white fixed z-[3] flex w-[100vw] h-[10vh] max-md:h-[5vh]">
+		<div className=" text-white fixed z-[1] flex w-[100vw] h-[10vh] max-md:h-[5vh]">
 			<div className=" bg-primary h-[100vh] w-[15rem] p-[2rem] max-md:h-[5rem] max-md:w-[100vw] max-md:fixed max-md:bottom-0 max-md:p-[1rem]">
+				{isModal && (
+					<Modal
+						text={"Please update your profile before taking a reading."}
+						btn={true}
+						btnType={"primary"}
+						btnText={"Update Profile"}
+						btnCount={1}
+						color={"text-white bg-primary rounded-md px-[2rem] medium"}
+						event={() => handleRoute()}
+					/>
+				)}
 				<div className=" ">
 					<Link to="/home">
 						<img
@@ -56,15 +80,27 @@ const UserNav = () => {
 								</Link>
 							</li>
 							<li className="">
-								<Link
-									to={`/capture/?weight=${medData?.weight}&height=${medData?.height}&age=${profData?.age}`}
-									className={`${
-										pathname === "/capture/" && "bold opacity-[1]"
-									} flex items-center text-white hover:text-white transition ease-in-out duration-300 light max-md:flex-col max-md:text-sm opacity-[0.7]`}
-								>
-									<TfiTarget className=" mr-[0.5rem] max-md:mr-0 max-md:text-3xl max-md:mb-[0.5rem]" />{" "}
-									Capture
-								</Link>
+								{!user?.updated_profile ? (
+									<div
+										onClick={() => setIsModal(true)}
+										className={`${
+											pathname === "/capture/" && "bold opacity-[1]"
+										} flex items-center text-white hover:text-white transition ease-in-out duration-300 light max-md:flex-col max-md:text-sm opacity-[0.7] cursor-pointer`}
+									>
+										<TfiTarget className=" mr-[0.5rem] max-md:mr-0 max-md:text-3xl max-md:mb-[0.5rem]" />{" "}
+										Capture
+									</div>
+								) : (
+									<Link
+										to={`/capture/?weight=${medData?.weight}&height=${medData?.height}&age=${profData?.age}`}
+										className={`${
+											pathname === "/capture/" && "bold opacity-[1]"
+										} flex items-center text-white hover:text-white transition ease-in-out duration-300 light max-md:flex-col max-md:text-sm opacity-[0.7]`}
+									>
+										<TfiTarget className=" mr-[0.5rem] max-md:mr-0 max-md:text-3xl max-md:mb-[0.5rem]" />{" "}
+										Capture
+									</Link>
+								)}
 							</li>
 							<li className="">
 								<Link

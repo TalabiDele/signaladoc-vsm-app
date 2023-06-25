@@ -252,27 +252,31 @@ export const Results = () => {
 				<div className=" modal  fixed h-[100vh] w-[100vw] left-0 top-0 grid items-center z-[5]">
 					<div className=" rounded-md bg-white py-[1rem] px-[1rem] w-[30rem] mx-auto max-md:w-[90%]">
 						<p className=" text-lg font-medium text-center">
-							Hey Theresa! <br />
+							Hey {user?.first_name}! <br />
 							How did your assessment go? <br />
 							Would you like to chat with a doctor?
 						</p>
 
-						<div className="  text-primary mt-[1rem] flex justify-between items-center text-sm w-[80%] mx-auto font-bold max-md:w-[90%]">
-							<p className=" cursor-pointer" onClick={() => setIsDone(!isDone)}>
-								No
-							</p>
+						<div className="  text-primary mt-[1rem] flex justify-between items-center text-sm w-[80%] mx-auto font-bold max-md:w-[90%] max-md:flex-col">
 							<Link to="/capture/results/doctor">
-								<button className=" bg-primary text-white border-2 border-primary rounded-md py-[0.5rem] px-[1rem]">
+								<button className=" bg-primary text-white border-2 border-primary rounded-md py-[0.5rem] px-[1rem] max-md:mb-[1rem] medium">
 									Yes Please
 								</button>
 							</Link>
 
 							<button
-								className=" text-primary border-2 border-primary rounded-md py-[0.5rem] px-[1rem]"
-								onClick={() => setIsRemind(true)}
+								className=" text-primary border-2 border-primary rounded-md py-[0.5rem] px-[1rem] max-md:mb-[1rem] medium"
+								// onClick={() => setIsRemind(true)}
 							>
 								Remind me later
 							</button>
+
+							<p
+								className=" cursor-pointer medium"
+								onClick={() => setIsDone(!isDone)}
+							>
+								No
+							</p>
 						</div>
 					</div>
 				</div>

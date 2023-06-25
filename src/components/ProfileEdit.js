@@ -34,6 +34,8 @@ const ProfileEdit = () => {
 	const [bloodGroup, setBloodGroup] = useState();
 	const [photo, setPhoto] = useState();
 	const [isModal, setIsModal] = useState(false);
+	const [isPhoto, setIsPhoto] = useState(false);
+	const [isUpdate, setIsUpdate] = useState(false);
 
 	const cookies = new Cookies();
 
@@ -87,6 +89,9 @@ const ProfileEdit = () => {
 			// 	duration: 6000,
 			// });
 			setIsModal(true);
+			setIsPhoto(true);
+
+			setIsUpdate(false);
 		} else {
 			toast.error(data.photo[0], {
 				duration: 6000,
@@ -172,6 +177,9 @@ const ProfileEdit = () => {
 
 			// history.push("/account");
 			setIsModal(true);
+			setIsUpdate(true);
+
+			setIsPhoto(false);
 		} else {
 			toast.error("All fields are compulsory!", {
 				duration: 6000,
@@ -186,12 +194,30 @@ const ProfileEdit = () => {
 	const handleModal = () => {
 		setIsModal(false);
 
+		// history.push("/account");
+	};
+
+	const handleIsUpdate = () => {
+		setIsModal(false);
+
 		history.push("/account");
 	};
 
 	return (
 		<div className=" w-[70%] mx-auto pt-[2rem] pb-[7rem] max-md:w-[90%] max-md:pb-[5rem] max-2xl:ml-[20rem] max-md:mx-auto max-lg:ml-[15rem]">
-			{isModal && (
+			{isModal && isPhoto && (
+				<Modal
+					icon={<FaThumbsUp className=" text-primary text-3xl" />}
+					text={"Profile Photo Updated!"}
+					btn={true}
+					btnType={"text"}
+					btnText={"Ok"}
+					btnCount={1}
+					color={"text-primary medium"}
+					event={() => handleModal()}
+				/>
+			)}
+			{isModal && isUpdate && (
 				<Modal
 					icon={<FaThumbsUp className=" text-primary text-3xl" />}
 					text={"Profile Updated!"}
@@ -200,7 +226,7 @@ const ProfileEdit = () => {
 					btnText={"Ok"}
 					btnCount={1}
 					color={"text-primary medium"}
-					event={() => handleModal()}
+					event={() => handleIsUpdate()}
 				/>
 			)}
 			<h1 className=" text-3xl relative z-[5] max-md:top-[3rem] max-md:mb-[2rem]">

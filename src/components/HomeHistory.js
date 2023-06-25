@@ -44,15 +44,8 @@ const HomeHistory = () => {
 
 	console.log(history);
 
-	const handleModal = (name, description) => {
-		setModal(!modal);
-
-		setName(name);
-		setNote(description);
-	};
-
 	return (
-		history?.data.length > 0 && (
+		history?.data?.length > 0 && (
 			<div className="results-contain">
 				<div className=" flex justify-end text-primary w-full mb-[1rem] cursor-pointer">
 					<Link to="/history">

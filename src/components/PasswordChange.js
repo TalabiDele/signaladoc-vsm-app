@@ -32,7 +32,7 @@ const PasswordChange = () => {
 						Reset Password
 					</h1>
 					<p className=" mb-[3rem] text-text_gray">
-						Enter the password reset code sent to your email or phone number
+						Enter your new preferred password
 					</p>
 
 					<form action=" grid w-[90%]" onSubmit={handleResetPassword}>

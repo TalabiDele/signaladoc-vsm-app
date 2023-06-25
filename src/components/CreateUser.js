@@ -23,6 +23,7 @@ const CreateUser = () => {
 		setType,
 		newsletter,
 		setNewsletter,
+		currentCntry,
 	} = useContext(AuthContext);
 
 	console.log(type);
@@ -103,6 +104,7 @@ const CreateUser = () => {
 						</label>
 						{type === "email" ? (
 							<PhoneInput
+								defaultCountry={currentCntry}
 								placeholder="Enter phone number"
 								value={username}
 								onChange={setUsername}

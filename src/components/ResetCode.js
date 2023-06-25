@@ -20,6 +20,7 @@ const ResetCode = () => {
 		setIsModal,
 		isCode,
 		setIsCode,
+		resendForgotCode,
 	} = useContext(AuthContext);
 
 	const handleReset = (e) => {
@@ -54,6 +55,10 @@ const ResetCode = () => {
 		}
 	};
 
+	const handleResend = () => {
+		resendForgotCode({ userId });
+	};
+
 	return (
 		<div>
 			<div className=" bg-white w-[50vw] max-lg:w-[100vw] h-[100vh]">
@@ -76,13 +81,23 @@ const ResetCode = () => {
 								id="code"
 								value={code}
 								onChange={(e) => setCode(e.target.value)}
-								className=" text-lg px-[1rem] py-[0.5rem] w-full border border-input_border rounded-lg mt-[1rem]"
+								className=" text-lg px-[1rem] py-[0.5rem] w-full border border-input_border rounded-lg mt-[0.5rem]"
 								placeholder="123456"
 							/>
 						</div>
 						<button className=" bg-primary text-white border border-primary py-[1rem] rounded-lg w-full">
 							Submit
 						</button>
+
+						<p className=" italic text-md mt-[1rem]">
+							Didn’t receive it?{" "}
+							<span
+								className=" underline cursor-pointer italic"
+								onClick={() => handleResend()}
+							>
+								Resend
+							</span>
+						</p>
 					</form>
 				</div>
 			</div>
