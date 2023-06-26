@@ -9,6 +9,8 @@ import "./fonts/VisbyCF/VisbyCF-Regular.otf";
 import "./fonts/VisbyCF/VisbyCF-RegularOblique.otf";
 import { AuthProvider } from "components/context/AuthContext";
 import { BrowserRouter } from "react-router-dom";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
 	<BrowserRouter>
@@ -19,6 +21,9 @@ ReactDOM.render(
 	document.getElementById("root")
 );
 
+serviceWorkerRegistration.register();
+
+reportWebVitals();
 /* 
 Tasks
   - Keep me logged in modal

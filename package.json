@@ -42,7 +42,20 @@
     "rppg": "git+git@github.com:Vastmindz-Public-Repository/Web-SDK#v1.2.5",
     "sass-loader": "^13.2.2",
     "styled-components": "^6.0.0-rc.1",
-    "universal-cookie": "^4.0.4"
+    "universal-cookie": "^4.0.4",
+    "web-vitals": "^3.3.2",
+    "workbox-background-sync": "^7.0.0",
+    "workbox-broadcast-update": "^7.0.0",
+    "workbox-cacheable-response": "^7.0.0",
+    "workbox-core": "^7.0.0",
+    "workbox-expiration": "^7.0.0",
+    "workbox-google-analytics": "^7.0.0",
+    "workbox-navigation-preload": "^7.0.0",
+    "workbox-precaching": "^7.0.0",
+    "workbox-range-requests": "^7.0.0",
+    "workbox-routing": "^7.0.0",
+    "workbox-strategies": "^7.0.0",
+    "workbox-streams": "^7.0.0"
   },
   "devDependencies": {
     "@types/node": "^12.0.0",

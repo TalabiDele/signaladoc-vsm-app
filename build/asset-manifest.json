@@ -1,7 +1,8 @@
 {
   "files": {
-    "main.css": "./static/css/main.ed31bd15.css",
-    "main.js": "./static/js/main.c08a12b0.js",
+    "main.css": "./static/css/main.0e2d8c77.css",
+    "main.js": "./static/js/main.f98dad51.js",
+    "static/js/496.97c7a1f3.chunk.js": "./static/js/496.97c7a1f3.chunk.js",
     "static/media/doc-img.png": "./static/media/doc-img.87c80cc60f2315a70bd5.png",
     "static/media/landing-image.png": "./static/media/landing-image.ec85e47cbe40262b11c6.png",
     "static/media/discount.png": "./static/media/discount.0e78dd071e577280c566.png",
@@ -13,6 +14,7 @@
     "static/media/transaction.png": "./static/media/transaction.c611ab9ec4c49696e044.png",
     "static/media/not-found.png": "./static/media/not-found.162082185a3b922c68b4.png",
     "static/media/faq.png": "./static/media/faq.1259096822707578e45b.png",
+    "service-worker.js": "./service-worker.js",
     "static/media/firstbank.png": "./static/media/firstbank.5867221a57efcf8f5504.png",
     "static/media/VisbyCF-MediumOblique.otf": "./static/media/VisbyCF-MediumOblique.fe9702b66ca67c8cccda.otf",
     "static/media/VisbyCF-RegularOblique.otf": "./static/media/VisbyCF-RegularOblique.a1e24258607044fa6190.otf",
@@ -32,11 +34,12 @@
     "static/media/error-icon.svg": "./static/media/error-icon.0935d0662b574a009e33.svg",
     "static/media/warning-icon.svg": "./static/media/warning-icon.f7a42bc58ef7de2d7481.svg",
     "index.html": "./index.html",
-    "main.ed31bd15.css.map": "./static/css/main.ed31bd15.css.map",
-    "main.c08a12b0.js.map": "./static/js/main.c08a12b0.js.map"
+    "main.0e2d8c77.css.map": "./static/css/main.0e2d8c77.css.map",
+    "main.f98dad51.js.map": "./static/js/main.f98dad51.js.map",
+    "496.97c7a1f3.chunk.js.map": "./static/js/496.97c7a1f3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ed31bd15.css",
-    "static/js/main.c08a12b0.js"
+    "static/css/main.0e2d8c77.css",
+    "static/js/main.f98dad51.js"
   ]
 }

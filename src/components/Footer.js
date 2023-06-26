@@ -7,20 +7,42 @@ const Footer = () => {
 				<div className="">
 					<h1 className=" mb-[1rem]">Company</h1>
 					<ul>
-						<li className=" mb-[1rem]">About SignalADoc</li>
-						<li className=" mb-[1rem]">FAQs</li>
-						<li className=" mb-[1rem]">Privacy Policy</li>
-						<li className=" mb-[1rem]">Terms & Conditions</li>
+						<li className=" mb-[1rem]">
+							<a href="https://signaladoc.com/about-us">About SignalADoc</a>
+						</li>
+						<li className=" mb-[1rem]">
+							<a href="https://signaladoc.com/faqs">FAQs</a>
+						</li>
+						<li className=" mb-[1rem]">
+							<a href="https://signaladoc.com/privacy-policy">Privacy Policy</a>
+						</li>
+						<li className=" mb-[1rem]">
+							<a href="https://signaladoc.com/terms-and-conditions">
+								Terms & Conditions
+							</a>
+						</li>
 						<li className=" mb-[1rem]">info@signaladoc.com</li>
 					</ul>
 				</div>
 				<div className=" max-sm:mb-[2rem]">
 					<h1 className=" mb-[1rem]">Contact Us</h1>
 					<ul>
-						<li className=" mb-[1rem]">Twitter</li>
-						<li className=" mb-[1rem]">Instagram</li>
-						<li className=" mb-[1rem]">LinkedIn</li>
-						<li className=" mb-[1rem]">Facebook</li>
+						<li className=" mb-[1rem]">
+							<a href="https://twitter.com/signaladoc1">Twitter</a>
+						</li>
+						<li className=" mb-[1rem]">
+							<a href="https://instagram.com/signaladoc?igshid=YmMyMTA2M2Y=">
+								Instagram
+							</a>
+						</li>
+						<li className=" mb-[1rem]">
+							<a href="https://www.linkedin.com/company/signaladoc/">
+								LinkedIn
+							</a>
+						</li>
+						<li className=" mb-[1rem]">
+							<a href="https://web.facebook.com/signaladoc">Facebook</a>
+						</li>
 					</ul>
 				</div>
 
