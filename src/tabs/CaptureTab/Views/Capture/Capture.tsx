@@ -26,6 +26,7 @@ import AuthContext from "components/context/AuthContext";
 import { toast } from "react-hot-toast";
 import Modal from "components/Modal";
 import "components/General.scss";
+import { API_URL } from "components/config";
 
 export function Capture() {
 	const videoElement = useRef<HTMLVideoElement>(null);
@@ -51,17 +52,17 @@ export function Capture() {
 			history.push("/login");
 		}
 
-		// if (!canCapture) {
-		// 	toast.error("Please subscribe to take a reading!", {
-		// 		duration: 6000,
-		// 	});
+		if (!canCapture) {
+			toast.error("Please subscribe to take a reading!", {
+				duration: 6000,
+			});
 
-		// 	history.push("/home");
+			history.push("/home");
 
-		// 	setTimeout(() => {
-		// 		window.location.reload();
-		// 	}, 7000);
-		// }
+			setTimeout(() => {
+				window.location.reload();
+			}, 7000);
+		}
 	}, []);
 
 	const [size, setSize] = useState<{ width: number; height: number }>({
@@ -80,12 +81,14 @@ export function Capture() {
 		history.push("/capture/not-supported");
 	};
 
-	const onCalculationEndedCb = () => {
+	// const handleResult = async () => {
+
+	// };
+
+	const onCalculationEndedCb = async () => {
 		stopHandler();
 		closeCamera();
 		cameraInstance?.stop();
-
-		console.log(rppgData);
 
 		history.push("/capture/results", {
 			rppgData,
@@ -190,6 +193,14 @@ export function Capture() {
 			startHandler();
 		}
 	};
+
+	// const startButtonHandler = () => {
+	// 	if (processing) {
+	// 		stopHandler();
+	// 	} else {
+	// 		startHandler();
+	// 	}
+	// };
 
 	return (
 		<div className="measurement-container">

@@ -11,6 +11,7 @@ import {
 	NotSupported,
 	BadConditions,
 	Results,
+	// ResultsPage,
 } from "tabs/CaptureTab/Views";
 import "./App.scss";
 import Home from "pages/Home";
@@ -34,6 +35,7 @@ import PlansNav from "components/PlansNav";
 import Explore from "pages/Explore";
 import Discounts from "pages/Discounts";
 import SubHistory from "pages/SubHistory";
+// import ResultsPage from "tabs/CaptureTab/Views/Results/ResultsPage";
 // import { AnimatePresence } from "framer-motion";
 
 /**
@@ -89,9 +91,9 @@ export default function App() {
 			<Toaster position="top-center" reverseOrder={false} />
 			{user && pathname !== "/" ? <UserNav /> : <></>}
 			{/* {pathname === "/plans" ||
-        pathname === "/plans/explore" ||
-        pathname === "/plans/history" ||
-        (pathname === "/plans/discounts" && <PlansNav />)} */}
+				pathname === "/plans/explore" ||
+				pathname === "/plans/history" ||
+				(pathname === "/plans/discounts" && <PlansNav />)} */}
 			{loading ? (
 				<Loader style={{ margin: 100 }} />
 			) : (
@@ -99,7 +101,6 @@ export default function App() {
 					{user && (
 						<>
 							<Route
-								exact
 								path={`/capture`}
 								render={({ match: { url } }) => (
 									<>
@@ -163,6 +164,7 @@ export default function App() {
 			)}
 
 			<Route exact path={`/`} component={Home} />
+			{/* <Route exact path={`/capture/results`} component={ResultsPage} /> */}
 			<>
 				<Route exact path={`/login`} component={Login} />
 				<Route exact path={`/register`} component={Register} />

@@ -20,13 +20,13 @@ const Plans = () => {
 	return (
 		<div>
 			{/* <NoPlans />
-      <ActivePlan
-        icon={<BsPersonHeart className=" text-primary" />}
-        type={"Individual"}
-        duration={"Monthly"}
-        amount={"1000"}
-        date={"Mar 30, 2023"}
-      /> */}
+			<ActivePlan
+				icon={<BsPersonHeart className=" text-primary" />}
+				type={"Individual"}
+				duration={"Monthly"}
+				amount={"1000"}
+				date={"Mar 30, 2023"}
+			/> */}
 		</div>
 	);
 };

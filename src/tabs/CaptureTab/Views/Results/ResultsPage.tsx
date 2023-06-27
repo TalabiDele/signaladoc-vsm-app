@@ -26,7 +26,7 @@ export interface ResultData {
 	isAllDataCalculated: boolean;
 }
 
-export const Results = () => {
+export const ResultsPage = () => {
 	const history = useHistory();
 	const location = useLocation();
 
@@ -57,7 +57,7 @@ export const Results = () => {
 	useEffect(() => {
 		const data = location.state as ResultData;
 
-		console.log(data);
+		// console.log(data);
 
 		if (!data) {
 			history.push("/capture");
@@ -67,7 +67,7 @@ export const Results = () => {
 		setSchema(getSchema());
 		setData(data);
 
-		console.log(data);
+		// console.log(data);
 
 		const handleResult = async () => {
 			console.log(data?.rppgData.measurementData.bpm);

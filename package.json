@@ -1,143 +1,143 @@
 {
-  "name": "teamsfx-template-tab",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@fluentui/react-northstar": "^0.62.0",
-    "@fluentui/react-teams": "^6.1.2",
-    "@mediapipe/camera_utils": "^0.3.1640029074",
-    "@mediapipe/drawing_utils": "^0.3.1620248257",
-    "@mediapipe/face_mesh": "^0.4.1633559619",
-    "@microsoft/mgt-element": "^2.4.1-next.teamsfx.8d56785",
-    "@microsoft/mgt-react": "^2.4.1-next.teamsfx.8d56785",
-    "@microsoft/mgt-teamsfx-provider": "^2.4.1-next.teamsfx.8d56785",
-    "@microsoft/microsoft-graph-client": "^3.0.1",
-    "@microsoft/teams-js": "^2.2.0",
-    "@microsoft/teamsfx": "^2.0.0-beta.0",
-    "@microsoft/teamsfx-react": "^2.0.0-beta.1",
-    "@react-oauth/google": "^0.11.0",
-    "apexcharts": "^3.40.0",
-    "axios": "^0.21.1",
-    "chart.js": "^4.3.0",
-    "framer-motion": "^10.12.4",
-    "jwt-decode": "^3.1.2",
-    "moment": "^2.29.4",
-    "msteams-react-base-component": "^4.0.1",
-    "pony-props": "^0.2.2",
-    "react": "^17.0.2",
-    "react-apexcharts": "^1.4.0",
-    "react-apple-login": "^1.1.6",
-    "react-chartjs-2": "^5.2.0",
-    "react-dom": "^17.0.2",
-    "react-google-login": "^5.2.2",
-    "react-hot-toast": "^2.4.1",
-    "react-icons": "^4.8.0",
-    "react-phone-number-input": "^3.2.22",
-    "react-player": "^2.12.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "^5.0.1",
-    "react-select": "^5.7.3",
-    "react-select-country-list": "^2.2.3",
-    "react-spinners": "^0.13.5",
-    "rppg": "git+git@github.com:Vastmindz-Public-Repository/Web-SDK#v1.2.5",
-    "sass-loader": "^13.2.2",
-    "styled-components": "^6.0.0-rc.1",
-    "universal-cookie": "^4.0.4",
-    "web-vitals": "^3.3.2",
-    "workbox-background-sync": "^7.0.0",
-    "workbox-broadcast-update": "^7.0.0",
-    "workbox-cacheable-response": "^7.0.0",
-    "workbox-core": "^7.0.0",
-    "workbox-expiration": "^7.0.0",
-    "workbox-google-analytics": "^7.0.0",
-    "workbox-navigation-preload": "^7.0.0",
-    "workbox-precaching": "^7.0.0",
-    "workbox-range-requests": "^7.0.0",
-    "workbox-routing": "^7.0.0",
-    "workbox-strategies": "^7.0.0",
-    "workbox-streams": "^7.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.14.6",
-    "@types/react-dom": "^16.9.12",
-    "@types/react-router-dom": "^5.1.7",
-    "autoprefixer": "^10.4.14",
-    "cross-env": "^7.0.3",
-    "env-cmd": "^10.1.0",
-    "postcss": "^8.4.23",
-    "postcss-flexbugs-fixes": "^5.0.2",
-    "postcss-import": "^15.1.0",
-    "postcss-preset-env": "^8.3.2",
-    "precss": "^4.0.0",
-    "sass": "^1.54.9",
-    "tailwindcss": "^3.3.2",
-    "typescript": "^4.1.2"
-  },
-  "scripts": {
-    "dev:teamsfx": "env-cmd --silent -f .env.teamsfx.local npm run start",
-    "start": "cross-env react-scripts start",
-    "install:teamsfx": "npm install",
-    "build": "cross-env react-scripts build",
-    "build:teamsfx": "cross-env-shell \"env-cmd -f .env.teamsfx.${TEAMS_FX_ENV} npm run build\"",
-    "build:teamsfx:dev": "cross-env TEAMS_FX_ENV=dev npm run build:teamsfx",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 2020
-    },
-    "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/recommended",
-      "react-app",
-      "react-app/jest"
-    ],
-    "rules": {
-      "semi": [
-        "warn",
-        "never"
-      ],
-      "quotes": [
-        "warn",
-        "single"
-      ],
-      "comma-dangle": [
-        "warn",
-        {
-          "arrays": "always-multiline",
-          "objects": "always-multiline",
-          "imports": "always-multiline",
-          "exports": "always-multiline",
-          "functions": "only-multiline"
-        }
-      ],
-      "@typescript-eslint/ban-ts-comment": [
-        "warn"
-      ],
-      "@typescript-eslint/explicit-module-boundary-types": "off",
-      "@typescript-eslint/no-var-requires": "off",
-      "no-debugger": [
-        "warn"
-      ]
-    }
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "homepage": "."
+	"name": "teamsfx-template-tab",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@fluentui/react-northstar": "^0.62.0",
+		"@fluentui/react-teams": "^6.1.2",
+		"@mediapipe/camera_utils": "0.3.1640029074",
+		"@mediapipe/drawing_utils": "0.3.1620248257",
+		"@mediapipe/face_mesh": "0.4.1633559619",
+		"@microsoft/mgt-element": "^2.4.1-next.teamsfx.8d56785",
+		"@microsoft/mgt-react": "^2.4.1-next.teamsfx.8d56785",
+		"@microsoft/mgt-teamsfx-provider": "^2.4.1-next.teamsfx.8d56785",
+		"@microsoft/microsoft-graph-client": "^3.0.1",
+		"@microsoft/teams-js": "^2.2.0",
+		"@microsoft/teamsfx": "^2.0.0-beta.0",
+		"@microsoft/teamsfx-react": "^2.0.0-beta.1",
+		"@react-oauth/google": "^0.11.0",
+		"apexcharts": "^3.40.0",
+		"axios": "^0.21.1",
+		"chart.js": "^4.3.0",
+		"framer-motion": "^10.12.4",
+		"jwt-decode": "^3.1.2",
+		"moment": "^2.29.4",
+		"msteams-react-base-component": "^4.0.1",
+		"pony-props": "^0.2.2",
+		"react": "^17.0.2",
+		"react-apexcharts": "^1.4.0",
+		"react-apple-login": "^1.1.6",
+		"react-chartjs-2": "^5.2.0",
+		"react-dom": "^17.0.2",
+		"react-google-login": "^5.2.2",
+		"react-hot-toast": "^2.4.1",
+		"react-icons": "^4.8.0",
+		"react-phone-number-input": "^3.2.22",
+		"react-player": "^2.12.0",
+		"react-router-dom": "^5.1.2",
+		"react-scripts": "^5.0.1",
+		"react-select": "^5.7.3",
+		"react-select-country-list": "^2.2.3",
+		"react-spinners": "^0.13.5",
+		"rppg": "git+git@github.com:Vastmindz-Public-Repository/Web-SDK#v1.2.5",
+		"sass-loader": "^13.2.2",
+		"styled-components": "^6.0.0-rc.1",
+		"universal-cookie": "^4.0.4",
+		"web-vitals": "^3.3.2",
+		"workbox-background-sync": "^7.0.0",
+		"workbox-broadcast-update": "^7.0.0",
+		"workbox-cacheable-response": "^7.0.0",
+		"workbox-core": "^7.0.0",
+		"workbox-expiration": "^7.0.0",
+		"workbox-google-analytics": "^7.0.0",
+		"workbox-navigation-preload": "^7.0.0",
+		"workbox-precaching": "^7.0.0",
+		"workbox-range-requests": "^7.0.0",
+		"workbox-routing": "^7.0.0",
+		"workbox-strategies": "^7.0.0",
+		"workbox-streams": "^7.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "^12.0.0",
+		"@types/react": "^16.14.6",
+		"@types/react-dom": "^16.9.12",
+		"@types/react-router-dom": "^5.1.7",
+		"autoprefixer": "^10.4.14",
+		"cross-env": "^7.0.3",
+		"env-cmd": "^10.1.0",
+		"postcss": "^8.4.23",
+		"postcss-flexbugs-fixes": "^5.0.2",
+		"postcss-import": "^15.1.0",
+		"postcss-preset-env": "^8.3.2",
+		"precss": "^4.0.0",
+		"sass": "^1.54.9",
+		"tailwindcss": "^3.3.2",
+		"typescript": "^4.1.2"
+	},
+	"scripts": {
+		"dev:teamsfx": "env-cmd --silent -f .env.teamsfx.local npm run start",
+		"start": "cross-env react-scripts start",
+		"install:teamsfx": "npm install",
+		"build": "cross-env react-scripts build",
+		"build:teamsfx": "cross-env-shell \"env-cmd -f .env.teamsfx.${TEAMS_FX_ENV} npm run build\"",
+		"build:teamsfx:dev": "cross-env TEAMS_FX_ENV=dev npm run build:teamsfx",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"eject": "react-scripts eject"
+	},
+	"eslintConfig": {
+		"parser": "@typescript-eslint/parser",
+		"plugins": [
+			"@typescript-eslint"
+		],
+		"parserOptions": {
+			"ecmaVersion": 2020
+		},
+		"extends": [
+			"eslint:recommended",
+			"plugin:@typescript-eslint/recommended",
+			"react-app",
+			"react-app/jest"
+		],
+		"rules": {
+			"semi": [
+				"warn",
+				"never"
+			],
+			"quotes": [
+				"warn",
+				"single"
+			],
+			"comma-dangle": [
+				"warn",
+				{
+					"arrays": "always-multiline",
+					"objects": "always-multiline",
+					"imports": "always-multiline",
+					"exports": "always-multiline",
+					"functions": "only-multiline"
+				}
+			],
+			"@typescript-eslint/ban-ts-comment": [
+				"warn"
+			],
+			"@typescript-eslint/explicit-module-boundary-types": "off",
+			"@typescript-eslint/no-var-requires": "off",
+			"no-debugger": [
+				"warn"
+			]
+		}
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"homepage": "."
 }
