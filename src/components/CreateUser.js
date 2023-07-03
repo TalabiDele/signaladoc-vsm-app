@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import "./General.scss";
+import { BiHide, BiShow } from "react-icons/bi";
 
 const CreateUser = () => {
 	const [password, setPassword] = useState("");
@@ -13,6 +14,7 @@ const CreateUser = () => {
 	const [lastname, setLastname] = useState("");
 	const [refCode, setRefCode] = useState("");
 	const [username, setUsername] = useState("");
+	const [isOld, setIsOld] = useState(false);
 
 	const {
 		register,
@@ -126,15 +128,31 @@ const CreateUser = () => {
 						<label htmlFor="paswword" className=" text-text_gray">
 							Password
 						</label>
-						<input
-							type="password"
-							name="password"
-							id="password"
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-							className=" text-lg px-[1rem] py-[0.5rem] w-full border border-input_border rounded-lg mt-[0.5rem] bg-light_blue"
-							placeholder="******"
-						/>
+
+						<div className="relative">
+							<input
+								type={isOld ? "text" : "password"}
+								name="password"
+								id="password"
+								value={password}
+								className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] w-full text-lg placeholder:text-7xl"
+								onChange={(e) => setPassword(e.target.value)}
+								placeholder="******"
+							/>
+							<div className=" absolute top-[0.7rem] right-[0.5rem]">
+								{isOld ? (
+									<BiHide
+										className=" text-xl"
+										onClick={() => setIsOld(!isOld)}
+									/>
+								) : (
+									<BiShow
+										className=" text-xl"
+										onClick={() => setIsOld(!isOld)}
+									/>
+								)}
+							</div>
+						</div>
 					</div>
 					<div className=" ">
 						<label

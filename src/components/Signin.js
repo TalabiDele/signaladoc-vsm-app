@@ -8,10 +8,12 @@ import { Link } from "react-router-dom";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { GOOGLE_KEY } from "./config";
 import jwt_decode from "jwt-decode";
+import { BiHide, BiShow } from "react-icons/bi";
 
 const Signin = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [isNew, setIsNew] = useState(false);
 
 	const { login, setIsLogin, googleLogin } = useContext(AuthContext);
 
@@ -80,15 +82,30 @@ const Signin = () => {
 						>
 							Password
 						</label>
-						<input
-							type="password"
-							name="password"
-							id="password"
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-							className=" text-lg px-[1rem] py-[0.5rem] w-full border border-input_border rounded-lg mt-[0.5rem] bg-light_blue"
-							// placeholder="******"
-						/>
+
+						<div className="relative">
+							<input
+								type={isNew ? "text" : "password"}
+								name="password"
+								id="password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+								className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
+							/>
+							<div className="absolute top-[0.7rem] right-[0.5rem]">
+								{isNew ? (
+									<BiHide
+										className=" text-xl"
+										onClick={() => setIsNew(!isNew)}
+									/>
+								) : (
+									<BiShow
+										className=" text-xl"
+										onClick={() => setIsNew(!isNew)}
+									/>
+								)}
+							</div>
+						</div>
 					</div>
 
 					<div className=" flex justify-between items-center mb-4">

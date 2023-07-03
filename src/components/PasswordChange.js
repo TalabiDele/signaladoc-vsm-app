@@ -1,10 +1,13 @@
 import React, { useState, useContext } from "react";
 import AuthContext from "./context/AuthContext";
 import { toast } from "react-hot-toast";
+import { BiHide, BiShow } from "react-icons/bi";
 
 const PasswordChange = () => {
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [isNew, setIsNew] = useState(false);
+	const [isOld, setIsOld] = useState(false);
 
 	const { resetPassword, userId } = useContext(AuthContext);
 
@@ -40,15 +43,31 @@ const PasswordChange = () => {
 							<label htmlFor="password" className=" text-text_gray mb-[0.2rem]">
 								Password
 							</label>
-							<input
-								type="password"
-								name="password"
-								id="password"
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-								className=" text-lg px-[1rem] py-[0.5rem] w-full border border-input_border rounded-lg mt-[0.5rem]"
-								placeholder="******"
-							/>
+
+							<div className="relative">
+								<input
+									type={isOld ? "text" : "password"}
+									name="password"
+									id="password"
+									value={password}
+									className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[1rem] w-full text-lg placeholder:text-7xl"
+									onChange={(e) => setPassword(e.target.value)}
+									placeholder="******"
+								/>
+								<div className=" absolute top-[0.7rem] right-[0.5rem]">
+									{isOld ? (
+										<BiHide
+											className=" text-xl"
+											onClick={() => setIsOld(!isOld)}
+										/>
+									) : (
+										<BiShow
+											className=" text-xl"
+											onClick={() => setIsOld(!isOld)}
+										/>
+									)}
+								</div>
+							</div>
 						</div>
 						<div className=" mb-[1rem]">
 							<label
@@ -57,15 +76,30 @@ const PasswordChange = () => {
 							>
 								Confirm Password
 							</label>
-							<input
-								type="password"
-								name="confirmPassword"
-								id="confirmPassword"
-								value={confirmPassword}
-								onChange={(e) => setConfirmPassword(e.target.value)}
-								className=" text-lg px-[1rem] py-[0.5rem] w-full border border-input_border rounded-lg mt-[0.5rem]"
-								placeholder="******"
-							/>
+
+							<div className="relative">
+								<input
+									type={isNew ? "text" : "password"}
+									name="confirmPassword"
+									id="confirmPassword"
+									value={confirmPassword}
+									className=" border border-bluee bg-input_bg rounded-md p-[0.5rem] mb-[2rem] w-full text-lg"
+									onChange={(e) => setConfirmPassword(e.target.value)}
+								/>
+								<div className="absolute top-[0.7rem] right-[0.5rem]">
+									{isNew ? (
+										<BiHide
+											className=" text-xl"
+											onClick={() => setIsNew(!isNew)}
+										/>
+									) : (
+										<BiShow
+											className=" text-xl"
+											onClick={() => setIsNew(!isNew)}
+										/>
+									)}
+								</div>
+							</div>
 						</div>
 						<button className=" bg-primary text-white border border-primary py-[1rem] rounded-lg w-full">
 							Reset Password
