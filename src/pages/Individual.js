@@ -1,5 +1,6 @@
 import Personal from "components/Personal";
-import React from "react";
+import React, { useContext } from "react";
+import AuthContext from "components/context/AuthContext";
 
 const Individual = () => {
 	return (

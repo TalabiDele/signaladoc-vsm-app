@@ -7,12 +7,12 @@ import AuthContext from "components/context/AuthContext";
 import { useHistory } from "react-router-dom";
 import { API_URL } from "components/config";
 import Cookies from "universal-cookie";
-import Loader from "components/Loader";
+import LoaderComponent from "components/LoaderComponent";
 
 const Plans = () => {
-	const { user, lowest, setLowest } = useContext(AuthContext);
+	const { user, lowest, setLowest, isLoading, setIsLoading } =
+		useContext(AuthContext);
 	const [activeSub, setActiveSub] = useState(null);
-	const [loading, setLoading] = useState(false);
 
 	const history = useHistory();
 
@@ -24,7 +24,7 @@ const Plans = () => {
 		}
 
 		const handleActiveSub = async () => {
-			setLoading(true);
+			setIsLoading(true);
 			const res = await fetch(`${API_URL}/finance`, {
 				method: "GET",
 				headers: {
@@ -41,7 +41,7 @@ const Plans = () => {
 
 			setActiveSub(data);
 
-			setLoading(false);
+			setIsLoading(false);
 		};
 
 		handleActiveSub();
@@ -52,8 +52,8 @@ const Plans = () => {
 			<p className="medium fixed text-2xl z-[4] top-[2rem] max-md:left-[3rem] w-[70vw] mx-auto left-[15rem]">
 				My Plans
 			</p>
-			{loading ? (
-				<Loader />
+			{isLoading ? (
+				<LoaderComponent />
 			) : user?.active_subscription ? (
 				<div className=" mt-[2rem]">
 					<ActivePlan
@@ -72,7 +72,7 @@ const Plans = () => {
 						}
 						isButton={true}
 						payGo={activeSub?.lowest_individual ? true : false}
-						loading={loading}
+						loading={isLoading}
 					/>
 				</div>
 			) : (

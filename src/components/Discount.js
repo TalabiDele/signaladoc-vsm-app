@@ -7,14 +7,18 @@ import gtb from "assets/images/gtb.png";
 import Cookies from "universal-cookie";
 import { API_URL } from "./config";
 import { Link } from "react-router-dom";
+import AuthContext from "./context/AuthContext";
 
 const Discount = () => {
 	const [list, setList] = useState();
+
+	const { setIsLoading, isLoading } = useContext(AuthContext);
 
 	const cookies = new Cookies();
 
 	useEffect(() => {
 		const handleDiscount = async () => {
+			setIsLoading(true);
 			const res = await fetch(`${API_URL}/finance/discount`, {
 				method: "GET",
 				headers: {
@@ -28,6 +32,8 @@ const Discount = () => {
 			console.log(data);
 
 			setList(data.banks);
+
+			setIsLoading(false);
 		};
 
 		handleDiscount();
@@ -37,7 +43,7 @@ const Discount = () => {
 		<div className=" w-[70vw] mx-auto max-md:w-[90vw]">
 			<p className="text-2xl medium fixed top-[2rem] z-[4]">Discounts</p>
 			<div className=" pt-[4rem] max-md:w-[90vw]">
-				{list ? (
+				{list && !isLoading ? (
 					list.map((e) => (
 						<Link
 							to={`/plans/discounts/${e.id}`}
@@ -51,10 +57,16 @@ const Discount = () => {
 						</Link>
 					))
 				) : (
-					<Unavailable
-						text={"There are no discounts available. Check back another time!"}
-						icon={image}
-					/>
+					<div className="">
+						{!isLoading && (
+							<Unavailable
+								text={
+									"There are no discounts available. Check back another time!"
+								}
+								icon={image}
+							/>
+						)}
+					</div>
 				)}
 			</div>
 		</div>

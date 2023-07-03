@@ -33,7 +33,7 @@ const PaymentSummary = () => {
 	const location = useLocation();
 	const history = useHistory();
 
-	const { user, checkUserLoggedIn } = useContext(AuthContext);
+	const { user, checkUserLoggedIn, setIsLoading } = useContext(AuthContext);
 
 	const cookies = new Cookies();
 
@@ -93,6 +93,7 @@ const PaymentSummary = () => {
 	const handleFlutterPayment = useFlutterwave(config);
 
 	const handleCompanyPayment = async (e) => {
+		setIsLoading(true);
 		const res = await fetch(
 			`${API_URL}/finance/subscription/individual/verify`,
 			{
@@ -112,6 +113,8 @@ const PaymentSummary = () => {
 
 		const data = await res.json();
 
+		setIsLoading(false);
+
 		if (res.ok) {
 			setModal(true);
 
@@ -127,6 +130,7 @@ const PaymentSummary = () => {
 	};
 
 	const handleCompanyPaymentTwo = async (e) => {
+		setIsLoading(true);
 		const res = await fetch(
 			`${API_URL}/finance/subscription/individual/verify`,
 			{
@@ -148,6 +152,8 @@ const PaymentSummary = () => {
 
 		console.log(data);
 
+		setIsLoading(false);
+
 		if (res.ok) {
 			setModal(true);
 
@@ -158,6 +164,7 @@ const PaymentSummary = () => {
 	};
 
 	const handlePayGoPayment = async (e) => {
+		setIsLoading(true);
 		const res = await fetch(`${API_URL}/finance/pay-go/verify`, {
 			method: "POST",
 			headers: {
@@ -175,6 +182,8 @@ const PaymentSummary = () => {
 
 		console.log(data);
 
+		setIsLoading(false);
+
 		if (res.ok) {
 			setModal(true);
 
@@ -185,6 +194,7 @@ const PaymentSummary = () => {
 	};
 
 	const handlePayGoPaymentTwo = async (e) => {
+		setIsLoading(true);
 		const res = await fetch(`${API_URL}/finance/pay-go/verify`, {
 			method: "POST",
 			headers: {
@@ -202,6 +212,8 @@ const PaymentSummary = () => {
 
 		console.log(data);
 
+		setIsLoading(true);
+
 		if (res.ok) {
 			setModal(true);
 
@@ -212,6 +224,7 @@ const PaymentSummary = () => {
 	};
 
 	const handleIndividualPayment = async (e) => {
+		setIsLoading(true);
 		const res = await fetch(
 			`${API_URL}/finance/subscription/individual/verify`,
 			{
@@ -233,6 +246,8 @@ const PaymentSummary = () => {
 
 		console.log(data);
 
+		setIsLoading(false);
+
 		if (res.ok) {
 			setModal(true);
 
@@ -250,6 +265,8 @@ const PaymentSummary = () => {
 
 	const handleIndividualPaymentTwo = async (e) => {
 		console.log(e);
+
+		setIsLoading(true);
 
 		const res = await fetch(
 			`${API_URL}/finance/subscription/individual/verify`,
@@ -271,6 +288,8 @@ const PaymentSummary = () => {
 		const data = await res.json();
 
 		console.log(data);
+
+		setIsLoading(false);
 
 		if (res.ok) {
 			setModal(true);
@@ -313,6 +332,7 @@ const PaymentSummary = () => {
 	};
 
 	const handlePromo = async () => {
+		setIsLoading(true);
 		const res = await fetch(`${API_URL}/promo-code/verify`, {
 			method: "POST",
 			headers: {
@@ -328,6 +348,8 @@ const PaymentSummary = () => {
 		const data = await res.json();
 
 		console.log(data);
+
+		setIsLoading(false);
 
 		if (res.ok) {
 			setPromoModal(true);

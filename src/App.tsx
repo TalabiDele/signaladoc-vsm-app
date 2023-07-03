@@ -43,6 +43,7 @@ import Enrollee from "pages/Enrollee";
 import BankDiscount from "pages/BankDiscount";
 import { useServiceWorker } from "useServiceWorker";
 import Buttons from "components/Buttons";
+import LoaderComponent from "components/LoaderComponent";
 // import ResultsPage from "tabs/CaptureTab/Views/Results/ResultsPage";
 // import { AnimatePresence } from "framer-motion";
 
@@ -77,7 +78,7 @@ export default function App() {
 		}
 	}, [waitingWorker, showReload, reloadPage]);
 
-	const { user, logout } = useContext(AuthContext);
+	const { user, logout, isLoading } = useContext(AuthContext);
 
 	console.log(user);
 
@@ -119,6 +120,7 @@ export default function App() {
 			{/* <TeamsFxContext.Provider value={{ theme, themeString, teamsfx }}> */}
 			{/* <Provider themeName={TeamsTheme.Default} lang="en-US"> */}
 			<Toaster position="top-center" reverseOrder={false} />
+			{isLoading && <LoaderComponent />}
 			{user && pathname !== "/" ? <UserNav /> : <></>}
 			{/* {pathname === "/plans" ||
 				pathname === "/plans/explore" ||

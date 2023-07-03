@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import AuthContext from "./context/AuthContext";
 import "./General.scss";
 
 const ExploreCard = ({
@@ -11,6 +12,8 @@ const ExploreCard = ({
 	price,
 	event,
 }) => {
+	const { isLoading } = useContext(AuthContext);
+
 	return (
 		<div>
 			<div

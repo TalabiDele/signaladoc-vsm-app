@@ -1,6 +1,6 @@
 import React from "react";
 
-const Loader = () => {
+const LoaderComponent = () => {
 	return (
 		<div className=" w-[100vw] h-[100vh] fixed top-0 left-0 bg-white bg-opacity-95 flex items-center justify-center">
 			<div role="status">
@@ -26,4 +26,4 @@ const Loader = () => {
 	);
 };
 
-export default Loader;
+export default LoaderComponent;

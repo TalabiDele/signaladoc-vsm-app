@@ -18,8 +18,11 @@ const History = () => {
 	const [name, setName] = useState("");
 	const [note, setNote] = useState("");
 
+	const { setIsLoading } = useContext(AuthContext);
+
 	useEffect(() => {
 		const handleHistory = async () => {
+			setIsLoading(true);
 			const res = await fetch(`${API_URL}/vital-sign/history`, {
 				method: "GET",
 				headers: {
@@ -33,6 +36,8 @@ const History = () => {
 			setHistData(data);
 
 			console.log(data);
+
+			setIsLoading(false);
 		};
 
 		handleHistory();

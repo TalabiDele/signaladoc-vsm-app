@@ -58,6 +58,7 @@ export const AuthProvider = ({ children }) => {
 	const [timeZone, setTimeZone] = useState("");
 	const [currentCntry, setCurrentCntry] = useState("");
 	const [lowest, setLowest] = useState();
+	const [isLoading, setIsLoading] = useState(true);
 
 	const history = useHistory();
 	const cookies = new Cookies();
@@ -127,6 +128,7 @@ export const AuthProvider = ({ children }) => {
 
 	useEffect(() => {
 		const handleHome = async () => {
+			setIsLoading(true);
 			const res = await fetch(`${API_URL}/home`, {
 				method: "GET",
 				headers: {
@@ -143,6 +145,8 @@ export const AuthProvider = ({ children }) => {
 			console.log(chartData);
 
 			console.log(data);
+
+			setIsLoading(false);
 		};
 
 		handleHome();
@@ -235,6 +239,7 @@ export const AuthProvider = ({ children }) => {
 	};
 
 	const checkUserLoggedIn = async () => {
+		setIsLoading(true);
 		// const obj = jwt_decode(cookies.get("vsm_authorization"));
 		const res = await fetch(`${API_URL}/user/detail`, {
 			method: "GET",
@@ -249,6 +254,8 @@ export const AuthProvider = ({ children }) => {
 		setUser(data.detail);
 
 		setToken(cookies.get("vsm_authorization"));
+
+		setIsLoading(false);
 
 		// if (data) {
 		//   history.push("/home");
@@ -840,6 +847,8 @@ export const AuthProvider = ({ children }) => {
 				handleProfile,
 				lowest,
 				setLowest,
+				isLoading,
+				setIsLoading,
 			}}
 		>
 			{children}

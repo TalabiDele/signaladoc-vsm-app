@@ -10,7 +10,7 @@ import "./General.scss";
 const Personal = () => {
 	const [plans, setPlans] = useState();
 
-	const { user } = useContext(AuthContext);
+	const { user, setIsLoading } = useContext(AuthContext);
 
 	const cookies = new Cookies();
 
@@ -22,6 +22,7 @@ const Personal = () => {
 		}
 
 		const handleIndividual = async () => {
+			setIsLoading(true);
 			const res = await fetch(
 				`${API_URL}/finance/subscription/individual/fee`,
 				{
@@ -38,6 +39,8 @@ const Personal = () => {
 			console.log(data);
 
 			setPlans(data);
+
+			setIsLoading(false);
 		};
 
 		handleIndividual();

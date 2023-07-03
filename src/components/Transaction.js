@@ -9,10 +9,13 @@ import { API_URL } from "./config";
 const Transaction = () => {
 	const [transact, setTransact] = useState(null);
 
+	const { user, setIsLoading } = useContext(AuthContext);
+
 	const cookies = new Cookies();
 
 	useEffect(() => {
 		const handleHistory = async () => {
+			setIsLoading(true);
 			const res = await fetch(`${API_URL}/finance/transaction/history`, {
 				method: "GET",
 				headers: {
@@ -26,12 +29,12 @@ const Transaction = () => {
 			console.log(data);
 
 			setTransact(data);
+
+			setIsLoading(false);
 		};
 
 		handleHistory();
 	}, []);
-
-	const { user } = useContext(AuthContext);
 
 	return (
 		<div>

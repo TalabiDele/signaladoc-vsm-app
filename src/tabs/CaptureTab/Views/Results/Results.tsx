@@ -45,7 +45,7 @@ export const Results = () => {
 	// const [timeZone, setTimeZone] = useState<string>("");
 	const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
-	const { setResultReading, resultReading, user, timeZone } =
+	const { setResultReading, resultReading, user, timeZone, setIsLoading } =
 		useContext(AuthContext);
 
 	console.log(data);
@@ -71,7 +71,7 @@ export const Results = () => {
 
 		const handleResult = async () => {
 			console.log(data?.rppgData.measurementData.bpm);
-
+			setIsLoading(true);
 			const res = await fetch(`${API_URL}/vital-sign`, {
 				method: "POST",
 				headers: {
@@ -95,6 +95,8 @@ export const Results = () => {
 			setResultReading(resData);
 
 			console.log(resData);
+
+			setIsLoading(false);
 		};
 
 		handleResult();
