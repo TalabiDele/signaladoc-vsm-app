@@ -92,6 +92,8 @@ const ProfileEdit = () => {
 			setIsPhoto(true);
 
 			setIsUpdate(false);
+
+			checkUserLoggedIn();
 		} else {
 			toast.error(data.photo[0], {
 				duration: 6000,

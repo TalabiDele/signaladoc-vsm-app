@@ -143,8 +143,8 @@ const UserNav = () => {
 				} bg-white text-black w-full flex justify-end text-xl p-[2rem] max-md:p-[2rem]`}
 			>
 				<div className=" flex w-[30vw] justify-between items-center max-md:w-[20vw] max-lg:w-[40vw]">
-					<TbCalendarTime className=" text-3xl max-md:text-4xl light" />
-					<MdNotificationsNone className=" text-3xl max-md:text-4xl light" />
+					{/* <TbCalendarTime className=" text-3xl max-md:text-4xl light" />
+					<MdNotificationsNone className=" text-3xl max-md:text-4xl light" /> */}
 					<div className=" flex items-center max-md:hidden">
 						{user.photo === "default.jpg" ? (
 							<div className=" bold bg-[#AEC5F1] rounded-md py-[0.5rem] px-[1rem] max-md:px-[0.5rem] max-md:py-[0.1rem] mr-[1rem] ">

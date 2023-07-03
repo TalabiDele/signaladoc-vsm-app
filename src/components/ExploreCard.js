@@ -1,10 +1,21 @@
 import React from "react";
+import "./General.scss";
 
-const ExploreCard = ({ icon, type, text, color, amount, duration, price }) => {
+const ExploreCard = ({
+	icon,
+	type,
+	text,
+	color,
+	amount,
+	duration,
+	price,
+	event,
+}) => {
 	return (
 		<div>
 			<div
-				className={` ${color} p-[1rem] w-[25rem] flex justify-between rounded-md shadow-lg items-center mx-auto cursor-pointer`}
+				className={` ${color} p-[1rem] w-[25rem] flex justify-between rounded-md shadow-lg items-center mx-auto cursor-pointer max-sm:w-[90vw]`}
+				onClick={event}
 			>
 				<div className=" h-[4rem] w-[4rem] rounded-full bg-white flex items-center justify-center text-3xl">
 					{icon}
@@ -13,12 +24,25 @@ const ExploreCard = ({ icon, type, text, color, amount, duration, price }) => {
 					<h2 className=" mb-[0.5rem] text-xl">{type}</h2>
 					{amount && (
 						<h1 className=" text-primary text-4xl mb-[0.5rem]">
-							₦{amount}/<span className=" text-sm mb-[1rem]">{duration}</span>
+							<span
+								dangerouslySetInnerHTML={{
+									__html: amount,
+								}}
+							></span>
+							/<span className=" text-sm mb-[1rem]">{duration}</span>
 						</h1>
 					)}
 					<p className=" text-md mb-[1rem]">
 						{text}{" "}
-						{price && <span className=" font-bold text-primary">₦{price}</span>}
+						{price && (
+							<span className=" font-bold text-primary bold">
+								<span
+									dangerouslySetInnerHTML={{
+										__html: price,
+									}}
+								></span>
+							</span>
+						)}
 					</p>
 					<div className=" flex "></div>
 				</div>

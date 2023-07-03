@@ -2,16 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+	@variants responsive {
+		/* Hide scrollbar for Chrome, Safari and Opera */
+		.no-scrollbar::-webkit-scrollbar {
+			display: none;
+		}
+
+		/* Hide scrollbar for IE, Edge and Firefox */
+		.no-scrollbar {
+			-ms-overflow-style: none; /* IE and Edge */
+			scrollbar-width: none; /* Firefox */
+		}
+	}
+}
+
 @font-face {
-  font-family: "VisbyCF";
-  src: local("VisbyCF"),
-    url("./fonts/VisbyCF/VisbyCF-Regular.otf") format("truetype");
-  font-weight: bold;
+	font-family: "VisbyCF";
+	src: local("VisbyCF"),
+		url("./fonts/VisbyCF/VisbyCF-Regular.otf") format("truetype");
+	font-weight: bold;
 }
 
 body {
-  font-family: "VisbyCF";
-  margin: 5em;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	font-family: "VisbyCF";
+	margin: 5em;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }

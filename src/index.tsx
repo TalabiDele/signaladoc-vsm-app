@@ -29,5 +29,7 @@ Tasks
   - Keep me logged in modal
   - Add react share
   - History pagination
-  - PWA
+	- Card too big on doctor modal
+	- Fetch active subscrition from user to check subscription
+	- Add pagination to transaction history page
 */

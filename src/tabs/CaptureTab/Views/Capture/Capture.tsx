@@ -52,7 +52,7 @@ export function Capture() {
 			history.push("/login");
 		}
 
-		if (!canCapture) {
+		if (!user?.active_subscription) {
 			toast.error("Please subscribe to take a reading!", {
 				duration: 6000,
 			});

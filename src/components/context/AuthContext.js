@@ -57,6 +57,7 @@ export const AuthProvider = ({ children }) => {
 	const [isMode, setIsMode] = useState(false);
 	const [timeZone, setTimeZone] = useState("");
 	const [currentCntry, setCurrentCntry] = useState("");
+	const [lowest, setLowest] = useState();
 
 	const history = useHistory();
 	const cookies = new Cookies();
@@ -147,10 +148,22 @@ export const AuthProvider = ({ children }) => {
 		handleHome();
 	}, []);
 
-	const logout = () => {
+	const logout = async () => {
+		// const res = await fetch(`${API_URL}/user/auth/logout`, {
+		// 	method: "POST",
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 		Authorization: `Bearer ${cookies.get("vsm_authorization")}`,
+		// 	},
+		// });
+
+		// const data = await res.json();
+		// console.log(data);
+
 		cookies.remove("vsm_authorization", "", {
 			expires: new Date(0),
 		});
+
 		history.push("/login");
 
 		setUser(null);
@@ -160,6 +173,8 @@ export const AuthProvider = ({ children }) => {
 
 		setProfData(null);
 		setMedData(null);
+		// if (res.ok) {
+		// }
 	};
 
 	const validateEmail = async ({ username, type }) => {
@@ -472,6 +487,8 @@ export const AuthProvider = ({ children }) => {
 		} else {
 			setError(true);
 			setMessage(data.error);
+
+			// history.push("");
 
 			setTimeout(() => {
 				setError(false);
@@ -821,6 +838,8 @@ export const AuthProvider = ({ children }) => {
 				timeZone,
 				setTimeZone,
 				handleProfile,
+				lowest,
+				setLowest,
 			}}
 		>
 			{children}

@@ -26,7 +26,7 @@ const Chat = () => {
 		<div className=" w-[70%] mx-auto pt-[2rem] max-md:pt-[5rem] max-md:w-[90%]">
 			{isModal && (
 				<div className=" modal bg-black bg-opacity-90 fixed h-[100vh] w-[100vw] left-0 top-0 grid items-center z-[5]">
-					<div className=" rounded-md bg-white py-[3rem] px-[1rem] w-[30rem] mx-auto relative text-center flex flex-col items-center max-md:w-[80%]">
+					<div className=" rounded-md bg-white py-[3rem] px-[1rem] w-[20rem] mx-auto relative text-center flex flex-col items-center max-md:w-[80%]">
 						<h1
 							className=" absolute right-[2rem] top-[1rem] cursor-pointer text-2xl"
 							onClick={() => setIsModal(false)}

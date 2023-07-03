@@ -21,7 +21,7 @@ import { AuthProvider } from "components/context/AuthContext";
 import Login from "pages/Login";
 import { createBrowserHistory } from "history";
 import ForgotPassword from "pages/ForgotPassword";
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import UserNav from "components/UserNav";
 import Dashboard from "pages/Dashboard";
 import AuthContext from "components/context/AuthContext";
@@ -35,6 +35,14 @@ import PlansNav from "components/PlansNav";
 import Explore from "pages/Explore";
 import Discounts from "pages/Discounts";
 import SubHistory from "pages/SubHistory";
+import Individual from "pages/Individual";
+import Payment from "pages/Payment";
+import Corperate from "pages/Corperate";
+import Onboard from "pages/Onboard";
+import Enrollee from "pages/Enrollee";
+import BankDiscount from "pages/BankDiscount";
+import { useServiceWorker } from "useServiceWorker";
+import Buttons from "components/Buttons";
 // import ResultsPage from "tabs/CaptureTab/Views/Results/ResultsPage";
 // import { AnimatePresence } from "framer-motion";
 
@@ -46,6 +54,28 @@ export default function App() {
 	const { loading, theme, themeString, teamsfx } = useTeamsFx();
 
 	const hist = createBrowserHistory();
+
+	const { waitingWorker, showReload, reloadPage } = useServiceWorker();
+	// decides when to show the toast
+	useEffect(() => {
+		if (showReload && waitingWorker) {
+			toast((t) => (
+				<span>
+					A new version of this page is available
+					{/* <button onClick={() => reloadPage()}>REFRESH</button> */}
+					<Buttons
+						bg={"bg-primary"}
+						border={"border-2 border-primary"}
+						color={"text-white"}
+						text={"Refresh"}
+						px={"px-[5rem]"}
+						resonsive={false}
+						event={() => reloadPage()}
+					/>
+				</span>
+			));
+		}
+	}, [waitingWorker, showReload, reloadPage]);
 
 	const { user, logout } = useContext(AuthContext);
 
@@ -131,18 +161,44 @@ export default function App() {
 								path={`/plans`}
 								render={({ match: { url } }) => (
 									<>
-										{/* <PlansNav /> */}
-										<Route exact path={`${url}/`} component={Plans} />
-										<Route exact path={`${url}/explore`} component={Explore} />
+										<>
+											<PlansNav />
+											<Route exact path={`${url}/`} component={Plans} />
+											<Route
+												exact
+												path={`${url}/explore`}
+												component={Explore}
+											/>
+											<Route
+												exact
+												path={`${url}/discounts`}
+												component={Discounts}
+											/>
+											<Route
+												exact
+												path={`${url}/history`}
+												component={SubHistory}
+											/>
+										</>
 										<Route
 											exact
-											path={`${url}/discounts`}
-											component={Discounts}
+											path={`/plans/individual`}
+											component={Individual}
 										/>
 										<Route
 											exact
-											path={`${url}/history`}
-											component={SubHistory}
+											path={`/plans/payment-summary`}
+											component={Payment}
+										/>
+										<Route
+											exact
+											path={`/plans/enrollee`}
+											component={Enrollee}
+										/>
+										<Route
+											exact
+											path={`/plans/discounts/:slug`}
+											component={BankDiscount}
 										/>
 									</>
 								)}
@@ -164,6 +220,8 @@ export default function App() {
 			)}
 
 			<Route exact path={`/`} component={Home} />
+			<Route exact path={`/plans/corporate`} component={Corperate} />
+			<Route exact path={`/plans/onboard`} component={Onboard} />
 			{/* <Route exact path={`/capture/results`} component={ResultsPage} /> */}
 			<>
 				<Route exact path={`/login`} component={Login} />
