@@ -42,7 +42,11 @@ const Discount = () => {
 	return (
 		<div className=" w-[70vw] mx-auto max-md:w-[90vw]">
 			<p className="text-2xl medium fixed top-[2rem] z-[4]">Discounts</p>
-			<div className=" pt-[4rem] max-md:w-[90vw]">
+
+			<p className=" text-xl medium pt-[2rem] text-center mb-[2rem] max-md:text-left">
+				Choose Your Bank. Get a Discount. Pay with your bank card.{" "}
+			</p>
+			<div className=" max-md:w-[90vw] grid grid-cols-4 max-md:grid-cols-3 max-sm:gird-cols-2">
 				{list && !isLoading ? (
 					list.map((e) => (
 						<Link
