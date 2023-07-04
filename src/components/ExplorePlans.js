@@ -73,7 +73,7 @@ const ExplorePlans = () => {
 			) : (
 				<div className="">
 					{payGo && (
-						<div className=" pt-[3rem] w-[70vw] mx-auto max-md:pb-[10rem]">
+						<div className=" pt-[3rem] w-[70vw] mx-auto max-md:pb-[10rem] max-2xl:ml-[15rem]">
 							<p className="medium fixed text-2xl z-[4] top-[2rem]">
 								Choose a Plan
 							</p>

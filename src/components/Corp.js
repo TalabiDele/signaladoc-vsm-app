@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Corp = () => {
 	return (
-		<div className=" w-[70vw] mx-auto relative pt-[4rem] max-xl:ml-[20rem] max-lg:ml-[15rem] max-md:mx-[auto] max-sm:w-[90vw]">
+		<div className=" w-[70vw] mx-auto relative pt-[4rem] max-xl:ml-[20rem] max-lg:ml-[15rem] max-md:mx-[auto] max-sm:w-[90vw] max-2xl:ml-[15rem]">
 			<p className="text-2xl medium fixed top-[2rem] z-[4] ">Corporate Plan</p>
 			<div className="w-[30rem] max-md:w-full max-sm:w-[90vw] pt-[7rem]">
 				<div className=" bg-light_blue rounded-md p-[1rem] mb-[2rem] ">
